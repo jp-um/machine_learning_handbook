@@ -4,7 +4,7 @@ A student-sourced Machine Learning Handbook for ICS5110.  Instructions for submi
 
 1. Clone the repository
 2. Edit the `ics5110_ml_handbook.tex` file
-   * Find the `TODO` label inside the file, change/add your stuff accordingly
+   * Find the `TODO` labels inside this file (3 instances), change/add your stuff accordingly
 3. Add your term file and bibliography to the `terms` directory.  This should have 
 the form of `term_initials.tex` where `term` is your actual term and 
 `initials` are your initials (e.g. `overfitting_jpe.tex`).  Also add your
