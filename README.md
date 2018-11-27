@@ -11,4 +11,4 @@ the form of `term_initials.tex` where `term` is your actual term and
 bibliography (i.e. `term_initials.bib`) there.
 4. Create a pull request ([read here](https://help.github.com/articles/creating-a-pull-request/) for more details)
 
-**Submit as early as possible as you are bound to get feedback**
+**Submit as early as possible as you are bound to get feedback on your work (no need to wait for the deadline, everyone is doing something different anyway).**
