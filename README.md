@@ -10,3 +10,5 @@ the form of `term_initials.tex` where `term` is your actual term and
 `initials` are your initials (e.g. `overfitting_jpe.tex`).  Also add your
 bibliography (i.e. `term_initials.bib`) there.
 4. Create a pull request ([read here](https://help.github.com/articles/creating-a-pull-request/) for more details)
+
+**Submit as early as possible as you are bound to get feedback**
