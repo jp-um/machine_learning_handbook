@@ -1,0 +1,25 @@
+\contentsline {chapter}{Introduction}{5}{chapter*.2}
+\contentsline {chapter}{On the Use of the tufte-book Document Class}{7}{chapter*.3}
+\contentsline {section}{Page Layout}{7}{section*.4}
+\contentsline {subsection}{Headings}{7}{subsection*.5}
+\contentsline {section}{Sidenotes}{8}{section*.6}
+\contentsline {section}{References}{9}{section*.7}
+\contentsline {section}{Figures and Tables}{9}{section*.8}
+\contentsline {section}{Captions}{11}{section*.9}
+\contentsline {paragraph}{Vertical alignment}{11}{paragraph*.10}
+\contentsline {paragraph}{Horizontal alignment}{11}{paragraph*.11}
+\contentsline {section}{Full-width text blocks}{12}{section*.12}
+\contentsline {section}{Typography}{12}{section*.13}
+\contentsline {subsection}{Typefaces}{12}{subsection*.14}
+\contentsline {subsection}{Letterspacing}{12}{subsection*.15}
+\contentsline {section}{Document Class Options}{13}{section*.16}
+\contentsline {chapter}{Hyperparameters}{15}{chapter*.17}
+\contentsline {section}{Introduction}{15}{section*.18}
+\contentsline {subsection}{Defining Hyperparameters}{15}{subsection*.19}
+\contentsline {section}{Approaches for Hyperparameter Optimization}{15}{section*.20}
+\contentsline {subsection}{Gradient-Based Hyperparameter Optimization}{15}{subsection*.21}
+\contentsline {subsection}{Hyperparameter Optimization Through Adaptive Resource Allocation}{16}{subsection*.22}
+\contentsline {subsection}{Bandit-Based Approach in Conjunction with Adaptive Allocation}{16}{subsection*.23}
+\contentsline {section}{Scenario: Hyperparameter Tuning for Gradient Descent}{17}{section*.24}
+\contentsline {chapter}{Bibliography}{19}{chapter*.25}
+\contentsfinish 
