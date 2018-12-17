@@ -23,6 +23,7 @@
 %%
 % For nicely typeset tabular material
 \usepackage{booktabs}
+\usepackage{pdfpages}
 
 %%
 % For graphics / images
@@ -145,13 +146,26 @@
 \usepackage{makeidx}
 \makeindex
 
+\usepackage{tikz}
+
 \begin{document}
+	\begingroup
+	\thispagestyle{empty}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{cover/cover_oreilly_style.pdf}};
+	%%\draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The Search for a Title\\[15pt] % Book title
+	%%{\Large A Profound Subtitle}\\[20pt] % Subtitle
+	%%{\huge Dr. John Smith}}}; % Author name
+	\end{tikzpicture}
+	\vfill
+	\endgroup
+	
 
 % Front matter
 \frontmatter
 
 % r.3 full title page
-\maketitle
+%% \maketitle
 
 
 % v.4 copyright page
