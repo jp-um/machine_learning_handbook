@@ -38,7 +38,9 @@ Even though CMs are commonly used to evaluate binary classifiers, they aren't re
   \label{tab:cm_sweets}
 \end{table}
 
-The CM of the model $h : X \mapsto C$ over the concept $c : X \mapsto C$ using dataset $S \subset X$ is formally defined \citep{cichosz2014data} as a matrix $\Xi$ such that $\Xi_{c,S}(h)[d_1,d_2] = |S_{h=d_1,c=d_2}|$. The CM is constructed by incrementing the element corresponding to the true class \textit{vis-a-vi} the predicted class for each object in the dataset (Algorithm \ref{alg:cm}).
+
+The CM of the model $h : X \mapsto C$ over the concept $c : X \mapsto C$ using dataset $S \subset X$ is formally defined  as a matrix $\Xi$ such that $\Xi_{c,S}(h)[d_1,d_2] = |S_{h=d_1,c=d_2}|$ \citep{cichosz2014data}. The CM is constructed by incrementing the element corresponding to the true class \textit{vis-a-vi} the predicted class for each object in the dataset (Algorithm \ref{alg:cm}).
+
 
 \begin{algorithm}
   \begin{algorithmic}
