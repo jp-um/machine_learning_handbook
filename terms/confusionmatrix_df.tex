@@ -57,7 +57,9 @@ The CM of the model $h : X \mapsto C$ over the concept $c : X \mapsto C$ using d
   \label{alg:cm}
 \end{algorithm}
 
-In binary classification, the CM consists of 2 specially designated classes called the \textit{positive} class and the \textit{negative} class \citep{saito2015precision}. As indicated in Table \ref{tab:cm_binary}, positive outcomes from the true class  which are classified correctly are called \textit{True Positives} (TP), whilst misclassifications are called \textit{False Negatives} (FN). On the other hand, negative true class outcomes which are classified correctly are called \textit{True Negatives} (TN), and misclassifications are called \textit{False Positives} (FP). In natural sciences, FP are called \textit{Type I Errors} and FN are known as \textit{Type II Errors} \citep{fielding1997review}.
+
+In binary classification, the CM consists of 2 specially designated classes called the \textit{positive} class and the \textit{negative} class \citep{saito2015precision}. As indicated in Table \ref{tab:cm_binary}, positive outcomes from the true class  which are classified correctly are called \textit{True Positives}\index{confusion matrix!true positives} (TP), whilst misclassifications are called \textit{False Negatives}\index{confusion matrix!false negatives} (FN). On the other hand, negative true class outcomes which are classified correctly are called \textit{True Negatives}\index{confusion matrix!true negatives} (TN), and misclassifications are called \textit{False Positives}\index{confusion matrix!false positives} (FP). In natural sciences, FP are called \textit{Type I Errors} and FN are known as \textit{Type II Errors} \citep{fielding1997review}.
+
 
 \begin{table}[ht]
   \centering
@@ -85,21 +87,27 @@ These metrics are important in situations in which a particular type of misclass
 ACC = \frac{|TP \cup TN|}{|TP \cup FP \cup TN \cup FN|}
 \end{equation}
 
-\textit{Negative Predictive Value} (NPV) is the ratio of the correct negative predictions from the total negative predictions (Eq. \ref{eq:cm_npv}).
+
+\textit{Negative Predictive Value}\index{confusion matrix!negative predictive value} (NPV) is the ratio of the correct negative predictions from the total negative predictions (Eq. \ref{eq:cm_npv}).
+
 
 \begin{equation}
 \label{eq:cm_npv}
 NPV = \frac{|TN|}{|TN \cup FN|}
 \end{equation}
 
-\textit{True Negative Rate} (TNR), or \textit{Specificity}, is the ratio of the correct negative predictions from the total true negatives (Eq. \ref{eq:cm_tnr}).
+
+\textit{True Negative Rate}\index{confusion matrix!true negative rate} (TNR), or \textit{Specificity}\index{confusion matrix!true negative rate!specificity}, is the ratio of the correct negative predictions from the total true negatives (Eq. \ref{eq:cm_tnr}).
+
 
 \begin{equation}
 \label{eq:cm_tnr}
 TNR = \frac{|TN|}{|TN \cup FP|}
 \end{equation}
 
-\textit{True Positive Rate} (TPR), also called \textit{Sensitivity} or \textit{Recall}, is the ratio of the correct positive predictions from the total true positives (Eq.\ref{eq:cm_tpr}).
+
+\textit{True Positive Rate}\index{confusion matrix!true positive rate} (TPR), also called \textit{Sensitivity}\index{confusion matrix!true positive rate!sensitivity} or \textit{Recall}\index{confusion matrix!true positive rate!recall}, is the ratio of the correct positive predictions from the total true positives (Eq.\ref{eq:cm_tpr}).
+
 
 \begin{equation}
 \label{eq:cm_tpr}
@@ -151,7 +159,9 @@ The metrics can be adapted for evaluating multi-class models by decomposing an N
   \label{tab:cm_1vs1}
 \end{table}
 
-In the \textit{1-vs-rest} approach, 2-class CMs are constructed for each class and the remaining classes combined together as shown in Table \ref{tab:cm_1vsN}.
+
+In the \textit{1-vs-rest}\index{confusion matrix!1-vs-rest} approach, 2-class CMs are constructed for each class and the remaining classes combined together as shown in Table \ref{tab:cm_1vsN}.
+
 
 \begin{table}[ht]
   \centering
