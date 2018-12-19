@@ -22,6 +22,11 @@
 \usepackage{microtype}
 
 %%
+% Describe algorithms using fancy pseudo code
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+%%
 % Just some sample text
 \usepackage{lipsum}
 \usepackage{soul}
@@ -186,7 +191,7 @@
 
 \par Copyright \copyright\ \the\year\ \ics\ class of 2018/9, University of Malta.
 
-\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, \hl{ADD YOUR NAME TO THIS LIST} } %TODO
+\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, Daniel Farrugia, \hl{ADD YOUR NAME TO THIS LIST} } %TODO
 
 \par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
 use this file except in compliance with the License. You may obtain a copy
@@ -220,6 +225,7 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 %% JP's example file -- file must be stored in directory "terms" and have
 %% the term and initials of the student in the filename.
 %% \input{terms/myterm_jpe.tex}
+\input{terms/confusionmatrix_df.tex}
 \input{terms/crossvalidation_lmd.tex} %TODO
 
 
@@ -229,7 +235,7 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 \backmatter
 
 %% \bibliography{terms/myterm_jpe} 
-\bibliography{terms/crossvalidation_lmd}
+\bibliography{terms/crossvalidation_lmd,terms/confusionmatrix_df}
 \bibliographystyle{plainnat}
 
 \printindex
