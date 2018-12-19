@@ -23,7 +23,7 @@ After a number of you made the following mistakes I think it makes sense to grou
 *  Use proper sectioning/subsectioning
 *  Each `.bib` references do not need DOI, keywords or abstract entries
 *  No abbreviations (e.g. they're)
-*  Make sure to index imporant keywords in your entry
+*  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this)
 *  When you submit a Pull Request make sure it is against the latest master version
 *  Your entries should be in alphabetic order (e.g. cross-validation comes before ROC)
 *  Use proper and detailed figure, table and equation captioning
