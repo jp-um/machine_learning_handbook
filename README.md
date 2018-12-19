@@ -28,5 +28,5 @@ After a number of you made the following mistakes I think it makes sense to grou
 *  Your entries should be in alphabetic order (e.g. cross-validation comes before ROC)
 *  Use proper and detailed figure, table and equation captioning
 *  Do not hardcode spaces in the template
-
+*  Understand the difference between `\citet` (reference in text) and `\citep` (reference in brackets)
 
