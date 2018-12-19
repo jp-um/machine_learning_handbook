@@ -159,17 +159,14 @@
 \usepackage{tikz}
 
 \begin{document}
-	\begingroup
-	\thispagestyle{empty}
-	\begin{tikzpicture}[remember picture,overlay]
-	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{cover/cover_oreilly_style.pdf}};
-	%%\draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The Search for a Title\\[15pt] % Book title
-	%%{\Large A Profound Subtitle}\\[20pt] % Subtitle
-	%%{\huge Dr. John Smith}}}; % Author name
-	\end{tikzpicture}
-	\vfill
-	\endgroup
-	
+%% Cover Page
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\node[inner sep=0pt, outer sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{cover/cover_oreilly_style.pdf}};
+\end{tikzpicture}
+\vfill
+\endgroup
 
 % Front matter
 \frontmatter
@@ -224,7 +221,6 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 
 %% JP's example file -- file must be stored in directory "terms" and have
 %% the term and initials of the student in the filename.
-%% \input{terms/myterm_jpe.tex}
 \input{terms/confusionmatrix_df.tex}
 \input{terms/crossvalidation_lmd.tex} %TODO
 
@@ -234,11 +230,9 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 
 \backmatter
 
-%% \bibliography{terms/myterm_jpe} 
-\bibliography{terms/crossvalidation_lmd,terms/confusionmatrix_df}
+\bibliography{terms/crossvalidation_lmd,terms/confusionmatrix_df} %TODO
 \bibliographystyle{plainnat}
 
 \printindex
 
 \end{document}
-
