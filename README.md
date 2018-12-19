@@ -29,4 +29,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 *  Use proper and detailed figure, table and equation captioning
 *  Do not hardcode spaces in the template
 *  Understand the difference between `\citet` (reference in text) and `\citep` (reference in brackets)
-
+*  Make sure your references are not duplicated (keep in mind someone who committed their entry before may be using the same book/paper).  Please double check
