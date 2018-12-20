@@ -1,5 +1,5 @@
-\chapter{Receiver Operating Characteristic ROC Curves}
-\label{ch:roc-curves}\index{roc-curves}
+\chapter{Receiver Operating Characteristic Curves}
+\label{ch:roc-curves}\index{ROC curves}
 
 \section{Introduction}
 A Receiver Operating Characteristic (ROC) curve is a graphical plot which presents the performance of a binary classifier when the discrimination cut-off, or threshold\index{roc-curves!threshold}, is varied. The ROC curves and associated analysis, such as area under the curve, comparing multiple ROC curves and finding an optimal threshold, have proved very useful analysis tools in many fields of research such as medical diagnosis and disease management. They have been found to be a more appropriate technique for evaluating diagnostic and predictive accuracy.
@@ -27,7 +27,7 @@ The diagonal line from (0,0) to (1,1) characterises a test that cannot distingui
 	\label{fig:classifiers-roc}
 \end{figure}
 
-\section{Evaluating Classifiers} \index{roc-curves!evaluating classifiers}
+\section{Evaluating Classifiers} \index{roc curves!evaluating classifiers}
 The best possible prediction method would yield a point in the upper left corner of the ROC space representing 100\% sensitivity and 100\% specificity, i.e. a perfect classifier. On the other hand, a random guess would outcome a point along or close to the diagonal line. Classifiers A and B yield good classification results whilst points below the line represent bad results (worse than random). The ROC plot allows us to compare classifiers and choose the one that is closest to (0,1) and furthest from TPR equals FPR (the diagonal line).
 
 Consider now that the blood protein levels in diseased people and healthy people are normally distributed. A medical test might measure the level of a certain protein in a blood sample and classify any number above a certain threshold as indicating disease. Thus given a threshold parameter $p$, the instance is labelled positive if the continuous random variable $X$ is greater than $p$ and negative otherwise. As shown in figure 2 (left), choosing a high threshold produces a low likelihood of a false positive (while increasing the specificity) and a high likelihood of a false negative result (while decreasing sensitivity). Choosing a low threshold results in the opposite effect. Thus a different threshold would result in a different sensitivity and specificity pair. By repeating the experiment with adjusted thresholds different values for FPR and TPR are obtained leading to different positioning in the ROC space. The classifier that is able to increase the rate of detection while keeping the false alarm rate low is considered a good classifier. Figure 2 (right) shows the ROC curves with different thresholds. As the ROC curve gets closer to the top left hand of the graph the more optimal the threshold and the better the ability to discriminate between the classes.
@@ -38,7 +38,7 @@ Consider now that the blood protein levels in diseased people and healthy people
 	\label{fig:roc-curves}
 \end{figure}
 
-\section{Area Under Curve} \index{roc-curves!area Under curve}
+\section{Area Under Curve} \index{roc-curves!area under curve}
 The most common condition for choosing the optimal parameterisation is to maximise the area under the curve, AUC for short. The AUC, defined as $\int_{0}^{1} ROC(t) dt$ is a widely used measure of performance of supervised classification rules. It is a measure of the usefulness, or rather the discriminatory ability, of a test in general where the greater the area the more discriminative\index{roc-curves!discriminative} the test is in a given situation. A model or test with perfect discriminatory ability will have an AUC of, or very close to, 1.0, while a model unable to distinguish between individuals with or without the chosen outcome will have an AUC value of 0.5.  No realistic classifier should have an AUC less than 0.5. 
 
 \begin{marginfigure}
@@ -49,7 +49,7 @@ The most common condition for choosing the optimal parameterisation is to maximi
 
 However, the true value of AUC comes when comparing two or more models or tests by reducing the ROC to a single scalar value representing the expected performance of the models. Figure 3 (adopted from \citep{linden2006diagpreddismgmt}) provides a comparison between two predictive models. Model A is both statistically and visually better at identifying individuals with and without the outcome than Model B since the AUC is bigger. Therefore, if a choice was to be made between selecting one of the models, Model A would be the choice.
 
-AUC is a desirable measure because (1) it is scale-invariant\index{roc-curves!scale-invariant}: it measures how well predictions are ranked rather than their absolute values; (2) AUC is classification-threshold-invariant\index{roc-curves!classification-threshold-invariant}: it measures the quality of the model’s predictions irrespective of the classification threshold chosen.
+AUC is a desirable measure because (1) it is scale-invariant\index{roc-curves!scale invariant}: it measures how well predictions are ranked rather than their absolute values; (2) AUC is classification-threshold-invariant\index{roc-curves!classification threshold invariant}: it measures the quality of the model’s predictions irrespective of the classification threshold chosen.
 
 \section{Multi-class ROC} \index{roc-curves!multi-class roc}
 ROC curves are typically used in binary classification problems but what about multi-class problems? In order to extend ROC analysis to multi-class or multi-label classification, it is necessary to binarise the output. A multi-class problem introduces the issue of combining pairwise discriminability values. One approach introduced by Provost and Domingos \citep{provost2003treeind} was to generate each class reference ROC curve, in turn measure the AUC, then assuming the AUCs are weighted by the reference class’s prevalence in the data. More precisely, $AUC_{total} = \sum AUC(c_{i}).p(c_{i})$ where $c_{i}\in C$ the set of all thresholds, and $p$ is the probability of class membership.
