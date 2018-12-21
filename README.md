@@ -20,12 +20,15 @@ If you do not see your entry on the master branch, then you have not successfull
 After a number of you made the following mistakes I think it makes sense to group everything here:
 
 *  Your submission must compile on Linux (using `pdflatex`).  No errors should be reported.  *No, I will not fix your submission for you.*
+*  Your submission should look good (e.g. no overlapping text or images, etc.) when compiled with LaTeX
 *  Your submission should work with the LATEST master version.
+*  Do not commit platform-specific files (e.g. `.DS_Store`)
 *  All tex/bib files should go under `terms` directory
 *  All graphics files should go under your topic subdirectory under `graphics`
 *  Use proper sectioning/subsectioning
 *  `.bib` references do not need DOI, keywords or abstract entries (other attributes to delete are `Remove Date-Added`, `Date-Modified`, `Bdsk-File-1`)
-*  No abbreviations (e.g. they're)
+*  No abbreviations (e.g. they're), but also no Fig., Eq. etc.  This is a formal scientific document, not an email.
+*  Use non breaking space between a Figure and its number, e.g. `Figure~\ref{fig:jp}`
 *  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this)
 *  When you submit a Pull Request make sure it is against the latest master version
 *  Your entries should be in alphabetic order (e.g. cross-validation comes before ROC)
