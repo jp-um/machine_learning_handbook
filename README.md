@@ -1,4 +1,4 @@
-# NOTE Of IMPORTANCE
+# NOTE OF IMPORTANCE
 
 **Your work is not considered as submitted until your entry appears in the handbook `.pdf` file in my repository (master branch).**
 
