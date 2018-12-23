@@ -3,36 +3,35 @@
 
 Cross-validation (CV) is an estimation method used on supervised learning algorithms to assess their ability to predict the output of unseen data \citep{varma2006bias,kohavi1995study}. Supervised learning algorithms are computational tasks like classification or regression, that learn an input-output function based on a set of samples. Such samples are also known as the labeled training data where each example consists of an input vector and its correct output value. After the training phase, a supervised learning algorithm should be able to use the inferred function in order to map new input unseen instances, known as testing data, to their correct output values \citep{caruana2006empirical}. When the algorithm incorporates supervised feature selection, cross-validation should always be done external to the selection (feature-selection performed within every CV iteration) so as to ensure the test data remains unseen, reducing bias \citep{ambroise2002selection, friedman2001elements}.  Therefore, cross-validation, also known as out-of-sample testing, tests the function's ability to generalize to unseen situations \citep{varma2006bias,kohavi1995study}. 
 
-Cross-validation has two types of approaches, being i) the exhaustive cross validation approach which divides all the original samples in every possible way, forming training and test sets to train and test the model, and ii) the non-exhaustive cross validation approach which does not consider all the possible ways of splitting the original samples \citep{arlot2010survey}. 
-
-The above mentioned approaches are further divided into different cross-validation methods, as explained below.
+Cross-validation has two types of approaches, being i) the exhaustive cross validation approach which divides all the original samples in every possible way, forming training and test sets to train and test the model, and ii) the non-exhaustive cross validation approach which does not consider all the possible ways of splitting the original samples \citep{arlot2010survey}. Each of these approaches are further divided into different cross-validation methods, which are explained below.
 
 \section{Exhaustive cross-validation}
-
-\subsection{Leave-$p$-out (L$p$O)} \index{cross-validation!leave-p-out}
+\begin{itemize}
+\item Leave-$p$-out (L$p$O) \newline \index{cross-validation!leave-p-out}
 This method takes $p$ samples from the data set as the test set and keeps the remaining as the training set, as shown in Fig.~\ref{fig:leavep}a. This is repeated for every combination of test and training set formed from the original data set and the average error is obtained. Therefore, this method trains and tests the algorithm $n\choose p$ times when the number of samples in the original data set is $n$, becoming inapplicable when $p>1$ \citep{arlot2010survey}.
 
-\subsection{Leave-one-out (LOO)} \index{cross-validation!leave-one-out}
+\item Leave-one-out (LOO)\newline \index{cross-validation!leave-one-out}
 This method is a specific case of the LpO method having $p=1$. It requires less computation efforts than LpO since the process is only repeated $n choose 1$ $= n$ times, however might still be inapplicable for large values of $n$ \citep{arlot2010survey}. 
-
+\end{itemize}
 
 \begin{marginfigure}%
 	\centering
     \includegraphics[width=\linewidth]{cross_validation/leavep.png}
-	\caption{Leave-p-Out Exhaustive Cross Validation}
+	\caption{Exhaustive cross-validation methods: Leave-p-Out}
 \end{marginfigure}
 \begin{marginfigure}%
 	\includegraphics[width=\linewidth]{cross_validation/leave1.png}
-	\caption{Leave-One-Out Exhaustive Cross Validation}
+	\caption{Exhaustive cross-validation methods: Leave-One-Out}
 	\label{fig:leavep}
 \end{marginfigure}
 
 \section{Non-exhaustive cross-validation}
 
-\subsection{Holdout method} \index{cross-validation!holdout}
+\begin{itemize}
+\item Holdout method \newline \index{cross-validation!holdout}
 This method randomly splits the original data set into two sets being the training set and the test set. Usually, the test set is smaller than the training set so that the algorithm has more data to train on. This method involves a single run and so must be used carefully to avoid misleading results. It is therefore sometimes not considered a CV method \citep{kohavi1995study}.
 
-\subsection{$k$-fold} \index{cross-validation!k-fold}
+\item $k$-fold\newline \index{cross-validation!k-fold}
 This method randomly splits the original data set into $k$ equally sized subsets, as shown in Fig.~\ref{fig:kfold}. The function is then trained and validated $k$ times, each time taking a different subset as the test data and the remaining $(k-1)$ subsets as the training data, using each of the $k$ subsets as the test set once. The $k$ results are averaged to produce a single estimation. Stratified $k$-fold cross validation is a refinement of the $k$-fold method, which splits the original samples into equally sized and distributed subsets, having the same proportions of the different target labels \citep{kohavi1995study}.
 
 \begin{figure}
@@ -42,9 +41,9 @@ This method randomly splits the original data set into $k$ equally sized subsets
   \label{fig:kfold}
 \end{figure}
 
-\subsection{Repeated random sub-sampling} \index{repeated random sub-sampling}
+\item Repeated random sub-sampling\newline \index{repeated random sub-sampling}
 This method is also known as the Monte Carlo CV. It splits the data set randomly with replacement into training and test subsets using some predefined split percentage, for every run. Therefore, this generates new training and test data for each run but the test data of the different runs might contain repeated samples, unlike that of $k$-fold \citep{xu2001monte}.
-
+\end{itemize}
 
 All of the above cross-validation methods are used to check whether the model has been overfitted or underfitted and hence estimating the model's ability of fitting to independent data . Such ability is measured using quantitative metrics appropriate for the model and data \citep{kohavi1995study, arlot2010survey}. In the case of classification problems, the misclassification error rate is usually used whilst for regression problems, the mean squared error (MSE) is usually used. MSE is represented by Eq.~\ref{mse}, where n is the total number of test samples, $Y_i$ is the true value of the $i^{th}$ instance and $\hat{Y}_i$ is the predicted value of the $i^{th}$ instance.
 
@@ -58,12 +57,13 @@ Underfitting \index{underfitting} is when the model has a low degree (e.g. $y = 
 \begin{marginfigure}%
 	\centering
 	\includegraphics[width=\linewidth]{cross_validation/underfitting.png}
-	\caption{Model Underfitting}
+	\caption{Underfitting}
+	\label{fig:underfitting}
 \end{marginfigure}
 \begin{marginfigure}%
 	\centering	
 	\includegraphics[width=\linewidth]{cross_validation/overfitting.png}
-	\caption{Model Overfitting}
+	\caption{Overfitting}
 	\label{fig:models}
 \end{marginfigure}
 
@@ -78,4 +78,4 @@ Therefore, lets take an example using the stratified $k$-fold cross-validation m
   \label{fig:example}
 \end{figure*}
 
-As concluded by \citet{varma2006bias}, cross-validation is well implemented when everything is taken place within every CV iteration (including preprocessing, feature-selection, learning new algorithm parameter values, etc.), and the least bias can be achieved when using nested CV methods.
+As concluded by \citep{varma2006bias}, cross-validation is well implemented when everything is taken place within every CV iteration (including preprocessing, feature-selection, learning new algorithm parameter values, etc.), and the least bias can be achieved when using nested CV methods.
