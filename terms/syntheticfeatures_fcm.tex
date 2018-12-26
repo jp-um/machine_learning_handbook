@@ -1,0 +1,112 @@
+\chapter{Synthetic Features}
+\label{ch:synthetic features}\index{synthetic-features}
+
+\section{The problem}
+When a data scientist is looking at employing a machine learning technique for some problem at hand, it is important for the scientist to experiment, evaluate and test various algorithms and techniques so as to find the one that performs the best for that particular context.
+
+This comes with a number of challenges, however probably one of the main challenges is sourcing the dataset to be used as part of the evaluation process \citep{patki2016}. In situations where the scientist already has access to such data, this would generally not be an issue, however it often happens that the researcher would not have such access available. Moreover, even when data is available, it is not always clean enough to provide good training.
+
+To mitigate this problem, a possible solution is to generate and use synthetic features. This gives the researcher the freedom to generate data that fits the scope of the problem at hand, without access to the original data, whilst still allowing for proper evaluation of different techniques and algorithms \citep{patki2016}.
+
+Over and above to unavailability of data, such an approach can also be used to enhance and augment limited data that might be available, such as synthetic over-sampling in case of unbalanced datasets \citep{tallo2018}.
+
+Such an approach presents itself with a number of advantages for evaluation models and algorithms:
+
+\begin{itemize}
+    \item Evaluation of the model’s behaviour and performance under specific data conditions and complexities, and not just over the standard statistical distribution of a real dataset.
+    \begin{itemize}
+        \item What happens when a rare occurrence is boosted to become more relevant to the model?
+    \end{itemize}
+    \item Ability to perform technical experiments to determine the most relevant or usable technique without requiring access to specific data and all the hurdles that come with it:
+    \begin{itemize}
+        \item Commercial confidentiality
+        \item Privacy issues (ex. GDPR)
+        \item Legal constraints
+        \item Ethical clearance
+    \end{itemize}
+    \item Adding fairness or un-biasing real data, by mixing synthetic with real data \citep{pedreschi2008,zafar2015}.
+    \begin{itemize}
+        \item How can a model be made more impartial if all the real training data is biased towards a particular gender or race?
+    \end{itemize}
+    \item Allow the researcher to focus on the actual problem at hand (the ML problem) rather than how to obtain access to the training data.
+    \begin{itemize}
+        \item When evaluating models, you would typically first want to determine the best approach for your problem, rather than focusing on training and delivering the final model. That comes later, after these technical issues are resolved.
+    \end{itemize}
+\end{itemize}
+
+\section{Possible Solutions}
+
+There are various types of synthetic data that could be generated, and typically the researcher would need to take a decision on which to make use of, or possibly even a combination of them, to target the kind of problem they’re trying to solve.
+
+\subsection{Random labelled variables and categorical data} \index{synthetic-features!random-labelled-variables-categorical-data}
+
+Possibly one of the easiest to comprehend is the generation of label variables and categorical data, such as Name, Surname, Country, Date of Birth, Car License Plate, Job Title, Telephone Number, etc \citep{Sarkar2018}. This kind of data is typically not the type of data that can be fed directly to a machine learning algorithm, but it does allow the researcher to test out the pre-processing stages of the process, as this would look more like the raw data one would typically find in data dumps.
+
+Many toolkits are available for generating such datasets, and at the time of writing, the following are some of the popular ones:
+
+\begin{table}[ht]
+    \centering
+    \fontfamily{ppl}\selectfont
+    \begin{tabular}{llll}
+      \toprule
+                        & \textit{Language} & \textit{Tool} \\
+      \midrule
+      \textit & Python              & pydbgen, Faker  \\
+      \textit & Ruby               & Faker  \\
+      \textit & PHP               & Faker, Fakerino \\
+      \textit & Node.js / Javascript               & faker.js, mocker-data-generator \\
+      \textit & Java               & java-faker, jFairy \\
+      \bottomrule
+    \end{tabular}
+    \caption{Various toolkits / frameworks available for random data generators in some of the most popular programming langauges.}
+    \label{tab:sf_randdatagen}
+\end{table}
+\vspace{2mm}
+
+However, the dataset generated would not be specifically geared towards a particular regression or classification problem, so the value offered by such dataset would be useful only in very limited applications.
+
+\subsection{ML Problem Specific Data} \index{synthetic-features!ml-problem-specific-data}
+
+Since most of the problems in machine learning cannot be solved by a generic mechanism or dataset, and everything is still relatively very domain specific, the researcher would probably require synthetic data that is shaped and tuned for the problem at hand. As seen earlier, a generic dataset would not suffice.
+
+For this reason, a number of toolkits exist that offer a more focused or targeted generation mechanism for datasets, which allow for greater control and tuning as to how data is outputted and shaped. Typically, this means that the researcher has the ability to define the problem types as well as specific parameters (boundaries, noise, direction, classes, etc) for each type. These include:
+
+\begin{itemize}
+    \item Regression data
+    \item Classification data
+    \item Clustering data
+\end{itemize}
+
+For each of the above, the generated datasets can be “perfect”, or an element of noise and outliers included as well to simulate a more real-life dataset.
+
+Example functions offered by $scikit-learn$ to generate such datasets \citep{Sarkar2018}:
+
+\begin{table}[ht]
+    \centering
+    \fontfamily{ppl}\selectfont
+    \begin{tabular}{llll}
+      \toprule
+                        & \textit{Type} & \textit{Function} \\
+      \midrule
+      \textit & Regression              & datasets.make\_regression \\
+      \textit & Classification          & datasets.make\_classification  \\
+      \textit & Clustering              & datasets.make\_blobs  \\
+      \bottomrule
+    \end{tabular}
+    \caption{Some functions available from scikit-learn to generate specific datasets.}
+    \label{tab:sf_scikitdatagen}
+\end{table}
+\vspace{2mm}
+
+\section{Conclusion}
+
+The idea of being able to generate data might sound like the holy-grail for machine learning data scientists, however just like everything else, this is not generally the case.
+
+As we have seen earlier, synthetic data comes with its problems too, which can be summarised as:
+
+\begin{itemize}
+    \item If random / simple generators are used, data generated is too generic and not focused around the problem-domain. This reduces the efficacy and relevance of such data.
+    \item If more specific data generators are used, such as random classification data, the quality is highly dependent on the configuration provided by the researcher. Whilst if done well, it will work better than the other options, it still has the issue that the data will never be completely realistic, and one might still find problems or surprises when exposing the model to real world data.
+\end{itemize}
+
+However, if done with enough care and attention, synthetic data is definitely useful to test out various approaches, algorithms, and robustness of implementations without all the problems that come with obtaining real-world data. This allows the researcher to focus on the problem at hand, and then look at sourcing real-world data once everything is more clearly defined, and more proven to work.
