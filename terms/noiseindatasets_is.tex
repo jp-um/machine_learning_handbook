@@ -43,7 +43,15 @@ Unfortunately, noise is very common since reliable, noise free data are expensiv
 
 \section{Effects of noise}\label{sec:noise_effects}\index{noise in datasets!effects}
 
-When learning a concept, algorithms assume and expect a correct and perfectly labelled dataset \citep{frenay2014comprehensive}.  Primarily, the noise in the training set reduces the predictive ability of the inferred model \citep{garcia2013, frenay2014comprehensive, frenay2014classification}. The extent of this damage depends on various factors.  Class noise\index{noise in datasets!class noise} has been found to be more harmful than attribute noise\index{noise in datasets!attribute noise} \citep{zhu2004class}.  The reason for this is that whilst an attribute shares the predictive capability with other attributes, there is only one label and errors confuse the learning algorithm  \citep{zhu2004class}. 
+When learning a concept, algorithms assume and expect a correct and perfectly labelled dataset \citep{frenay2014comprehensive}.  Primarily, the noise in the training set reduces the predictive ability of the inferred model \citep{garcia2013, frenay2014comprehensive, frenay2014classification}. This can be seen in Figure~\ref{fig:noise_models} that shows the effect of noise on the classification accuracy of various classifiers.
+
+\begin{figure}
+  \includegraphics{graphics/noise_in_datasets/noise_models.png}
+  \caption{A graph showing the effect of noise on the classification accuracy of various classifiers. Each model was trained on a noisy dataset and on a manually cleaned dataset. These are represented as \textit{XXX Noise} and \textit{XXX Clean} respectively, where \textit{XXX} denotes the classifier in question \citep{zhu2004class}.}
+  \label{fig:noise_models}
+\end{figure}
+
+The extent of the damage caused by noise depends on various factors.  Class noise\index{noise in datasets!class noise} has been found to be more harmful than attribute noise\index{noise in datasets!attribute noise} \citep{zhu2004class}.  The reason for this is that whilst an attribute shares the predictive capability with other attributes, there is only one label and errors confuse the learning algorithm  \citep{zhu2004class}. 
 
 \citet{zhu2004class} also found that not all attributes are equal in predicting the class and noise in the more important features are more damaging than others. The authors found that the higher the correlation between attribute and class the greater the impact of noise in the attribute.
 
