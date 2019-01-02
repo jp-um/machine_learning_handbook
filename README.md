@@ -49,3 +49,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  Index entries should be human (not machine!) readable
 1.  The punctuation for the sentence goes AFTER the parenthesis of a citation
 1.  Do not use double quotes character `"` or fancy single quotes character.  In LaTeX to get double quotes use ` ``this''`.  For single quotes use `'` character **only**
+1.  You should not have two (or more) headings immediately following each other.  You require some _preamble_; a sentence or two which explains what is coming next
