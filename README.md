@@ -30,7 +30,7 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  All tex/bib files should go under `terms` directory
 1.  All graphics files should go under your topic subdirectory under `graphics`
 1.  Use proper sectioning/subsectioning
-1.  `.bib` references do not need DOI, keywords or abstract entries (other attributes to delete are `Remove Date-Added`, `Date-Modified`, `Bdsk-File-1`)
+1.  `.bib` references do not need `DOI`, `pdf`, `keywords` or `abstract` entries (other attributes to delete are `Remove Date-Added`, `Date-Modified`, `Bdsk-File-1`)
 1.  No abbreviations (e.g. they're), but also no Fig., Eq. etc.  This is a formal scientific document, not an email.
 1.  Use non breaking space between a Figure and its number, e.g. `Figure~\ref{fig:jp}`
 1.  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this)
