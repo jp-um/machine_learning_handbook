@@ -48,3 +48,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 *  If you have an online resource in your bibliography you need the url (but not for papers)
 *  Index entries should be human (not machine!) readable
 *  The punctuation for the sentence goes AFTER the parenthesis of a citation
+*  Do not use double quotes character `"` or fancy single quotes character.  In LaTeX to get double quotes use ` ``this''`.  For single quotes use `'` character **only**
