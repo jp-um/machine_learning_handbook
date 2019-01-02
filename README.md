@@ -51,3 +51,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  Do not use double quotes character `"` or fancy single quotes character.  In LaTeX to get double quotes use ` ``this''`.  For single quotes use `'` character **only**
 1.  You should not have two (or more) headings immediately following each other.  You require some _preamble_; a sentence or two which explains what is coming next
 1.  LaTeX adds spacing after periods, but you don't want this for common abbreviations such as (e.g. `e.g. some words`, i.e., et al.).  To tell LaTeX this is not the end of a sentence, mark the space with a backslash (e.g. `e.g.\ this entry`). 
+1.  There should be **zero** BibTeX warnings
