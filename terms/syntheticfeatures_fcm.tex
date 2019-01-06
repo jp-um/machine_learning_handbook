@@ -2,111 +2,138 @@
 \label{ch:synthetic features}\index{synthetic-features}
 
 \section{The problem}
-When a data scientist is looking at employing a machine learning technique for some problem at hand, it is important for the scientist to experiment, evaluate and test various algorithms and techniques so as to find the one that performs the best for that particular context.
+When employing a machine learning algorithm, it is typically fed with some form of input which are essentially your features on which the algorithm should learn and build a model. Features are essentially the dataset you have as part of training.
 
-This comes with a number of challenges, however probably one of the main challenges is sourcing the dataset to be used as part of the evaluation process \citep{patki2016}. In situations where the scientist already has access to such data, this would generally not be an issue, however it often happens that the researcher would not have such access available. Moreover, even when data is available, it is not always clean enough to provide good training.
+Whilst in concept the above seems straightforward, it often transpires that the various data-points provided in the training dataset do not fit a structure that is easily understood by the algorithm. For this reason, an important pre-processing step is needed to:
 
-To mitigate this problem, a possible solution is to generate and use synthetic features. This gives the researcher the freedom to generate data that fits the scope of the problem at hand, without access to the original data, whilst still allowing for proper evaluation of different techniques and algorithms \citep{patki2016}.
+\begin{enumerate}
+    \item Understand the original data well
+    \item Subsequently, if and where needed, generate synthetic features
+\end{enumerate}
 
-Over and above to unavailability of data, such an approach can also be used to enhance and augment limited data that might be available, such as synthetic over-sampling in case of unbalanced datasets \citep{tallo2018}.
-
-Such an approach presents itself with a number of advantages for evaluation models and algorithms:
-
-\begin{itemize}
-    \item Evaluation of the model’s behaviour and performance under specific data conditions and complexities, and not just over the standard statistical distribution of a real dataset.
-    \begin{itemize}
-        \item What happens when a rare occurrence is boosted to become more relevant to the model?
-    \end{itemize}
-    \item Ability to perform technical experiments to determine the most relevant or usable technique without requiring access to specific data and all the hurdles that come with it:
-    \begin{itemize}
-        \item Commercial confidentiality
-        \item Privacy issues (ex. GDPR)
-        \item Legal constraints
-        \item Ethical clearance
-    \end{itemize}
-    \item Adding fairness or un-biasing real data, by mixing synthetic with real data \citep{pedreschi2008,zafar2015}.
-    \begin{itemize}
-        \item How can a model be made more impartial if all the real training data is biased towards a particular gender or race?
-    \end{itemize}
-    \item Allow the researcher to focus on the actual problem at hand (the ML problem) rather than how to obtain access to the training data.
-    \begin{itemize}
-        \item When evaluating models, you would typically first want to determine the best approach for your problem, rather than focusing on training and delivering the final model. That comes later, after these technical issues are resolved.
-    \end{itemize}
-\end{itemize}
-
-\section{Possible Solutions}
-
-There are various types of synthetic data that could be generated, and typically the researcher would need to take a decision on which to make use of, or possibly even a combination of them, to target the kind of problem they’re trying to solve.
-
-\subsection{Random labelled variables and categorical data} \index{synthetic-features!random-labelled-variables-categorical-data}
-
-Possibly one of the easiest to comprehend is the generation of label variables and categorical data, such as Name, Surname, Country, Date of Birth, Car License Plate, Job Title, Telephone Number, etc \citep{Sarkar2018}. This kind of data is typically not the type of data that can be fed directly to a machine learning algorithm, but it does allow the researcher to test out the pre-processing stages of the process, as this would look more like the raw data one would typically find in data dumps.
-
-Many toolkits are available for generating such datasets, and at the time of writing, the following are some of the popular ones:
+If we look at the following example \citep{AlbertoTubeSpam}: It contains a number of records used to train a spam / ham classifier for comments on a YouTube video.
 
 \begin{table}[ht]
     \centering
     \fontfamily{ppl}\selectfont
-    \begin{tabular}{llll}
+    \resizebox{\textwidth}{!}{\begin{tabular}{lllllll}
       \toprule
-                        & \textit{Language} & \textit{Tool} \\
+                        & \textit{Video} & \textit{Comment ID} & \textit{Author} & \textit{Date} & \textit{Content} & \textit{Class} \\
       \midrule
-      \textit & Python              & pydbgen, Faker  \\
-      \textit & Ruby               & Faker  \\
-      \textit & PHP               & Faker, Fakerino \\
-      \textit & Node.js / Javascript               & faker.js, mocker-data-generator \\
-      \textit & Java               & java-faker, jFairy \\
+      \textit & Psy & LZQPQhLyRh9MSZYnf8djyk0gEF9BHDPYrrK-qCczIY8 & Evgeny Murashkin & 2013-11-08T17:34:21 & just for test I have to say murdev.com & Spam  \\
+      \textit & Psy & z13bgdvyluihfv11i22rgxwhuvabzz1os04 & Zielimeek21 & 2013-11-28T21:49:00 & I'm only checking the views & Ham  \\
+      \textit & Psy & z13kxpqqssa0hlryd04cc1dxeyyngljjngk & Tasha Lucius & 2014-01-19T13:25:56 & 2 billion....Coming soon & Ham  \\
+      \textit & Psy & z12lg1vizrmsgxm3q23oij4aqrjxjdd1p & Holly & 2014-11-06T13:41:30 & Follow me on Twitter @mscalifornia95 & Spam  \\
       \bottomrule
-    \end{tabular}
-    \caption{Various toolkits / frameworks available for random data generators in some of the most popular programming langauges.}
-    \label{tab:sf_randdatagen}
+    \end{tabular}}
+    \caption{Sample of four rows from the Psy dataset from the YouTube comment training dataset.}
+    \label{tab:sf_origdatasample}
 \end{table}
 \vspace{2mm}
 
-However, the dataset generated would not be specifically geared towards a particular regression or classification problem, so the value offered by such dataset would be useful only in very limited applications.
-
-\subsection{ML Problem Specific Data} \index{synthetic-features!ml-problem-specific-data}
-
-Since most of the problems in machine learning cannot be solved by a generic mechanism or dataset, and everything is still relatively very domain specific, the researcher would probably require synthetic data that is shaped and tuned for the problem at hand. As seen earlier, a generic dataset would not suffice.
-
-For this reason, a number of toolkits exist that offer a more focused or targeted generation mechanism for datasets, which allow for greater control and tuning as to how data is outputted and shaped. Typically, this means that the researcher has the ability to define the problem types as well as specific parameters (boundaries, noise, direction, classes, etc) for each type. These include:
-
-\begin{itemize}
-    \item Regression data
-    \item Classification data
-    \item Clustering data
-\end{itemize}
-
-For each of the above, the generated datasets can be “perfect”, or an element of noise and outliers included as well to simulate a more real-life dataset.
-
-Example functions offered by $scikit-learn$ to generate such datasets \citep{Sarkar2018}:
+Describing each feature in the original raw dataset:
 
 \begin{table}[ht]
     \centering
     \fontfamily{ppl}\selectfont
-    \begin{tabular}{llll}
+    \resizebox{\textwidth}{!}{\begin{tabular}{lll}
       \toprule
-                        & \textit{Type} & \textit{Function} \\
+                        & \textit{Feature} & \textit{Description} \\
       \midrule
-      \textit & Regression              & datasets.make\_regression \\
-      \textit & Classification          & datasets.make\_classification  \\
-      \textit & Clustering              & datasets.make\_blobs  \\
+      \textit & \makecell[tl]{Video} & \makecell[tl]{The video this comment was written for. The relevance depends whether the \\ classification model is being built generically for all videos, or a per-video \\ specific model is also considered.} \\
+      \textit & \makecell[tl]{Comment ID} & \makecell[tl]{Random comment ID generated by the YouTube comment board system. \\ This probably has no impact on the final class.} \\
+      \textit & \makecell[tl]{Author} & \makecell[tl]{The author / account that generated the comment. This has relevance only if \\ this account has a lot of spam comments. \\ If that is the case, two things should happen, none of which are directly \\ related to the machine learning algorithm: \\ \quad - Maintain a blacklist of accounts that are probable spam (if a particular \\ \quad \enspace author often has flagged comments). \\ \quad - Block such accounts.} \\
+      \textit & \makecell[tl]{Date} & \makecell[tl]{The date does not directly have a huge relevance on the classification of a \\ comment.} \\
+      \textit & \makecell[tl]{Content} & \makecell[tl]{The comment body definitely has a big relevance in the classification result, \\ however, can the whole sentence be easily understood by the algorithm as \\ it is?} \\
       \bottomrule
-    \end{tabular}
-    \caption{Some functions available from scikit-learn to generate specific datasets.}
-    \label{tab:sf_scikitdatagen}
+    \end{tabular}}
+    \label{tab:sf_origdataexplained}
 \end{table}
 \vspace{2mm}
 
-\section{Conclusion}
+As one can see, there is very little input the machine learning algorithm can reliably take just from using the four features described above. One could easily realise this by asking oneself the following question (in plain English):
 
-The idea of being able to generate data might sound like the holy-grail for machine learning data scientists, however just like everything else, this is not generally the case.
+\qquad \emph{How can I describe the components of a comment well enough to decide whether it is probably spam or ham?}
 
-As we have seen earlier, synthetic data comes with its problems too, which can be summarised as:
+One can therefore summarise this problem as: \emph{Having enough data to solve the problem, but very little meta-data to actually understand it and solve it.}
+
+\section{Ways of solving the problem}
+A way of solving this problem is to apply a synthetic features approach, sometimes referred to as feature engineering or feature extraction. This is essentially the generation of features derived from other existing features, in a way that can be more easily captured or understood by a machine learning algorithm. It is a way of generating meta-data for the existing features in the original dataset.
+
+There is not a one-size-fits-all approach but rather it is more of an iterative approach with new synthetic features being outputted per iteration, following which one then assesses whether it is enough to generate a reliable machine learning model from the new features or not.
+
+\subsection{Analysing each feature} \index{synthetic-features!solving-problem-analysing-each-feature}
+
+\textbf{Video}
+\\
+The video name / ID could be useful if a per-video classifier is also generated over and above the generic one. This together with other features could have some relevance.
+\\
+\\
+\textbf{Comment ID}
+\\
+This feature does not have any relevance to the outcome whatsoever. It is a unique ID, built randomly, assigned to each comment. For this reason, it is out of scope for this discussion.
+\\
+\\
+\textbf{Author and Date}
+\\
+As described earlier these two features independently do not have much of a direct impact on the outcome, however a synthetic feature could be generated which might have some form of effect on the outcome: A ratio of comment count over a time period for a particular author.
+The idea is to make it easier for the algorithm to detect a potential pattern related to volume over a typical short period, thus the definition of time period can be assigned via testing.
+\\
+\\
+\textbf{Comment}
+\\
+The comment body is not an easy feature and it could grow into a number of features, however it is the most relevant input for this spam classifier.
+Quite a number of features could be exported from this comment, and most of them relate to natural language processing techniques. For this reason, output quality could also vary based on the language in context.
+Some example features that could be extrapolated:
+
+\begin{table}[ht]
+    \centering
+    \fontfamily{ppl}\selectfont
+    \resizebox{\textwidth}{!}{\begin{tabular}{lll}
+      \toprule
+                        & \textit{Synthetic Feature} & \textit{Scope / Description} \\
+      \midrule
+      \textit & \makecell[tl]{Language} & \makecell[tl]{This depends on the availabilities of various NLP implementations for \\ different languages, however one could have an indication of spam / \\ non-spam probabilities based on the comment languages for each \\ particular video.} \\
+      \textit & \makecell[tl]{Readability \\ score} & \makecell[tl]{A readability score could be calculated per comment which gives an \\ indication on the quality of such text. An example of such a score \\ could be the \emph{Flesch Reading Ease} score.} \\
+      \textit & \makecell[tl]{Length \\ (excl. stop words)} & \makecell[tl]{Very short or very long comments might have a probabilistic impact \\ on the outcome.} \\
+      \textit  & \makecell[tl]{Presence of account \\ tags / URLs / emojis} & \makecell[tl]{The presence of account tags (ex. a Twitter username), URLs or emojis \\ could increase probability of the comment being spam.} \\
+      \bottomrule
+    \end{tabular}}
+    \label{tab:sf_commentextractedfeatures}
+\end{table}
+\vspace{2mm}
+
+\subsection{Updated feature / data set} \index{synthetic-features!updated-feature-dataset}
+
+Following the synthetic feature generation described above, the updated data set used as an example here would look as follows:
+
+\begin{table}[ht]
+    \centering
+    \fontfamily{ppl}\selectfont
+    \resizebox{\textwidth}{!}{\begin{tabular}{llllllllll}
+      \toprule
+                        & \textit{\makecell{Video}} & \textit{\makecell{Author Comments \\ in last minute}} & \textit{\makecell{Language}} & \textit{\makecell{Readability}} & \textit{\makecell{Length excl. \\ stop words}} & \textit{\makecell{Presence of \\ account tags}} & \textit{\makecell{Presence of \\ URLs}} & \textit{\makecell{Presence of \\ emojis}} & \textit{\makecell{Class}} \\
+      \midrule
+      \textit & Psy & 1 & EN & 94.3 & 3 & No & Yes & No & Spam  \\
+      \textit & Psy & 1 & EN & 103 & 3 & No & No & No & Ham  \\
+      \textit & Psy & 1 & EN & 83.3 & 3 & No & No & No & Ham  \\
+      \textit & Psy & 1 & EN & 32.6 & 3 & Yes & No & No & Spam  \\
+      \bottomrule
+    \end{tabular}}
+    \caption{Updated sample of the four rows from the Psy dataset from the YouTube comment training dataset now containg the synthetic features.}
+    \label{tab:sf_updatedds}
+\end{table}
+\vspace{2mm}
+
+Looking at the output above, the effect of synthetic features can immediately be appreciated, as with such new features more meaning is given to the original dataset.
+
+Naturally the above contains just a sample, and one must experiment with:
 
 \begin{itemize}
-    \item If random / simple generators are used, data generated is too generic and not focused around the problem-domain. This reduces the efficacy and relevance of such data.
-    \item If more specific data generators are used, such as random classification data, the quality is highly dependent on the configuration provided by the researcher. Whilst if done well, it will work better than the other options, it still has the issue that the data will never be completely realistic, and one might still find problems or surprises when exposing the model to real world data.
+    \item more or less synthetic features
+    \item a further iteration of synthetic features from the generated features
+    \item a much bigger data-set (the example above is too small to build a reliable classifier)
+    \item perform feature selection (such as Principle Component Analysis) to identify the features that actually matter and remove extra noise
 \end{itemize}
 
-However, if done with enough care and attention, synthetic data is definitely useful to test out various approaches, algorithms, and robustness of implementations without all the problems that come with obtaining real-world data. This allows the researcher to focus on the problem at hand, and then look at sourcing real-world data once everything is more clearly defined, and more proven to work.
+Therefore, employing a synthetic feature approach on your dataset as a pre-processing step, should in general give you positive results.
