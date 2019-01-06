@@ -55,10 +55,10 @@ As one can see, there is very little input the machine learning algorithm can re
 
 \qquad \emph{How can I describe the components of a comment well enough to decide whether it is probably spam or ham?}
 
-One can therefore summarise this problem as: \emph{Having enough data to solve the problem, but very little meta-data to actually understand it and solve it.}
+One can therefore summarise this problem paradoxically as: \emph{Having enough data to solve the problem, but very little meta-data to actually understand it and solve it.}
 
 \section{Ways of solving the problem}
-A way of solving this problem is to apply a synthetic features approach, sometimes referred to as feature engineering or feature extraction. This is essentially the generation of features derived from other existing features, in a way that can be more easily captured or understood by a machine learning algorithm. It is a way of generating meta-data for the existing features in the original dataset.
+A way of solving this problem is to apply a synthetic features approach, sometimes referred to as feature engineering. This is essentially the generation of features derived from other existing features, in a way that can be more easily captured or understood by a machine learning algorithm \citep{LiFeatureEng}. It is a way of generating meta-data for the existing features in the original dataset.
 
 There is not a one-size-fits-all approach but rather it is more of an iterative approach with new synthetic features being outputted per iteration, following which one then assesses whether it is enough to generate a reliable machine learning model from the new features or not.
 
@@ -83,7 +83,7 @@ The idea is to make it easier for the algorithm to detect a potential pattern re
 \textbf{Comment}
 \\
 The comment body is not an easy feature and it could grow into a number of features, however it is the most relevant input for this spam classifier.
-Quite a number of features could be exported from this comment, and most of them relate to natural language processing techniques. For this reason, output quality could also vary based on the language in context.
+Quite a number of features could be exported from this comment, and most of them relate to natural language processing techniques \citep{CormackSMSFilter}. For this reason, output quality could also vary based on the language in context.
 Some example features that could be extrapolated:
 
 \begin{table}[ht]
