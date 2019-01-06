@@ -1,11 +1,11 @@
 \chapter[Transfer Learning]{Transfer Learning}
 \label{ch:transfer-learning}\index{transfer learning|(}
 
-Machine learning algorithms typically operate within isolated problem domains - for example, a model trained to recognize motorcycles would not aim to recognize bicycles. However, this approach is not an accurate representation of human intelligence; in fact, we know that humans can relate knowledge of motorcycles to bicycles. \citep{aytar2011}
+Machine learning algorithms typically operate within isolated problem domains - for example, a model trained to recognize motorcycles would not aim to recognize bicycles. However, this approach is not an accurate representation of human intelligence; in fact, we know that humans can relate knowledge of motorcycles to bicycles \citep{aytar2011}. 
 
 Unlike classical machine learning approaches, human beings instinctively learn from different sources, drawing from varied past experiences and transferring knowledge across different contexts. 
 
-Transfer Learning is the study of extending classical machine learning approaches to apply knowledge acquired from a number of source tasks, to a different but related target task, similar to the way humans learn. \citep{thrunpratt1998}
+Transfer Learning is the study of extending classical machine learning approaches to apply knowledge acquired from a number of source tasks, to a different but related target task, similar to the way humans learn \citep{thrunpratt1998}. 
 
 \begin{marginfigure}
   \includegraphics{transfer_learning/transfer-learning-domain-and-tasks.png}
@@ -15,7 +15,7 @@ Transfer Learning is the study of extending classical machine learning approache
 
 
 
-Source tasks and target tasks can be related in different ways. For example, if a source task is a \textit{'Dog or Cat'} classifier; we can transfer knowledge to a similar domain but a different task, such as an \textit{'Elephant or Tiger'} classifier; or we can transfer knowledge to the same task in a different domain, such as a \textit{'Cartoon Dog or Cat'} classifier. \citep{torrey2009}
+Source tasks and target tasks can be related in different ways. For example, if a source task is a \textit{'Dog or Cat'} classifier; we can transfer knowledge to a similar domain but a different task, such as an \textit{'Elephant or Tiger'} classifier; or we can transfer knowledge to the same task in a different domain, such as a \textit{'Cartoon Dog or Cat'} classifier \citep{torrey2009}. 
 
 
 \section{Transfer Learning Approaches}\label{sec:transfer-learning-approaches}\index{transfer learning!transfer learning approaches}
@@ -37,9 +37,9 @@ The above approaches vary on what data is available for the learning task - conv
 
 For example, it is sometimes impossible to apply a source task's data directly to a target task. Instead we can attribute selected instances or features from the source task, which are in turn re-weighted and re-distributed to fit the target task. These methods are referred to as Instance Transfer and Feature-representation Transfer approaches.
 
-In cases where labels are available for either source tasks or target tasks (both inductive and transductive transfer learning), some forms of instance-transfer and feature-representation transfer are possible. Moreover, unsupervised transfer learning techniques are limited to feature-representation transfer. \citep{panyang2010}
+In cases where labels are available for either source tasks or target tasks (both inductive and transductive transfer learning), some forms of instance-transfer and feature-representation transfer are possible. Moreover, unsupervised transfer learning techniques are limited to feature-representation transfer \citep{panyang2010}. 
 
-Other examples of transfer learning include broader knowledge transfers such as parameter transfer (or model transfer), where full or parts of parameterized models are transferred from the source task to the target task; or relational-knowledge transfer, where relationships between data points within the source task are transferred to re-distribute data within the target task. \citep{cook2013}  Such transfer is only possible where the target task's labels are available.
+Other examples of transfer learning include broader knowledge transfers such as parameter transfer (or model transfer), where full or parts of parameterized models are transferred from the source task to the target task; or relational-knowledge transfer, where relationships between data points within the source task are transferred to re-distribute data within the target task \citep{cook2013}.   Such transfer is only possible where the target task's labels are available.
 
 
 \begin{table}[ht]
@@ -59,30 +59,30 @@ Other examples of transfer learning include broader knowledge transfers such as 
 
 \section{Deep Transfer Learning Techniques}\label{sec:transfer-learning-deep-techniques}\index{transfer learning!deep transfer learning techniques}
 
-The above approaches have manifested themselves in two major techniques of transfer learning within deep learning. Multi-layer neural networks are built in such a way that lower-level layers address generic features and higher-level layers address more complex and specific features. The initial layers for a group of related tasks are similar if not identical; this characteristic can be exploited to enable the transfer of knowledge between models. \citep{yosinski2014}
+The above approaches have manifested themselves in two major techniques of transfer learning within deep learning. Multi-layer neural networks are built in such a way that lower-level layers address generic features and higher-level layers address more complex and specific features. The initial layers for a group of related tasks are similar if not identical; this characteristic can be exploited to enable the transfer of knowledge between models \citep{yosinski2014}. 
 \newpage
 
 
-Off-the shelf models, or pre-trained models, involve training one or more multi-layer networks and adapting parts of the model to another target task. The source models act as a form of pre-training, to learn shallow parts of the problem, while the target learning task is solely limited to the final layer of the model. In fact, one application of pre-trained models can be seen as a feature-selection process. \citep{zhu2018}
+Off-the shelf models, or pre-trained models, involve training one or more multi-layer networks and adapting parts of the model to another target task. The source models act as a form of pre-training, to learn shallow parts of the problem, while the target learning task is solely limited to the final layer of the model. In fact, one application of pre-trained models can be seen as a feature-selection process \citep{zhu2018}. 
 
 \begin{marginfigure}
   \includegraphics{transfer_learning/transfer-learning-off-the-shelf.png}
-  \caption{Off-the-shelf pre-trained model.}
+  \caption{In off-the-shelf pre-trained models, we replace the final layer of the neural network..}
   \label{fig:transferlearning_pretrained_ots}
 \end{marginfigure}
 
 Another approach is to use transfer learning to replace selective parts of the model, rather than just the final layer, this is referred to as model Fine-tuning. 
 
-With Fine-tuning techniques, we pre-train a model using a number of different source tasks, and then re-train the model for the target task; however the target training is done selectively, selecting which layers are to be frozen (and thus inherited from the source tasks) or fine-tuned (to be updated during the backpropagation process). We can define a metric to decide the learning rate for each layer, creating a variable degree of freezing and fine-tuning. \citep{madhavan2016}
+With Fine-tuning techniques, we pre-train a model using a number of different source tasks, and then re-train the model for the target task; however the target training is done selectively, selecting which layers are to be frozen (and thus inherited from the source tasks) or fine-tuned (to be updated during the backpropagation process). We can define a metric to decide the learning rate for each layer, creating a variable degree of freezing and fine-tuning \citep{madhavan2016}. 
 
 \begin{marginfigure}
   \includegraphics{transfer_learning/transfer-learning-fine-tuning.png}
-  \caption{Pre-trained model fine tuning}
+  \caption{In Pre-trained model fine tuning, we use the source model to initialize the neural network, and fine-tune it using backpropogation.}
   \label{fig:transferlearning_pretrained_finetuning}
  
 \end{marginfigure}
 
-The success of transferability is highly dependent on source task's level of specialization, successful transfer learning projects work on generalized source tasks. As a matter of fact, transfer learning across tasks which are too dissimilar as a result of being too specific would result in a negative learning.\citep{rosenstein2005}
+The success of transferability is highly dependent on source task's level of specialization, successful transfer learning projects work on generalized source tasks. As a matter of fact, transfer learning across tasks which are too dissimilar as a result of being too specific would result in a negative learning \citep{rosenstein2005}.
 
 \begin{marginfigure}
   \includegraphics{transfer_learning/transfer_learning_layer_transfer.jpg}
@@ -92,8 +92,8 @@ The success of transferability is highly dependent on source task's level of spe
 
 \section{Applications and Improvements}\label{sec:transfer-learning-applications-improvements}\index{transfer learning!applications and improvements}
 
-Notwithstanding savings on time and computational resources, the above techniques for transfer learning in multi-layer neural networks frequently render better results when compared to training the neural networks from scratch.\citep{yosinski2014} This is especially the case in fields where data collection and annotation is notoriously difficult, such as computer vision and natural language processing. 
+Notwithstanding savings on time and computational resources, the above techniques for transfer learning in multi-layer neural networks frequently render better results when compared to training the neural networks from scratch \citep{yosinski2014}. This is especially the case in fields where data collection and annotation is notoriously difficult, such as computer vision and natural language processing. 
 
-The use of pre-trained models machine learning has achieved new state-of-the-art results in several tasks; within the field of computer vision, in object detection \citep{he2017}, semantic segmentation \citep{zhao2016}, human pose estimation \citep{papandreou2017} and action recognition \citep{carreira2017} ; and within the field of natural language processing in text classification, question answering, language inference and conference resolution amongst others. \citep{howard2018} \citep{joshi2018}
+The use of pre-trained models machine learning has achieved new state-of-the-art results in several tasks; within the field of computer vision, in object detection \citep{he2017}, semantic segmentation \citep{zhao2016}, human pose estimation \citep{papandreou2017} and action recognition \citep{carreira2017} ; and within the field of natural language processing in text classification, question answering, language inference and conference resolution amongst others \citep{howard2018} \citep{joshi2018}. 
 
 \index{transfer learning|)}
