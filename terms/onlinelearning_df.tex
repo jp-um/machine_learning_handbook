@@ -33,7 +33,7 @@ Another small application resides in the online advertising domain. With differe
 
 In both examples, a traditional static model will fail due to being too slow to react to the dynamic underlying relationships present in the data. This problem is more formally known as concept drift \citep{schlimmer_incremental_1986}. The following section will further explain the notion of Concept Drift.
 
-\section{Concept Drift}
+\section{Concept Drift} \index{online-learning!concept drift}
 
 Concept Drift occurs when the hidden context of the data changes. For instance, weather predictions are highly dependant on the season (the context), and as the seasons change so does the weather \citep{widmer_learning_1996}. As highlighted by \citet{krawczyk_online_2018, Gama2014ASO}, based on the distribution drift speed and severity, concept drift can be of four types as depicted in Figure~\ref{fig:cd}:
 
@@ -44,13 +44,13 @@ Concept Drift occurs when the hidden context of the data changes. For instance, 
 \end{figure}
 
 \begin{enumerate}
-\item \textbf{Sudden:}
+\item \textbf{Sudden:}\index{online-learning!sudden drift}
 \textit{The data distribution is immediately changed to a different class.}
-\item \textbf{Gradual:}
+\item \textbf{Gradual:}\index{online-learning!gradual drift}
 \textit{The data distribution gradually transitions by having varying proportions of the different classes mixing together over time, until it completely changes to the new class.}
-\item \textbf{Incremental:}
+\item \textbf{Incremental:}\index{online-learning!incremental drift}
 \textit{The data distribution slowly morphs from one class to another.}
-\item \textbf{Recurring:}
+\item \textbf{Recurring:}\index{online-learning!recurring drift}
 \textit{The data distribution periodically transitions between previous classes.}
 \end{enumerate}
 
@@ -58,7 +58,7 @@ Concept Drift occurs when the hidden context of the data changes. For instance, 
 
 Thus, to combat this, as the concept drifts, so must the model's transition function that maps the inputs to the outputs. Due to the constant model updates performed through online learning (sample by sample), the transition function would be dynamic and adapts to the changing distribution \citep{Gama2014ASO, hoi_online_2018, Lane:1998:AOL:3000292.3000339}. In addition to this, another approach is to have a sliding window that shifts with the data stream. The purpose of this window, as discussed by \citet{wozniak_hybrid_2011}, is to keep a set of instances that offer the best representation of the present data distribution. As newer data samples arrive in the stream, the window slides towards more recent instances, resulting in the exclusion of the oldest samples from the window. Online learning achieves this window technique through the 'forgetting rate' which sets how fast older data is discarded to make room for newer instances. 
 
-\subsection{Forgetting Rate}
+\subsection{Forgetting Rate}\index{online-learning!forgetting rate}
 
 Even though the design for most online learning algorithms is for fast execution speeds and thus adapted from less complex algorithms, implementation challenges are also present. As argued by \citet{gepperth_incremental_2016}, this leads us to one of the most significant problems in online learning, Catastrophic Interference. The latter happens when the model abruptly forgets knowledge learnt for previous data. Most online learning algorithms have a forgetting rate parameter. This parameter allows the user to decide the speed at which the learning algorithm forgets old data; thus, how much data to retain. Moreover, the correct calibration of this rate is essential and challenging to perfect since a high value would result in catastrophic interference, while a lower value would result in the algorithm not adapting to the incoming samples in the stream. In addition to this, good initialisations are critical in this approach to steer away from slow convergence.
 
