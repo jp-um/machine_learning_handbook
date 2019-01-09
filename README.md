@@ -52,3 +52,5 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  You should not have two (or more) headings immediately following each other.  You require some _preamble_; a sentence or two which explains what is coming next
 1.  LaTeX adds spacing after periods, but you don't want this for common abbreviations such as (e.g. `e.g. some words`, i.e., et al.).  To tell LaTeX this is not the end of a sentence, mark the space with a backslash (e.g. `e.g.\ this entry`). 
 1.  There should be **zero** BibTeX warnings
+1.  URLs should go in footnotes (`\footnote{...}`)
+1.  You should use linebreak (`\\`, `\newline`), page breaks and `\noindent` sparingly.  The template should take care of the typesetting for you
