@@ -1,7 +1,9 @@
 \chapter{Confusion Matrix}
-\label{ch:confusion-matrix}\index{confusion matrix|(}
+\label{ch:confusion-matrix}
 
-A \textit{Confusion Matrix} (CM), is a contingency table showing how well a model classifies categorical data. By convention \citep{sammut2017encyclopedia}, the CM of an N-class model is an N$\times$N matrix indexed by the true class in the row dimension and the predicted class in the column dimension (Table~\ref{tab:cm_spam}).
+\index{confusion matrix|(}
+
+A \textit{confusion matrix} (CM), is a contingency table showing how well a model classifies categorical data. By convention \citep{sammut2017encyclopedia}, the CM of an N-class model is an N$\times$N matrix indexed by the true class in the row dimension and the predicted class in the column dimension (Table~\ref{tab:cm_spam}).
 
 \begin{table}[ht]
   \centering
@@ -54,7 +56,7 @@ The CM of the model $h : X \mapsto C$ over the concept $c : X \mapsto C$ using d
   \label{alg:cm}
 \end{algorithm}
 
-In binary classification, the CM consists of 2 specially designated classes called the \textit{positive} class and the \textit{negative} class \citep{saito2015precision}. As indicated in Table~\ref{tab:cm_binary}, positive outcomes from the true class  which are classified correctly are called \textit{True Positives}\index{true positives} (TP), whilst misclassifications are called \textit{False Negatives}\index{false negatives} (FN). On the other hand, negative true class outcomes which are classified correctly are called \textit{True Negatives}\index{true negatives} (TN), and misclassifications are called \textit{False Positives}\index{false positives} (FP). In natural sciences, FP are called \textit{Type I Errors} and FN are known as \textit{Type II Errors} \citep{fielding1997review}.
+In binary classification, the CM consists of 2 specially designated classes called the \textit{positive} class and the \textit{negative} class \citep{saito2015precision}. As indicated in Table~\ref{tab:cm_binary}, positive outcomes from the true class  which are classified correctly are called \textit{true positives}\index{true positives} (TP), whilst misclassifications are called \textit{false negatives}\index{false negatives} (FN). On the other hand, negative true class outcomes which are classified correctly are called \textit{true negatives}\index{true negatives} (TN), and misclassifications are called \textit{false positives}\index{false positives} (FP). In natural sciences, FP are called \textit{Type I} errors and FN are known as \textit{Type II} errors \citep{fielding1997review}.
 
 \begin{table}[ht]
   \centering
@@ -67,7 +69,7 @@ In binary classification, the CM consists of 2 specially designated classes call
     \textit{-ve}  & FP           & TN \\
     \bottomrule
   \end{tabular}
-  \caption{CMs of binary classifiers have positive (+ve) and negative (-ve) classes, and elements called \textit{True Positives} (TP), \textit{False Positives} (FP), \textit{True Negatives} (TN) and \textit{False Negatives} (FN).}
+  \caption{CMs of binary classifiers have positive (+ve) and negative (-ve) classes, and elements called \textit{true positives} (TP), \textit{false positives} (FP), \textit{true negatives} (TN) and \textit{false negatives} (FN).}
   \label{tab:cm_binary}
 \end{table}
 \vspace{2mm}
@@ -83,35 +85,35 @@ These metrics are important in situations in which a particular type of misclass
 ACC = \frac{|TP \cup TN|}{|TP \cup FP \cup TN \cup FN|}
 \end{equation}
 
-\textit{Negative Predictive Value}\index{confusion matrix!negative predictive value} (NPV) is the ratio of the correct negative predictions from the total negative predictions (Equation~\ref{eq:cm_npv}).
+\textit{Negative predictive value}\index{confusion matrix!negative predictive value} (NPV) is the ratio of the correct negative predictions from the total negative predictions (Equation~\ref{eq:cm_npv}).
 
 \begin{equation}
 \label{eq:cm_npv}
 NPV = \frac{|TN|}{|TN \cup FN|}
 \end{equation}
 
-\textit{True Negative Rate}\index{confusion matrix!true negative rate} (TNR), or \textit{Specificity}\index{confusion matrix!true negative rate!specificity}, is the ratio of the correct negative predictions from the total true negatives (Equation~\ref{eq:cm_tnr}).
+\textit{True negative rate}\index{confusion matrix!true negative rate} (TNR), or \textit{specificity}\index{confusion matrix!true negative rate!specificity}, is the ratio of the correct negative predictions from the total true negatives (Equation~\ref{eq:cm_tnr}).
 
 \begin{equation}
 \label{eq:cm_tnr}
 TNR = \frac{|TN|}{|TN \cup FP|}
 \end{equation}
 
-\textit{True Positive Rate}\index{confusion matrix!true positive rate} (TPR), also called \textit{Sensitivity}\index{confusion matrix!true positive rate!sensitivity} or \textit{Recall}\index{confusion matrix!true positive rate!recall}, is the ratio of the correct positive predictions from the total true positives (Equation~\ref{eq:cm_tpr}).
+\textit{True positive rate}\index{confusion matrix!true positive rate} (TPR), also called \textit{sensitivity}\index{confusion matrix!true positive rate!sensitivity} or \textit{recall}\index{confusion matrix!true positive rate!recall}, is the ratio of the correct positive predictions from the total true positives (Equation~\ref{eq:cm_tpr}).
 
 \begin{equation}
 \label{eq:cm_tpr}
 TPR = \frac{|TP|}{|TP \cup FN|}
 \end{equation}
 
-Sensitivity and Specificity can be combined into a single metric (Equation~\ref{eq:cm_ss}). These metrics are often used in  domains in which minority classes are important \citep{kuhn2013applied}. For example, the Sensitivity of a medical classifier \citep{el2010hybrid} measures how many patients with the condition tested positive, and Specificity measures how many did not have the condition and tested negative.
+Sensitivity and specificity can be combined into a single metric (Equation~\ref{eq:cm_ss}). These metrics are often used in  domains in which minority classes are important \citep{kuhn2013applied}. For example, the sensitivity of a medical classifier \citep{el2010hybrid} measures how many patients with the condition tested positive, and specificity measures how many did not have the condition and tested negative.
 
 \begin{equation}
 \label{eq:cm_ss}
 \textnormal{\textit{Sensitivity}} \times \textnormal{\textit{Specificity}} = \frac{|TP| \times |TN|}{|TP \cup FN| \times |TN \cup FP|}
 \end{equation}
 
-\textit{Positive Predictive Value}\index{confusion matrix!positive predictive value} (PPV), or \textit{Precision}\index{confusion matrix!positive predictive value!precision}, is the ratio of the correct positive predictions from the total positive predictions (Equation~\ref{eq:cm_ppv}). The difference between accuracy and precision is depicted in Figure~\ref{fig:cm_accprec}.
+\textit{Positive predictive value}\index{confusion matrix!positive predictive value} (PPV), or \textit{precision}\index{confusion matrix!positive predictive value!precision}, is the ratio of the correct positive predictions from the total positive predictions (Equation~\ref{eq:cm_ppv}). The difference between accuracy and precision is depicted in Figure~\ref{fig:cm_accprec}.
 
 \begin{equation}
 \label{eq:cm_ppv}
@@ -124,14 +126,14 @@ PPV = \frac{|TP|}{|TP \cup FP|}
   \label{fig:cm_accprec}
 \end{marginfigure}
 
-Precision and Recall are borrowed from the discipline of \textit{Information Extraction} \citep{sokolova2009systematic}. A composite metric called \textit{F-score}\index{confusion matrix!f-score}, \textit{F1-score}\index{confusion matrix!f-score!f1-score}, or \textit{F-measure}\index{confusion matrix!f-score!f-measure} (Equation~\ref{eq:cm_fscore}) can be derived by finding their harmonic mean \citep{kelleher2015fundamentals}.
+Precision and recall are borrowed from the discipline of \textit{information extraction} \citep{sokolova2009systematic}. A composite metric called \textit{F-score}\index{confusion matrix!f-score}, \textit{F1-score}\index{confusion matrix!f-score!f1-score}, or \textit{F-measure}\index{confusion matrix!f-score!f-measure} (Equation~\ref{eq:cm_fscore}) can be derived by finding their harmonic mean \citep{kelleher2015fundamentals}.
 
 \begin{equation}
 \label{eq:cm_fscore}
 \textnormal{\textit{F-score}} = 2 \times \frac{PPV \times TPR}{PPV + TPR}
 \end{equation}
 
-The complements of ACC, NPV, TNR, TPR and PPV are called, respectively, \textit{Error Rate}\index{confusion matrix!error rate}, \textit{False Omission Rate}\index{confusion matrix!false omission rate}, \textit{false positive rate}\index{confusion matrix!false positive rate}, \textit{false negative rate}\index{confusion matrix!false negative rate} and \textit{False Discovery Rate}\index{confusion matrix!false discovery rate}.
+The complements of ACC, NPV, TNR, TPR and PPV are called, respectively, \textit{error rate}\index{confusion matrix!error rate}, \textit{false omission rate}\index{confusion matrix!false omission rate}, \textit{false positive rate}\index{confusion matrix!false positive rate}, \textit{false negative rate}\index{confusion matrix!false negative rate} and \textit{false discovery rate}\index{confusion matrix!false discovery rate}.
 
 The metrics can be adapted for evaluating multi-class models by decomposing an N-class CM into 2-class CMs, and evaluating them individually \citep{stager2006dealing}. The literature describes two methods for decomposing this kind of  CM. In the \textit{1-vs-1}\index{confusion matrix!1-vs-1} approach, 2-class CMs are constructed for each pairwise class as shown in Table~\ref{tab:cm_1vs1}.
 
@@ -171,7 +173,7 @@ In the \textit{1-vs-rest}\index{confusion matrix!1-vs-rest} approach, 2-class CM
 \end{table}
 \vspace{2mm}
 
-Using all metrics could be counterproductive due to information redundancy, but none of the metrics is enough on its own \citep{ma2007adequate}. For instance, Recall is class-sensitive but it would give a perfect score to an inept model which simply returns the positive class. Thus, the best approach is to evaluate with complementary pairs \citep{gu2009evaluation} such as Sensitivity \textit{vs} Specificity, or Precision \textit{vs} Recall; or a combined measure such as the F-score.
+Using all metrics could be counterproductive due to information redundancy, but none of the metrics is enough on its own \citep{ma2007adequate}. For instance, recall is class-sensitive but it would give a perfect score to an inept model which simply returns the positive class. Thus, the best approach is to evaluate with complementary pairs \citep{gu2009evaluation} such as sensitivity \textit{vs} specificity, or precision \textit{vs} recall; or a combined measure such as the F-score.
 
 Taking into account the above, CMs are suitable for visualising, evaluating, and comparing the performance of binary or multi-class classifiers. They should be used in conjunction with metrics such as the F-measure to avoid bias, especially if the dataset is unbalanced. For further details on the theoretical aspects of CMs and for practical examples in R refer to \citep{cichosz2014data}; for examples in Python refer to \citep{muller2016introduction}.
 
@@ -199,7 +201,7 @@ The following example is motivated by the samples in the \textit{Scikit-Learn} d
   \label{tab:cm_metrics}
 \end{margintable}
 
-As it can be intuitively deduced from Figure~\ref{fig:cm_model}, the decision boundary of the non-linear model is a better fit than the linear model. The CMs in Figure~\ref{fig:cm_wines} also show that non-linear model performs better with a higher TP, and consequently lower TN. The biggest advantage of the non-linear model is the higher Sensitivity resulting in a better F-score.
+As it can be deduced from Figure~\ref{fig:cm_model}, the decision boundary of the non-linear model is a better fit than the linear model. The CMs in Figure~\ref{fig:cm_wines} also show that non-linear model performs better with a higher TP, and consequently lower TN. The biggest advantage of the non-linear model is the higher sensitivity resulting in a better F-score.
 
 \begin{figure}
   \includegraphics{confusion_matrix/cm.png}
