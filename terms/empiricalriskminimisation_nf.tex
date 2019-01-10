@@ -1,12 +1,5 @@
-\documentclass{article}
-
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{graphicx}
-\usepackage{cite}
-\usepackage[square,numbers]{natbib}
-
-\begin{document}
+\chapter{Empirical Risk Minimisation}
+\label{ch:empirical-risk-minimisation}\index{empirical-risk-minimisation}
 
 \section{Introduction}
 Empirical Risk Minimisation (ERM) is a principle of statistical theory that is used in supervised learning. Simply put, it states that for a function to make the most accurate predictions possible on an unknown true distribution, prediction errors made on the data belonging to the distribution must be minimised. To give a proper explanation of the principle some prior concepts need to be explained. The next section will discuss loss functions. 
@@ -41,7 +34,7 @@ The convergence of the empirical risk to the true risk can only be achieved unde
 \section{Problem of Empirical Risk Minimisation}
 The most common problem of ERM as mentioned above is overfitting. As the goal is to reduce the empirical error as much as possible, the result could be a prediction function that fits the training data perfectly. However when given unseen data this will perform poorly causing overfitting \citep{UMachineLearning}. 
 
-\includegraphics[width=\textwidth]{ermdiagram.png}
+\includegraphics[width=\textwidth]{empirical_risk_minimisation/ermdiagram.png}
 The figure above is a perfect example of overfitting as a result of Empirical Risk Minimisation. The green line shows the line of best fit of the predictive function which indicates how the function would best represent the data. The orange line is the same predictive function after attempting to minimise the empirical risk to it's lowest point. For the training data, the function will perform extremely well with almost no error however this is due to overfitting, resulting in the function to perform extremely poorly on the testing or real world data. For this particular case the Empirical Risk Minimisation would be giving a false representation of the true risk as it would appear to be a low empirical error when in reality it would be extremely high on unseen data. 
 
 
@@ -54,9 +47,5 @@ From what can be seen there are several factors that indicate how good of an app
 
 \section{Conclusion}
 In conclusion, the principle of Empirical Risk Minimisation is an effective way of minimising the empirical error of a prediction function. Under the appropriate conditions, by reducing this risk on a subset of the population data then the true risk will be reduced to the same extent. However, caution needs to be taken as to prevent the case of overfitting.
-
-\bibliographystyle{plainnat}
-\bibliography{empiricalriskminisation_nf}
-\end{document}
 
 
