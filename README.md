@@ -54,3 +54,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  There should be **zero** BibTeX warnings
 1.  URLs should go in footnotes (`\footnote{...}`)
 1.  You should use linebreak (`\\`, `\newline`), page breaks and `\noindent` sparingly.  The template should take care of the typesetting for you
+1.  Figure, Equation and Table should be capitalized when referred to as proper nound (e.g. as shown in Figure 2).
