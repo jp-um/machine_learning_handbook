@@ -7,7 +7,7 @@
 \label{sec:convolution:mathematics:definitions}
 \index{definition!convolution in mathematics}
 Convolution is a mathematical operation on two functions to produce a result that reflects how one of the input functions is modified by the other input function.\newline
-The convolution of functions $f(x)$ and $g(x)$ (denoted $f*g(x)$) is defined  \citep{Bracewell2000}, for continuous functions $f$ and $g$, as\footnote{In order for the continuous convolution operator $f * g$ to be defined, both $f$ and $g$ must be integrable functions.}
+The convolution of functions $f(x)$ and $g(x)$ (denoted $f*g(x)$) is defined~\citep{Bracewell2000}, for continuous functions $f$ and $g$, as\footnote{In order for the continuous convolution operator $f * g$ to be defined, both $f$ and $g$ must be integrable functions.}
 \begin{equation}
 (f * g) (t)\equiv\int_{-\infty}^{\infty} f(\tau) g(t-\tau)d\tau
 \end{equation}
@@ -32,7 +32,7 @@ and, for discrete functions $f(n)$ and $g(n)$, as
 \subsection{Properties}
 \label{sec:convolution:mathematics:properties}
 \index{properties!convolution in mathematics}
-Since convolution is defined as a product of integrable functions on the linear space, the following algebraic properties are satisfied \citep{Bracewell2000}:\newline
+Since convolution is defined as a product of integrable functions on the linear space, the following algebraic properties are satisfied~\citep{Bracewell2000}:\newline
 \textbf{Commutativity}
 \begin{equation}
 (f * g)=(g * f)
@@ -64,7 +64,7 @@ f * \delta = f
 \subsection{Applications}
 \label{sec:convolution:mathematics:applications}
 \index{applications!convolution in mathematics}
-Listed below are some of the main applications of the convolution operator in various fields of knowledge \citep{Srivastava2013}:
+Listed below are some of the main applications of the convolution operator in various fields of knowledge~\citep{Srivastava2013}:
 \begin{itemize}
 	\item \textbf{Image Processing} - Different operations are performed on images, in which the original image (larger matrix) and the filter to be applied (smaller matrix, also known as 2D kernel) are treated as 2-dimensional arrays. The kernel size and the values of its elements determine the effect on the original image
     \item \textbf{Signal Filtering} - Provided the filter function is the same as the impulse response function used in in signal filtering, the two operations are equivalent
@@ -81,16 +81,16 @@ Listed below are some of the main applications of the convolution operator in va
 \subsection{Definition}
 \label{sec:convolution:convolutionalneuralnetworks:definition}
 A Convolutional Neural Networks (CNNs) are a subclass of multi-layer neural networks in which some of its hidden layers are convolutional layers.\newline
-Like most neural networks, CNNs can be trained using back-propagation algorithms and are mostly used to recognize visual patters with minimal or no preprocessing \citep{Lawrence1997A}.\newline
+Like most neural networks, CNNs can be trained using back-propagation algorithms and are mostly used to recognize visual patters with minimal or no preprocessing~\citep{Lawrence1997A}.\newline
 \index{origins and evolution!convolutional neural networks}
 \subsection{Origins and Evolution}
 \label{sec:convolution:convolutionalneuralnetworks:originsandevolution}
 CNNs were initially developed as an attempt to replicate the processing of sight in living organisms.\newline
-A seminal paper published in 1968 \citep{Hubel1968} noted that two types of neurons took part in the process of identifying images: simple cells (responsible for the detection of straight edges and their orientation), and complex cells (with larger receptive fields, but not affected by the exact position of the edges in the input image).\newline
-During the 1980s, CNNs evolved, followed by the introduction of Time Delay Neural Networks (TDNNs) in 1987 \citep{Waibel1989}.\newline
-In the early 1990s, CNNs were modified and used for medical image processing and for automatic detection of breast cancer in mammograms \citep{Zang1994}.\newline
+A seminal paper published in 1968~\citep{Hubel1968} noted that two types of neurons took part in the process of identifying images: simple cells (responsible for the detection of straight edges and their orientation), and complex cells (with larger receptive fields, but not affected by the exact position of the edges in the input image).\newline
+During the 1980s, CNNs evolved, followed by the introduction of Time Delay Neural Networks (TDNNs) in 1987~\citep{Waibel1989}.\newline
+In the early 1990s, CNNs were modified and used for medical image processing and for automatic detection of breast cancer in mammograms~\citep{Zang1994}.\newline
 In 1998 LeCun lead a team that created LeNet-5, a CNN used by banks to identify handwritten digits in checks.\newline
-With the introduction of Graphic Processing Units (GPUs), training of CNNs was greatly improved, allowing for the implementation of efficient Deep Learning Neural Networks with impressive results in image processing and other applications  \citep{Ciresan2013}.
+With the introduction of Graphic Processing Units (GPUs), training of CNNs was greatly improved, allowing for the implementation of efficient Deep Learning Neural Networks with impressive results in image processing and other applications~\citep{Ciresan2013}.
 \index{layers!convolutional neural networks}
 \subsection{Layers}
 \label{sec:convolution:convolutionalneuralnetworks:layers}
@@ -108,13 +108,13 @@ A typical CNN has sets of layers with specific functions, such as:
 \index{training!convolutional neural networks}
 \subsection{Training}
 \label{sec:convolution:convolutionalneuralnetworks:training}
-One important feature of CNNs is that, with the exception of the Loss layer, all other layers (Convolutional, Pooling, ReLU, and Fully Connected layers) can be trained using unsupervised training  \citep{Arel2010}.\newline
+One important feature of CNNs is that, with the exception of the Loss layer, all other layers (Convolutional, Pooling, ReLU, and Fully Connected layers) can be trained using unsupervised training~\citep{Arel2010}.\newline
 Also, usually each layer or set of layers is trained individually, which also improves the speed and the overall result of the training.\newline
-With the introduction of Graphic Processing Units (GPUs), speed of training and processing in the Convolutional layer has been greatly improved  \citep{Steinkrau2005}
+With the introduction of Graphic Processing Units (GPUs), speed of training and processing in the Convolutional layer has been greatly improved~\citep{Steinkrau2005}
 \index{applications!convolutional neural networks}
 \subsection{Applications}
 \label{sec:convolution:convolutionalneuralnetworks:applications}
-CNNs are currently applied to a wide range of areas, such as  \citep{Schmidhuber2015}:
+CNNs are currently applied to a wide range of areas, such as~\citep{Schmidhuber2015}:
 \begin{itemize}
     \item \textbf{Image recognition and Video analysis} - Image Recognition Systems using CNNs are very efficient, specially if applied to facial recognition. Very good results have been obtained in challenges, and in the ImageNetNet tests performed almost as good as humans. If compared to image recognition, video analysis adds a level of complexity, since, in addition to the analysis of each frame, a time dimension needs to be added to the problem and convolution needs to be performed both on each image as well as on the time domain.
     \item \textbf{Game strategy} - A number of board games have been implements using CNNs, most notably Checkers, in Chess and in Go, the first time Artificial Intelligence beat an expert human player in this game.
