@@ -56,3 +56,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  You should use linebreak (`\\`, `\newline`), page breaks and `\noindent` sparingly.  The template should take care of the typesetting for you
 1.  Figure, Equation and Table should be capitalized when referred to as proper nound (e.g. as shown in Figure 2).
 1.  When you take a figure from another paper you need to reference it in the caption; e.g. Reproduced from Ebejer et al. (2017).  If you have taken the idea from somewhere but reimplemented the graphic use _Adapted_ instead of _Reproduced_
+1.  No hanging statements at bottom of page (e.g. _The operations which take place are the following:_ with a list at the top of the next page).  Use pagebreak hints to avoid this `\pagebreak[1]`.
