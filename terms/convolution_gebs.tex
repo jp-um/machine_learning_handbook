@@ -98,11 +98,8 @@ With the introduction of Graphic Processing Units (GPUs), training of CNNs was g
 \label{sec:convolution:convolutionalneuralnetworks:layers}
 A typical CNN has sets of layers with specific functions, such as:
 \begin{itemize}
-    \item \textbf{Convolutional layer} - This is the main feature of a CNN.\\
-    In this layer, a set of filters (also known as kernels) is convoluted over the entire input data. The result of this operation (the activation map of the filter), extracts or enhances specific features in the input data that are passed to the following layers in the CNN.\\
-    Since the result of each convolution operation is affected by only a small part of the input data (due to the reduced size of the filter if compared to the size of the input data), this can be interpreted as each point of the activation map being affect by only a small subset of input points.
-    \item \textbf{Pooling layer} - In this layer, simple operations are applied in order to reduce the size of the input data, such as maximum pooling or average pooling.\\
-    In 2x2 average pooling, for example, each result point the the average of 4 input points, reducing the size of the input field by a factor of 4.
+    \item \textbf{Convolutional layer} - This is the main feature of a CNN. In this layer, a set of filters (also known as kernels) is convoluted over the entire input data. The result of this operation (the activation map of the filter), extracts or enhances specific features in the input data that are passed to the following layers in the CNN. Since the result of each convolution operation is affected by only a small part of the input data (due to the reduced size of the filter if compared to the size of the input data), this can be interpreted as each point of the activation map being affect by only a small subset of input points.
+    \item \textbf{Pooling layer} - In this layer, simple operations are applied in order to reduce the size of the input data, such as maximum pooling or average pooling. In 2x2 average pooling, for example, each result point the the average of 4 input points, reducing the size of the input field by a factor of 4.
     \item \textbf{Rectified Linear Unit (ReLU) layer} - This layer applies the $f(x) = max(0,x)$ activation function to its input, removing negative values from the input field.
     \item \textbf{Fully Connected layer} - In this layer, usually applied after several convolutional and pooling layers, neurons are connected to all activations in the previous layer, as in regular neural networks.
     \item \textbf{Loss layer} - This is the last layer in a typical CNN. In this layer, training is based on the divergence between the desired and predicted labels.
