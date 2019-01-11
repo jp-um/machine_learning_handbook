@@ -33,7 +33,7 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  `.bib` references do not need `DOI`, `pdf`, `keywords` or `abstract` entries (other attributes to delete are `Remove Date-Added`, `Date-Modified`, `Bdsk-File-1`)
 1.  No abbreviations (e.g. they're), but also no Fig., Eq. etc.  This is a formal scientific document, not an email.
 1.  Use non breaking space between a Figure and its number, e.g. `Figure~\ref{fig:jp}`
-1.  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this)
+1.  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this).  Multi-page index entries should have paired start and end delimiters.
 1.  When you submit a Pull Request make sure it is against the latest master version
 1.  Your entries should be in alphabetic order (e.g. cross-validation comes before ROC)
 1.  Use proper and detailed figure, table and equation captioning
@@ -57,3 +57,4 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  Figure, Equation and Table should be capitalized when referred to as proper nound (e.g. as shown in Figure 2).
 1.  When you take a figure from another paper you need to reference it in the caption; e.g. Reproduced from Ebejer et al. (2017).  If you have taken the idea from somewhere but reimplemented the graphic use _Adapted_ instead of _Reproduced_
 1.  No hanging statements at bottom of page (e.g. _The operations which take place are the following:_ with a list at the top of the next page).  Use pagebreak hints to avoid this `\pagebreak[1]`.
+1.  No text operators (e.g. `\textbf{...}`) inside maths environments (e.g. equation or `$...$`).
