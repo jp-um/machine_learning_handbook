@@ -33,7 +33,7 @@ After a number of you made the following mistakes I think it makes sense to grou
 1.  `.bib` references do not need `DOI`, `pdf`, `keywords` or `abstract` entries (other attributes to delete are `Remove Date-Added`, `Date-Modified`, `Bdsk-File-1`)
 1.  No abbreviations (e.g. they're), but also no Fig., Eq. etc.  This is a formal scientific document, not an email.
 1.  Use non breaking space between a Figure and its number, e.g. `Figure~\ref{fig:jp}`
-1.  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this)
+1.  Make sure to index important keywords in your entry (look [here](https://en.wikibooks.org/wiki/LaTeX/Indexing) for details how to do this).  Multi-page index entries should have paired start and end delimiters.
 1.  When you submit a Pull Request make sure it is against the latest master version
 1.  Your entries should be in alphabetic order (e.g. cross-validation comes before ROC)
 1.  Use proper and detailed figure, table and equation captioning
