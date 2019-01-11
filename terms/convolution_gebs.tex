@@ -6,7 +6,7 @@
 \subsection{Definition}
 \label{sec:convolution:mathematics:definitions}
 \index{definition!convolution in mathematics}
-Convolution is a mathematical operation on two functions to produce a result that reflects how one of the input functions is modified by the other input function.\newline
+Convolution is a mathematical operation on two functions to produce a result that reflects how one of the input functions is modified by the other input function.\\
 The convolution of functions $f(x)$ and $g(x)$ (denoted $f*g(x)$) is defined~\citep{Bracewell2000}, for continuous functions $f$ and $g$, as\footnote{In order for the continuous convolution operator $f * g$ to be defined, both $f$ and $g$ must be integrable functions.}
 \begin{equation}
 (f * g) (t)\equiv\int_{-\infty}^{\infty} f(\tau) g(t-\tau)d\tau
@@ -32,7 +32,7 @@ and, for discrete functions $f(n)$ and $g(n)$, as
 \subsection{Properties}
 \label{sec:convolution:mathematics:properties}
 \index{properties!convolution in mathematics}
-Since convolution is defined as a product of integrable functions on the linear space, the following algebraic properties are satisfied~\citep{Bracewell2000}:\newline
+Since convolution is defined as a product of integrable functions on the linear space, the following algebraic properties are satisfied~\citep{Bracewell2000}:\\
 \textbf{Commutativity}
 \begin{equation}
 (f * g)=(g * f)
@@ -80,26 +80,26 @@ Listed below are some of the main applications of the convolution operator in va
 \index{definition!convolutional neural networks}
 \subsection{Definition}
 \label{sec:convolution:convolutionalneuralnetworks:definition}
-A Convolutional Neural Networks (CNNs) are a subclass of multi-layer neural networks in which some of its hidden layers are convolutional layers.\newline
-Like most neural networks, CNNs can be trained using back-propagation algorithms and are mostly used to recognize visual patters with minimal or no preprocessing~\citep{Lawrence1997A}.\newline
+Convolutional Neural Networks (CNNs) are a subclass of multi-layer neural networks in which some of its hidden layers are convolutional layers.\\
+Like most neural networks, CNNs can be trained using back-propagation algorithms and are mostly used to recognize visual patters with minimal or no preprocessing~\citep{Lawrence1997A}.\\
 \index{origins and evolution!convolutional neural networks}
 \subsection{Origins and Evolution}
 \label{sec:convolution:convolutionalneuralnetworks:originsandevolution}
-CNNs were initially developed as an attempt to replicate the processing of sight in living organisms.\newline
-A seminal paper published in 1968~\citep{Hubel1968} noted that two types of neurons took part in the process of identifying images: simple cells (responsible for the detection of straight edges and their orientation), and complex cells (with larger receptive fields, but not affected by the exact position of the edges in the input image).\newline
-During the 1980s, CNNs evolved, followed by the introduction of Time Delay Neural Networks (TDNNs) in 1987~\citep{Waibel1989}.\newline
-In the early 1990s, CNNs were modified and used for medical image processing and for automatic detection of breast cancer in mammograms~\citep{Zang1994}.\newline
-In 1998 LeCun lead a team that created LeNet-5, a CNN used by banks to identify handwritten digits in checks.\newline
+CNNs were initially developed as an attempt to replicate the processing of sight in living organisms.\\
+A seminal paper published in 1968~\citep{Hubel1968} noted that two types of neurons took part in the process of identifying images: simple cells (responsible for the detection of straight edges and their orientation), and complex cells (with larger receptive fields, but not affected by the exact position of the edges in the input image).\\
+During the 1980s, CNNs evolved, followed by the introduction of Time Delay Neural Networks (TDNNs) in 1987~\citep{Waibel1989}.\\
+In the early 1990s, CNNs were modified and used for medical image processing and for automatic detection of breast cancer in mammograms~\citep{Zang1994}.\\
+In 1998 LeCun lead a team that created LeNet-5, a CNN used by banks to identify handwritten digits in checks.\\
 With the introduction of Graphic Processing Units (GPUs), training of CNNs was greatly improved, allowing for the implementation of efficient Deep Learning Neural Networks with impressive results in image processing and other applications~\citep{Ciresan2013}.
 \index{layers!convolutional neural networks}
 \subsection{Layers}
 \label{sec:convolution:convolutionalneuralnetworks:layers}
 A typical CNN has sets of layers with specific functions, such as:
 \begin{itemize}
-    \item \textbf{Convolutional layer} - This is the main feature of a CNN.\newline
-    In this layer, a set of filters (also known as kernels) is convoluted over the entire input data. The result of this operation (the activation map of the filter), extracts or enhances specific features in the input data that are passed to the following layers in the CNN.\newline
+    \item \textbf{Convolutional layer} - This is the main feature of a CNN.\\
+    In this layer, a set of filters (also known as kernels) is convoluted over the entire input data. The result of this operation (the activation map of the filter), extracts or enhances specific features in the input data that are passed to the following layers in the CNN.\\
     Since the result of each convolution operation is affected by only a small part of the input data (due to the reduced size of the filter if compared to the size of the input data), this can be interpreted as each point of the activation map being affect by only a small subset of input points.
-    \item \textbf{Pooling layer} - In this layer, simple operations are applied in order to reduce the size of the input data, such as maximum pooling or average pooling.\newline
+    \item \textbf{Pooling layer} - In this layer, simple operations are applied in order to reduce the size of the input data, such as maximum pooling or average pooling.\\
     In 2x2 average pooling, for example, each result point the the average of 4 input points, reducing the size of the input field by a factor of 4.
     \item \textbf{Rectified Linear Unit (ReLU) layer} - This layer applies the $f(x) = max(0,x)$ activation function to its input, removing negative values from the input field.
     \item \textbf{Fully Connected layer} - In this layer, usually applied after several convolutional and pooling layers, neurons are connected to all activations in the previous layer, as in regular neural networks.
@@ -108,8 +108,8 @@ A typical CNN has sets of layers with specific functions, such as:
 \index{training!convolutional neural networks}
 \subsection{Training}
 \label{sec:convolution:convolutionalneuralnetworks:training}
-One important feature of CNNs is that, with the exception of the Loss layer, all other layers (Convolutional, Pooling, ReLU, and Fully Connected layers) can be trained using unsupervised training~\citep{Arel2010}.\newline
-Also, usually each layer or set of layers is trained individually, which also improves the speed and the overall result of the training.\newline
+One important feature of CNNs is that, with the exception of the Loss layer, all other layers (Convolutional, Pooling, ReLU, and Fully Connected layers) can be trained using unsupervised training~\citep{Arel2010}.\\
+Also, usually each layer or set of layers is trained individually, which also improves the speed and the overall result of the training.\\
 With the introduction of Graphic Processing Units (GPUs), speed of training and processing in the Convolutional layer has been greatly improved~\citep{Steinkrau2005}
 \index{applications!convolutional neural networks}
 \subsection{Applications}
@@ -121,7 +121,6 @@ CNNs are currently applied to a wide range of areas, such as~\citep{Schmidhuber2
     \item \textbf{Drug discovery} - In this area, CNNs are used to predict the behaviour of drug molecules and human proteins.
     \item \textbf{Natural language processing} - For NLP, CNNs are used extensively, including semantic parsing, search query retrieval, sentence modeling, classification, and prediction.
 \end{itemize}
-\clearpage
 \index{convolutional neural networks|)}
 \index{convolutional filters|(}
 \section{Convolutional Filters}
@@ -129,7 +128,7 @@ CNNs are currently applied to a wide range of areas, such as~\citep{Schmidhuber2
 \index{definition!convolutional filters}
 \subsection{Definition}
 \label{sec:convolution:convolutionalfilters:definition}
-Convolutional filters (also known as kernels), when applied to image and video processing, are small square matrices with an odd number of rows and columns and used in the Convolutional layer of CNNs in order to detect or enhance specific features in the input image.\newline
+Convolutional filters (also known as kernels), when applied to image and video processing, are small square matrices with an odd number of rows and columns and used in the Convolutional layer of CNNs in order to detect or enhance specific features in the input image.\\
 The convolution operation performed by CNNs is a special two dimensional case of the discrete convolution operator.
 \begin{equation}
 R(m,n) = (K * I)(m,n)\equiv\sum_{s=-a}^{a}\sum_{t=-b}^{b}K(s,t)I(m-s,n-t)
@@ -138,8 +137,8 @@ where $R(m,n)$ is the convoluted result at point $m,n$, $K$ is the kernel matrix
 \index{common convolutional filters!convolutional filters}
 \subsection{Common Convolutional Filters}
 \label{sec:convolution:convolutionalfilters:commonconvolutionalfilters}
-Convolutional filters can be defined to achieve a large range of effects in the input image.\newline
-A small sample of possible kernels is provided below:\newline
+Convolutional filters can be defined to achieve a large range of effects in the input image.\\
+A small sample of possible kernels is provided below:\\
 \begin{itemize}
     \item \textbf{Identity} - This is the input image, without any convolution applied.
     $$
