@@ -15,9 +15,10 @@ The convolution of functions $f(x)$ and $g(x)$ (denoted $f*g(x)$) is defined~\ci
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_continuos_f_gebs.png}
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_continuos_g_gebs.png}
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_continuos_fg_gebs.png}
-    \caption{These plots show two continuous functions ($f(x)$ and $g(x)$) and their convolution $f*g(x)$}.
+    \caption{These plots show two continuous functions ($f(x)$ and $g(x)$) and their convolution $f*g(x)$}
     \label{fig:continuousconvolution}
-\end{figure*}\FloatBarrier
+\end{figure*}
+\FloatBarrier
 and, for discrete functions $f(n)$ and $g(n)$, as
 \begin{equation}
 (f * g)(n)\equiv\sum_{m=-\infty}^{\infty}f(m) g(n-m)
@@ -26,9 +27,10 @@ and, for discrete functions $f(n)$ and $g(n)$, as
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_discrete_f_gebs.png}
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_discrete_g_gebs.png}
     \includegraphics[width=.32\linewidth]{graphics/convolution/convolution_discrete_fg_gebs.png}
-    \caption{These plots show two discrete functions ($f(n)$ and $g(n)$) and their convolution $f*g(n)$}.
+    \caption{These plots show two discrete functions ($f(n)$ and $g(n)$) and their convolution $f*g(n)$}
     \label{fig:discreteconvolution}
-\end{figure*}\FloatBarrier
+\end{figure*}
+\FloatBarrier
 \subsection{Properties}
 \label{sec:convolution:mathematics:properties}
 \index{properties!convolution in mathematics}
@@ -134,13 +136,31 @@ The convolution operation performed by CNNs is a special two dimensional case of
 R(m,n) = (K * I)(m,n)\equiv\sum_{s=-a}^{a}\sum_{t=-b}^{b}K(s,t)I(m-s,n-t)
 \end{equation}
 where $R(m,n)$ is the convoluted result at point $m,n$, $K$ is the kernel matrix being applied to the input matrix, $I$ is the input matrix, and $a$ and $b$ depend on the dimensions of the kernel used.
+\index{Practical example: Edge Detection kernel applied!convolutional filters}
+\subsection{Practical example: Edge Detection kernel applied}
+\label{sec:convolution:convolutionalfilters:practicalexampleedgedetectionkernelapplied}
+The figure below shows a practical example of the application of the Edge Detection kernel:
+\begin{figure*}[h]
+    \includegraphics[width=1.00\linewidth]{graphics/convolution/kernel.eps}
+    \caption{Edge Detection kernel applied}
+    \label{fig:edgedetectionkernelapplication}
+\end{figure*}
+\FloatBarrier
+\begin{itemize}
+    \item The kernel is moved over the entire image, pixel by pixel
+    \item At each position, the value for each pixel in the original image is multiplied by the corresponding value in the kernel ($7 * -1 = -7$; $5 * -1 = -5$; $5 * -1 = -5$; $10 * -1 = -10$; $6 * 8 = 48$; $10 * -1 = -10$; $1 * -1 = -1$; $1 * -1 = -1$; $2 * -1 = -2$)
+    \item All results are added ($(-7) + (-5) + (-5) + (-10) + 48 + (-10) + (-1) + (-1) + (-2) = 7$)
+    \item Optionally, the result of the summation may be limited to valid values (colors in images typically range from 0 to 255. In this example we have limited the values to $[0-10]$)
+\end{itemize}
 \index{common convolutional filters!convolutional filters}
 \subsection{Common Convolutional Filters}
 \label{sec:convolution:convolutionalfilters:commonconvolutionalfilters}
 Convolutional filters can be defined to achieve a large range of effects in the input image.\\
-A small sample of possible kernels is provided below:\\
-\begin{itemize}
-    \item \textbf{Identity} - This is the input image, without any convolution applied.
+A small sample of possible kernels is provided below:
+\index{convolutional filters|)}
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \quad
     \begin{bmatrix} 
@@ -149,10 +169,18 @@ A small sample of possible kernels is provided below:\\
     0 & 0 & 0
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelIdentity.png}
-    \end{center}
-    \item \textbf{Gaussian blur}
+\caption{\textbf{Identity} Kernel and the original image (unchanged, no convolution applied)}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelIdentity.png}
+\end{minipage}
+\label{fig:Identity Kernel}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \frac{1}{16}
     \quad
@@ -162,10 +190,18 @@ A small sample of possible kernels is provided below:\\
     1 & 2 & 1
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelGaussianBlur3x3.png}
-    \end{center}
-    \item \textbf{Box blur}
+\caption{\textbf{Gaussian Blur} Kernel and the resulting image}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelGaussianBlur3x3.png}
+\end{minipage}
+\label{fig:Gaussian Blur Kernel}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \frac{1}{9}
     \quad
@@ -175,10 +211,18 @@ A small sample of possible kernels is provided below:\\
     1 & 1 & 1
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelBoxBlur.png}
-    \end{center}
-    \item \textbf{Unsharp}
+\caption{\textbf{Box Blur} Kernel and the resulting image}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelBoxBlur.png}
+\end{minipage}
+\label{fig:Box Blur Kernel}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \frac{-1}{256}
     \quad
@@ -190,10 +234,18 @@ A small sample of possible kernels is provided below:\\
     1 & 4 & 6 & 4 & 1
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelUnsharp5x5.png}
-    \end{center}
-    \item \textbf{Sharpen}
+\caption{\textbf{Unsharp} Kernel and the resulting image}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelUnsharp5x5.png}
+\end{minipage}
+\label{fig:Unsharp Kernel}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \quad
     \begin{bmatrix} 
@@ -202,10 +254,18 @@ A small sample of possible kernels is provided below:\\
     0 & -1 & 0
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelSharpen.png}
-    \end{center}
-    \item \textbf{Edge detection}
+\caption{\textbf{Sharpen} Kernel and the resulting image}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelSharpen.png}
+\end{minipage}
+\label{fig:Sharpen Kernel}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
     $$
     \quad
     \begin{bmatrix} 
@@ -214,8 +274,12 @@ A small sample of possible kernels is provided below:\\
     -1 & -1 & -1
     \end{bmatrix}
     $$
-    \begin{center}
-	\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelEdgeDetection.png}
-    \end{center}
-\end{itemize}
-\index{convolutional filters|)}
+\caption{\textbf{Edge Detection} Kernel and the resulting image}
+\end{minipage}
+\begin{minipage}[b]{0.3\linewidth}
+\centering
+\includegraphics[width=1in]{graphics/convolution/Convolution_gebs_KernelEdgeDetection.png}
+\end{minipage}
+\label{fig:Edge Detection Kernel}
+\end{figure}
+\FloatBarrier
