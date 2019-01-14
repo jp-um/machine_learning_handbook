@@ -1,5 +1,7 @@
 \chapter{Cross-Validation}
-\label{ch:cross-validation}\index{cross-validation}
+\label{ch:cross-validation}
+
+\index{cross-validation|(}
 
 Cross-validation (CV) is an estimation method used on supervised learning algorithms to assess their ability to predict the output of unseen data \citep{varma2006bias,kohavi1995study}. Supervised learning algorithms are computational tasks like classification or regression, that learn an input-output function based on a set of samples. Such samples are also known as the labeled training data where each example consists of an input vector and its correct output value. After the training phase, a supervised learning algorithm should be able to use the inferred function in order to map new input unseen instances, known as testing data, to their correct output values \citep{caruana2006empirical}. When the algorithm incorporates supervised feature selection, cross-validation should always be done external to the selection (feature-selection performed within every CV iteration) so as to ensure the test data remains unseen, reducing bias \citep{ambroise2002selection, friedman2001elements}.  Therefore, cross-validation, also known as out-of-sample testing, tests the function's ability to generalize to unseen situations \citep{varma2006bias,kohavi1995study}. 
 
@@ -79,3 +81,5 @@ Therefore, lets take an example using the stratified $k$-fold cross-validation m
 \end{figure*}
 
 As concluded by \citet{varma2006bias}, cross-validation is well implemented when everything is taken place within every CV iteration (including preprocessing, feature-selection, learning new algorithm parameter values, etc.), and the least bias can be achieved when using nested CV methods.
+
+\index{cross-validation|)}
