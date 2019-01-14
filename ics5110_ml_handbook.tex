@@ -62,6 +62,8 @@
 % Prints a trailing space in a smart way.
 \usepackage{xspace}
 
+\usepackage{bm}
+
 %%
 % Some shortcuts for Tufte's book titles.  The lowercase commands will
 % produce the initials of the book title in italics.  The all-caps commands
@@ -190,7 +192,7 @@
 
 \par Copyright \copyright\ \the\year\ \ics\ class of 2018/9, University of Malta.
 
-\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, Daniel Farrugia, Keith Mintoff, David Farrugia, Ivan Salomone, Andrew Cachia, Jake J.\ Dalli, Joseph Azzopardi \hl{ADD YOUR NAME TO THIS LIST}} %TODO
+\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, Daniel Farrugia, Keith Mintoff, David Farrugia, Ivan Salomone, Andrew Cachia, Jake J.\ Dalli, Joseph Azzopardi, Mark Muscat \hl{ADD YOUR NAME TO THIS LIST}} %TODO
 
 \par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
 use this file except in compliance with the License. You may obtain a copy
@@ -230,7 +232,8 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 \input{terms/onlinelearning_df.tex}
 \input{terms/regularisationofmodels_ja.tex}
 \input{terms/sampleselectionbias_ac.tex}
-\input{terms/transferlearning_jjd.tex} %TODO
+\input{terms/transferlearning_jjd.tex}
+\input{terms/semisupervised_mm.tex} %TODO
 
 
 %%
@@ -238,7 +241,7 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 
 \backmatter
 
-\bibliography{terms/regularisationofmodels_ja,terms/transferlearning_jjd,terms/sampleselectionbias_ac,terms/noiseindatasets_is,terms/onlinelearning_df,terms/crossvalidation_lmd,terms/confusionmatrix_df,terms/activationfunctions_km} %TODO
+\bibliography{terms/regularisationofmodels_ja,terms/transferlearning_jjd,terms/sampleselectionbias_ac,terms/noiseindatasets_is,terms/onlinelearning_df,terms/crossvalidation_lmd,terms/confusionmatrix_df,terms/activationfunctions_km,terms/semisupervised_mm} %TODO
 \bibliographystyle{plainnat}
 
 \printindex
