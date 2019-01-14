@@ -4,21 +4,21 @@
 
 \textit{Feature Selection} (FS) is a process that chooses an optimal subset of features according to certain criterion \citep{liu2012feature}. According to \citet{sammut2017encyclopedia}, in many real-world applications, such as data mining, machine learning, computer vision, and bioinformatics, we need to deal with high-dimensional data. Lately, the dimensionality of the data involved in these areas has increased exponentially. The trend of this growth of the \textit{UCI machine learning repository}\footnote{https://archive.ics.uci.edu/ml/index.php} is shown in Figure~\ref{fig:fs_growth}.
 
-\begin{marginfigure}
+\begin{figure}
   \includegraphics{feature_selection/growth.png}
   \caption{Growth of the number of features in the UCI ML repository. Reproduced from \citet{sammut2017encyclopedia}.}
   \label{fig:fs_growth}
-\end{marginfigure}
+\end{figure}
 
 \citet{guyon2003introduction} states that the objective of FS is three-fold: improving the prediction performance of the predictors, providing faster and more cost-effective predictors, and providing a better understanding of the underlying process that generated the data. Furthermore, the aim the FS is to select features that are \textit{independent} of each other but \textit{highly dependent} on the value to be predicted.
 
-For example, considering feature $f1$ as shown in Figure \ref{fig:fs_sample}a, it can be seen that $f1$ is a relevant feature because it can distinguish between the classes. Feature $f2$ (Figure \ref{fig:fs_sample}b) on the other hand is unable to distinguish between the two classes and is therefore irrelevant for the classification and hence discarded.  As seen in Figure \ref{fig:fs_sample}c, feature $f6$ is also a relevant feature because it perfectly distinguishes between the two classes.  However, $f6$ does not add any new information that $f1$ has not already provided, so it is said to be a redundant feature. Feature $f4$ (Figure \ref{fig:fs_sample}d) is partly able to distinguish between the two classes.  The overlapping instances are either caused by errors in the data (noise) or due to the nature of the attribute.  This type of feature is said to be noisy and is also discarded.
+% For example, considering feature $f1$ as shown in Figure \ref{fig:fs_sample}a, it can be seen that $f1$ is a relevant feature because it can distinguish between the classes. Feature $f2$ (Figure \ref{fig:fs_sample}b) on the other hand is unable to distinguish between the two classes and is therefore irrelevant for the classification and hence discarded.  As seen in Figure \ref{fig:fs_sample}c, feature $f6$ is also a relevant feature because it perfectly distinguishes between the two classes.  However, $f6$ does not add any new information that $f1$ has not already provided, so it is said to be a redundant feature. Feature $f4$ (Figure \ref{fig:fs_sample}d) is partly able to distinguish between the two classes.  The overlapping instances are either caused by errors in the data (noise) or due to the nature of the attribute.  This type of feature is said to be noisy and is also discarded.
 
-\begin{figure}
-  \includegraphics{feature_selection/fs_sample.png}
-  \caption{Example plots showing (a) a relevant feature, (b) an irrelevant feature, (c) a redundant feature and (d) a noisy feature. Reproduced from \citet{sammut2017encyclopedia}.}
-  \label{fig:fs_sample}
-\end{figure}
+% \begin{figure}
+%   \includegraphics{feature_selection/fs_sample.png}
+%   \caption{Example plots showing (a) a relevant feature, (b) an irrelevant feature, (c) a redundant feature and (d) a noisy feature. Reproduced from \citet{sammut2017encyclopedia}.}
+%   \label{fig:fs_sample}
+% \end{figure}
 
 FS keeps the original feature, that is, it maintains the physical meanings of the original feature without any transformation. Furthermore, \citet{masaeli2010transformation} found that this property has its significance in many practical applications such as finding relevant genes to a specific disease and building a sentiment lexicon for sentiment analysis.
 
