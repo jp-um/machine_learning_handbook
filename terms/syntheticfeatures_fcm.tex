@@ -31,7 +31,7 @@ If we look at the following example \citep{AlbertoTubeSpam}: It contains a numbe
 \end{table}
 \vspace{2mm}
 
-Describing each feature in the original raw dataset:
+Table \ref{tab:sf_origdataexplained} describes each feature in the original unmodified dataset.
 
 \begin{table}[ht]
     \centering
@@ -47,6 +47,7 @@ Describing each feature in the original raw dataset:
       \textit{\makecell[tl]{Content}} & \textit{\makecell[tl]{The comment body definitely has a big relevance in the classification result, \\ however, can the whole sentence be easily understood by the algorithm as \\ it is?}} \\
       \bottomrule
     \end{tabular}}
+    \caption{Description of each feature in the original unmodified YouTube comment dataset.}
     \label{tab:sf_origdataexplained}
 \end{table}
 \vspace{2mm}
@@ -76,27 +77,27 @@ Following below is a practical example of this technique, using the dataset desc
 
 \subsection{Analysing each feature} \index{synthetic-features!solving-problem-analysing-each-feature}
 
-\textbf{Video}
-\\
-The video name / ID could be useful if a per-video classifier is also generated over and above the generic one. This together with other features could have some relevance.
-\\
-\\
-\textbf{Comment ID}
-\\
-This feature does not have any relevance to the outcome whatsoever. It is a unique ID, built randomly, assigned to each comment. For this reason, it is out of scope for this discussion.
-\\
-\\
-\textbf{Author and Date}
-\\
-As described earlier these two features independently do not have much of a direct impact on the outcome, however a synthetic feature could be generated which might have some form of effect on the outcome: A ratio of comment count over a time period for a particular author.
-The idea is to make it easier for the algorithm to detect a potential pattern related to volume over a typical short period, thus the definition of time period can be assigned via testing.
-\\
-\\
-\textbf{Comment}
-\\
-The comment body is not an easy feature and it could grow into a number of features, however it is the most relevant input for this spam classifier.
-Quite a number of features could be exported from this comment, and most of them relate to natural language processing techniques \citep{CormackSMSFilter}. For this reason, output quality could also vary based on the language in context.
-Some example features that could be extrapolated:
+\begin{itemize}
+    \item Video
+    \begin{itemize}
+        \item The video name / ID could be useful if a per-video classifier is also generated over and above the generic one. This together with other features could have some relevance.
+    \end{itemize}
+    \item Comment ID
+    \begin{itemize}
+        \item This feature does not have any relevance to the outcome whatsoever. It is a unique ID, built randomly, assigned to each comment. For this reason, it is out of scope for this discussion.
+    \end{itemize}
+    \item Author and Date
+    \begin{itemize}
+        \item As described earlier these two features independently do not have much of a direct impact on the outcome, however a synthetic feature could be generated which might have some form of effect on the outcome: A ratio of comment count over a time period for a particular author.
+        The idea is to make it easier for the algorithm to detect a potential pattern related to volume over a typical short period, thus the definition of time period can be assigned via testing.
+    \end{itemize}
+    \item Comment
+    \begin{itemize}
+    \item The comment body is not an easy feature and it could grow into a number of features, however it is the most relevant input for this spam classifier.
+    Quite a number of features could be exported from this comment, and most of them relate to natural language processing techniques \citep{CormackSMSFilter}. For this reason, output quality could also vary based on the language in context.
+    Some example features that could be extrapolated:
+    \end{itemize}
+\end{itemize}
 
 \begin{table}[ht]
     \centering
@@ -111,6 +112,7 @@ Some example features that could be extrapolated:
       \textit{\makecell[tl]{Presence of account \\ tags / URLs / emojis}} & \textit{\makecell[tl]{The presence of account tags (ex. a Twitter username), URLs or emojis \\ could increase probability of the comment being spam.}} \\
       \bottomrule
     \end{tabular}}
+    \caption{Example of possible features that can be extracted from textual comments.}
     \label{tab:sf_commentextractedfeatures}
 \end{table}
 \vspace{2mm}
@@ -137,7 +139,7 @@ Following the synthetic feature generation described above, the updated data set
 \end{table}
 \vspace{2mm}
 
-Looking at the output above, the effect of synthetic features can immediately be appreciated, as with such new features more meaning is given to the original dataset.
+Looking at the output in table \ref{tab:sf_updatedds}, the effect of synthetic features can immediately be appreciated, as with such new features more meaning is given to the original dataset.
 
 Naturally the above contains just a sample, and one must experiment with:
 
