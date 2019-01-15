@@ -2,7 +2,8 @@
 \label{ch:classification}
 \index{classification|(}
 
-Data mining can be described as ''the procedure of extracting information from huge sets of data''. Classification and \textit{regression}\index{classification!regression} are two mining techniques which are used to extract knowledge and perform predictions on the presented data \citep{sagar2017}. The values predicted by these techniques may be either \textit{quantitative}\index{classification!quantitative predictions} - involving discrete numerical values, or \textit{qualitative}\index{classification!qualitative predictions} - with values within a particular class or label \citep{james2006}. Predicting marks that students will obtain in their final exams yields a discrete, continuous value. In this case, regression analysis is ''used to predict missing or unavailable numerical data values'' \citep{jiawei2011}. On the other hand, predicting the grade (A, B or C) that the students will obtain is considered as a classification problem, since the outcome value is a categorical class label \citep{jiawei2011}.\\
+% Data mining can be described as ''the procedure of extracting information from huge sets of data''. 
+Classification and \textit{regression}\index{classification!regression} are two techniques which are nowadays being used to extract knowledge and perform predictions on the huge amounts of available data \citep{sagar2017}. These techniques predict values which may be either \textit{quantitative}\index{classification!quantitative predictions} - involving discrete numerical values, or \textit{qualitative}\index{classification!qualitative predictions} - with values within a particular class or label \citep{james2006}. Predicting marks that students will obtain in their final exams yields a discrete, continuous value. In this case, regression analysis is ''used to predict missing or unavailable numerical data values'' \citep{jiawei2011}. On the other hand, predicting the grade (A, B or C) that the students will obtain is considered as a classification problem, since the outcome value is a categorical class label \citep{jiawei2011}.\\
 
 Classification is a data analysis technique in which models, also referred to as \textit{classifiers}\index{classification!classifiers}, are used to ''predict categorical (discrete, unordered) class labels''. Several scenarios in the real world may require classification models to predict several outcomes. For example, in the health sector, classification can be helpful in predicting whether a person is diagnosed with a particular medical condition or not, based on certain parameters related to experienced symptoms \citep{venkata2011,alzahani2015}. Financial sectors may find classifications helpful when it comes to predicting whether a company is bankrupt or in good financial health \citep{moradi2012}. Moreover, they may apply classifiers to determine whether a bank should issue a loan to a customer \citep{thomas2000}. In these scenarios, classifiers predict labels such as 'positive' or 'negative' for a medical condition, or 'bankrupt' or 'healthy' for the financial status of a company. Since values predicted by a classifier are discrete, any ordering amongst the values is meaningless. 
 
@@ -17,7 +18,7 @@ When two classes are available as outputs of a classification problem, then this
     \includegraphics{graphics/classification/BinaryDecisionTree.png}
     \caption{
     A binary Decision Tree example which determines whether a customer will purchase a computer or not. 
-    Reproduced from \citep{jiawei2011}
+    Reproduced from \citet{jiawei2011}.
     }
     \label{fig:binary-decision-tree}
 \end{marginfigure}
@@ -28,7 +29,7 @@ For example,  using a binary classifier to predict 'Pass' or 'Fail' in a subject
 \index{classification!probabilistic classification} 
 Probabilistic classification can be considered as a subclass of classification, in which apart from assigning categorical classes to unseen data, probabilistic models ''use statistical inference to find the best class for a given example'' \citep{aggarwal2014}. This implies that probabilistic models compute the probability that an unseen example belongs to the possible target classes, and then chooses the final target class by considering the highest probability obtained. One advantage of probabilistic models is that the prediction outcome is composed of both the target label, as well as the confidence with which this class label was obtained. 
 
-Initially, probabilistic classification involves the estimation of the posterior probability, P($C_k$|$x$), where $C_k$ denotes the class and $x$ refers to the input variables. This posterior probability estimate can be determined using a \textit{generative model}\index{classification!probabilistic classification!generative model} or a \textit{discriminative model}\index{classification!probabilistic classification!discriminative model}. Generative models work by obtaining the probability of each class, denoted by P($C_k$), as well as the probability of obtaining $x$ when given a class, also known as the class-conditional probabilities, denoted by P($x$|$C_k$) \citep{aggarwal2014}. Then, the posterior probability can be determined using Bayes Theorem, shown in equation~\ref{eq:bayesTheorem1}, or by modelling the joint distribution over $x$ and $C_k$ as in equation~\ref{eq:jointDistribution}. 
+Initially, probabilistic classification involves the estimation of the posterior probability, P($C_k$|$x$), where $C_k$ denotes the class and $x$ refers to the input variables. This posterior probability estimate can be determined using a \textit{generative model}\index{classification!probabilistic classification!generative model} or a \textit{discriminative model}\index{classification!probabilistic classification!discriminative model}. Generative models work by obtaining the probability of each class, denoted by P($C_k$), as well as the probability of obtaining $x$ when given a class, also known as the class-conditional probabilities, denoted by P($x$|$C_k$) \citep{aggarwal2014}. Then, the posterior probability can be determined using Bayes Theorem, shown in Equation~\ref{eq:bayesTheorem1}, or by modelling the joint distribution over $x$ and $C_k$ as in Equation~\ref{eq:jointDistribution}. 
 \begin{equation}
     \label{eq:bayesTheorem1}
     P(C_k|x) = P(C_k)\cdot\frac{P(x|C_k)}{P(x)}
@@ -47,7 +48,7 @@ In these equations $C_k$ denotes the class and $x$ refers to the input variables
     P(C_k|x) = \frac{1}{1+e^{-\theta^{T}X}}
 \end{equation}
 
-One popular discriminative model is the Logistic Regression Model, explained by equation~\ref{eq:logisticRegression}, in which $\theta$ refers to the parameters to be estimated. Conditional Random Fields is another commonly used discriminative model. 
+One popular discriminative model is the Logistic Regression Model, explained by Equation~\ref{eq:logisticRegression}, in which $\theta$ refers to the parameters to be estimated. Conditional Random Fields is another commonly used discriminative model. 
 
 Once the posterior probability is obtained, probabilistic classification then uses decision theory to deduce the class of an unseen example $x$ \citep{aggarwal2014}. 
 
@@ -55,7 +56,7 @@ Once the posterior probability is obtained, probabilistic classification then us
 \label{sec:multiclass}
 \index{classification!multiclass classification}
 
-Multiclass classification models are able to determine a class for an unseen example from $k$ classes, where $k$ > 2. A multiclass classification problem may be solved by extending the aforementioned binary classification algorithms, and others including \textit{Neural Networks}\index{classification!multiclass classification!neural networks} and \textit{Support Vector Machines}\index{classification!multiclass classification!support vector machines} \citep{aly2005}. For example, a Decision Tree algorithm can naturally handle multiclass classification problems. To predict an outcome using the tree model, the algorithm starts from the root node of the tree and repeatedly traverses branches based on the feature values, until a leaf node is reached \citep{rokach2007}. The value of the leaf node is considered as the predicted class label of the unseen example, and these values can refer to any of the $k$ classes. Support Vector Machines are another example of classification algorithms which were initially built for binary classification, but eventually extended to be applied in multiclass problems. Extensions of this algorithm handle the separation of the various classes by amending the optimization problem \citep{aly2005}.   
+Multiclass classification models are able to determine a class for an unseen example from $k$ classes, where $k$ > 2. A multiclass classification problem may be solved by extending the aforementioned binary classification algorithms, and others including \textit{Neural Networks}\index{classification!multiclass classification!neural networks} and \textit{Support Vector Machines}\index{classification!multiclass classification!support vector machines} \citep{aly2005}. For example, a Decision Tree algorithm can naturally handle multiclass classification problems. To predict an outcome using the tree model, the algorithm starts from the root node of the tree and repeatedly traverses branches based on the feature values, until a leaf node is reached \citep{rokach2014}. The value of the leaf node is considered as the predicted class label of the unseen example, and these values can refer to any of the $k$ classes. Support Vector Machines are another example of classification algorithms which were initially built for binary classification, but eventually extended to be applied in multiclass problems. Extensions of this algorithm handle the separation of the various classes by amending the optimization problem \citep{aly2005}.   
 
 \citet{aly2005} discusses approaching a multiclass classification problem by decomposing it into multiple binary classification problems, which can then be solved using binary classifiers.
 
@@ -72,7 +73,7 @@ Using this approach for multiclass classification, $n$ binary classifiers are tr
     \includegraphics{graphics/classification/ECOC.png}
     \caption{
     ECOC Binary Matrix. 
-    Reproduced from \citep{aly2005}
+    Reproduced from \citet{aly2005}.
     }
     \label{fig:classification-ecoc}
 \end{marginfigure} 
