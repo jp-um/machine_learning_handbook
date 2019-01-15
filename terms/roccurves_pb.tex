@@ -1,0 +1,103 @@
+\chapter{Receiver Operating Characteristic Curves}
+\label{ch:roc-curves}\index{ROC curves}
+
+\section{Introduction}
+\noindent A Receiver Operating Characteristic (ROC) curve is a graphical plot that presents the performance of a binary classifier when the discrimination cut-off, or threshold\index{roc-curves!threshold}, is varied. ROC curves and the associated analysis area under the curve and finding optimal threshold, have proved to be very useful analysis tools in many fields of research. Numerous studies evidence that they have been found to be very effective techniques for evaluating diagnostic and predictive accuracy.
+
+Essentially, for creating and plotting the ROC curve one needs to compute the true positive rate (TPR)\index{roc-curves!true positive rate} and the false positive rate (FPR)\index{roc-curves!false positive rate} at various threshold settings and plot them in a two-dimensional space. In machine learning the TPR is referred to as the sensitivity\index{roc-curves!sensitivity} or recall which measures the proportion of actual positives that are correctly classified. The true negative rate (TNR)\index{roc-curves!true negative rate}, or specificity\index{roc-curves!specificity}, measures the proportion of actual negatives that are correctly identified as such. These measures can be easily summarised in Table ~\ref{tab:sens-spec}. ROC is an evaluation procedure based on the sensitivity-specificity pair of indices.
+
+\begin{table}
+	\centering
+	\begin{tabular}{ |c|c@{}|c@{}|c@{}|c@{}| }
+		\hline
+		& \multicolumn{2}{c|}{\textbf{True Class}} & \multicolumn{2}{c|}{}  \\
+		\hline
+		\textbf{Predicted Class}&Positive&Negative& \multicolumn{2}{c|}{} \\
+		\hline
+		Yes / 1 / Positive& \begin{tabular}[c]{@{}c@{}}True\\Positives\\ \hline\end{tabular} & \begin{tabular}[c]{@{}c@{}}False\\ Positives\\ \hline\end{tabular} &TPR=TP/P&\textit{Sensitivity}\\
+		No / 0 / Negative& \begin{tabular}[c]{@{}c@{}}False\\Negatives\end{tabular} & \begin{tabular}[c]{@{}c@{}}True\\ Negatives\end{tabular} &FPR=FP/N&\textit{1-Specificity}\\
+		\hline
+		\textbf{Totals}&\textbf{P}&\textbf{N}&\multicolumn{2}{c|}{} \\
+		\hline
+	\end{tabular}
+	\caption{Sensitivity and specificity}
+	\label{tab:sens-spec}
+\end{table}
+
+Consider a diagnostic test that seeks to determine whether a person has a certain disease or not. The two-class predictor yields an outcome that is labelled either positive or negative. From table 1 there are four possible outcomes from the discrete classifier: true positive or true negative if the outcome matches the actual class, false positive if the person is incorrectly classified as sick, and false negative if the person is incorrectly classified as healthy. If the test is extended to a larger sample then given a classifier and a set of instances, a 2x2 contingency table\index{roc-curves!contingency table}, or confusion matrix\index{roc-curves!confusion matrix}, can be constructed for the classifier with values for the four possible outcomes. Sensitivity and specificity are computed accordingly as shown in Table ~\ref{tab:sens-spec}. 
+
+If one extends the test further to six classifiers, where the same metrics are extracted from the outcomes of these classifiers, one ends up with six sensitivity-specificity pairs. The latter are represented as points on an ROC plot as illustrated in figure ~\ref{fig:classifiers-roc} (adopted from \citet{fawcett2006introroc}). A to F are sensitivity-specificity pairs representing the six classifiers used in the hypothetical test. TPR (sensitivity) is plotted on the y-axis and FPR (or 1 – specificity) on x-axis. This plot depicts the relative trade-offs between true positives and false positives. The higher the sensitivity, the more beneficial and trustworthy the classifier is, so TPR is a measure of the classifier's benefits. A low specificity value represents a costly classifier, so FPR is synonymous with a classifier's cost. The best predictor is the one that maximises the benefits and minimises the costs. 
+
+\begin{marginfigure}
+	\includegraphics{roc_curves/ROCplot6.png}
+	\caption{Basic ROC plot with five classifiers.}
+	\label{fig:classifiers-roc}
+\end{marginfigure}
+
+\section{Evaluating Classifiers} \index{roc curves!evaluating classifiers}
+Classifier C lies on the diagonal line from (0,0) to (1,1) of the ROC plot. It represents a test that cannot distinguish between diseased and non-diseased states. Its TPR equals FPR. This means that classifier C is merely guessing the labels randomly. It is as accurate as predicting heads or tails in a coin toss. The diagonal line often serves as a benchmark for judging how good (or bad) a test performs. E and F lie on the right-hand side of the diagonal line with relatively low sensitivity and specificity metrics compared to the others. In general, points on this side of the ROC plot are considered worthless (or costly) classifiers.
+
+Classifiers A, B and D are considered better predictors from the group since they lie on the left-hand side of the diagonal line with high TPR and low FPR. D is clearly the best predictor in this case because it is the closest to the top left-hand corner of the graph. The perfect predictor would yield 100\% sensitivity and 100\% specificity with zero false positives and zero false negatives, that is, zero cost. However this is realistically very difficult to achieve. In this way the ROC plot provides an easy comparison of classifiers and leads to choosing the one that is closest to (0,1) and furthest from the diagonal line.
+
+Consider now a continuous random variable $X$, denoting the width in millimetres of metal pipes from an automated production line, where $X$ is normally distributed. An inspection test might measure the diameter of the pipes and classify a pipe as defective if the width is above a certain value. Thus given a threshold width $w$, the instance is labelled defective if the continuous random variable $X$ is greater than $w$ and non-defective otherwise. As shown in figure ~\ref{fig:roc-curves}, one can idealise curves for both the number of positive and the number of negative results of the test. Since the test does not distinguish good pipes from defective pipes with 100\% accuracy, the distributions overlap. The overlap area indicates where the test cannot distinguish between the two classes. In practice, one chooses a cut-off (or threshold) above which the test is considered normal. Different cut-off points are used in different situations in order to minimise one of the erroneous types (false positives or false negatives) of the test result. The sensitivity and specificity of a classifier system depends on the particular confidence threshold that the system is using and changes inversely as the confidence threshold is changed. If the confidence threshold is made less strict, then sensitivity will increase due to more instances being classified as true positives. However, specificity will decrease because more false positives will appear. TPR and FPR increase or decrease simultaneously as the confidence interval\index{roc curves!confidence interval} threshold is changed. By repeating the experiment with adjusted thresholds, different value pairs are obtained leading to different positioning in the ROC space. ROC curves allow the visualisation of the trade-off between sensitivity and specificity for all possible thresholds rather than just the one that was chosen by the modelling technique.
+
+\begin{figure}
+	\includegraphics{roc_curves/Threshold.png}
+	\caption{Left: Overlapping distributions with threshold. Right: ROC curves resulting from different thresholds.}
+	\label{fig:roc-curves}
+\end{figure}
+
+The classifier that is able to increase the rate of detection while keeping the false alarm rate low is considered a good classifier. Figure ~\ref{fig:roc-curves} shows the ROC curves with different thresholds. As the ROC curve gets closer to the top left hand of the graph the more optimal the threshold and hence the better is the classifier's ability to discriminate between the classes.
+
+\section{Area Under Curve} \index{roc-curves!area under curve}
+The most common condition for choosing the optimal parameterisation is to maximise the area under the curve, AUC for short. The AUC is a widely used measure of performance of supervised classification rules. It is a measure of the usefulness, or rather the discriminatory ability, of a test in general where the greater the area the more discriminative\index{roc-curves!discriminative} the test is in a given situation. A model or test with perfect discriminatory ability will have an AUC of, or very close to, 1.0, while a model unable to distinguish between classes will have an AUC value of 0.5 or less.
+
+A precise mathematical computation of the AUC is $\int_{0}^{1} ROC(t) dt$, however since the ROC curve is normally plotted by joining small points close to each other, it can be very closely approximated by adding the area of many small rectangles next to each other covering the whole section under the curve as shown in figure ~\ref{fig:auc-calc}.
+
+\begin{marginfigure}
+	\includegraphics{roc_curves/AUCcalc.png}
+	\caption{Area under the curve.}
+	\label{fig:auc-calc}
+\end{marginfigure}
+
+However, the true value of AUC comes when comparing two or more models or tests by reducing the ROC to a single scalar value representing the expected performance of the models. Figure ~\ref{fig:two-curves} (adopted from \citet{linden2006diagpreddismgmt}) provides a comparison between two predictive models. Clearly Model A yields a better predictive ability than Model B since its AUC is bigger. Therefore, if a choice was to be made between selecting one of the models, Model A would be the choice.
+
+AUC is a desirable measure because (1) it is scale-invariant\index{roc-curves!scale invariant}: it measures how well predictions are ranked rather than their absolute values; (2) it is classification-threshold-invariant\index{roc-curves!classification threshold invariant}: it measures the quality of the model’s predictions irrespective of the classification threshold chosen.
+
+\begin{marginfigure}
+	\includegraphics{roc_curves/Twomodels.png}
+	\caption{A comparison of two AUC curves.}
+	\label{fig:two-curves}
+\end{marginfigure}
+
+The majority of studies on binary classifiers in conjunction with imbalanced datasets still use the ROC plot as their main performance evaluation method and this make it easier to compare results. However a recent study \citep{saito2015prplotimbdata} shows that Precision-Recall plots provide a more accurate prediction of future classification performance although they are less frequently used. It is therefore appropriate to use the AUC metric together with other measures of evaluation depending on the nature of the dataset.
+
+\section{Partial AUC} \index{roc-curves!partial area under curve}
+AUC is closely related to another widespread statistic, the Wilcoxon statistic \citep{hanley1982useauc}. Thanks to this relationship, AUC methods for AUC-based analyses are well developed and widely used. However one of the major practical drawbacks of the AUC as an index of diagnostic performance\index{roc-curves!diagnostic performance} is that it summarises the entire ROC curve including the regions that are frequently not relevant to practical applications, such as regions with low level of specificity \citep{ma2013paucdiagperf}. To alleviate this deficiency while benefiting from some of the advantageous properties of the area under the ROC curve, one can use a partial area under the curve (pAUC for short), which summarizes a portion of the curve over the pre-specified range of interest. A number of approaches have been developed for pAUC-based analysis \citep{dodd2003pauc,he2010nonparagenomic}. However, \citet{ma2013paucdiagperf} argue that the same features that increase the practical relevance of the pAUC introduce some difficulty to resolve issues related to arbitrariness of specifying the range of interest. 
+
+In the case of population screening, for instance, \citet{dodd2003pauc} claim that in order to avoid high monetary costs, the region of the curve corresponding to low false-positive rates is of primary interest whilst in diagnostic testing it is critical to maintain a high TPR in order not to miss detecting diseased subjects. They go on to consider a summary index for the ROC curve restricted to a clinically relevant range of false-positive rates.
+
+\begin{marginfigure}
+	\includegraphics{roc_curves/PartialAUC.png}
+	\caption{Illustration of an ROC curve and its partial AUC with $t_{0}$ = 0.1 and $t_{1}$ = 0.3.}
+	\label{fig:partial-auc}
+\end{marginfigure}
+
+Essentially the partial AUC is simply the area under the ROC curve between $t_{0}$ and $t_{1}$ (Figure ~\ref{fig:partial-auc}) where the interval ($t_{0},t_{1}$) denotes the false-positive rates of interest. The partial AUC is thus the integral between $t_{0}$ and $t_{1}$ of the ROC curve function as shown in equation ~\ref{eq:partial-auc} \citep{dodd2003pauc}.
+
+\begin{equation}\label{eq:partial-auc}
+AUC(t_{0},t_{1}) = \int_{t_{0}}^{t_{1}} ROC(t)  dt
+\end{equation}
+
+\section{Two Specific Applications of ROC}
+The use of ROC curves and Area Under ROC curves is ubiquitous and the list of scientific research papers citing the use of AUC as an essential and effective evaluation technique is endless. They have been used by numerous authors to evaluate models, scoring systems, diagnostic tests, manufacturing defects, spatial images processing, psychiatric evaluations, behaviour analysis, and so on.
+
+An interesting recent paper by \citet{fung2018cnnbcancerclass} evidences how ROC curve statistics are used to evaluate Convolutional Neural Network for breast cancer classification. It compares the ROC curves generated by the classifier with other reviewed studies. The analysis of AUC helped to evaluate the superiority of the neural network as compared to methods based on experimental results conducted on real patient subjects. Another recent paper \citep{ding1017deeplearnface} analyses a deep learning method that accurately recognises an identity from heavily noisy face images. The paper discusses ROC curves with optimal thresholds to show that noise-resistant Deep Neural Network is visibly superior to some state-of-the-art feature extraction algorithms. 
+
+Another field where ROC proves to be contributory is psychology. Correct identification of criminals by eyewitness can help to remove a dangerous criminal from society but a false identification can lead to the erroneous conviction of an innocent suspect. A paper by \citet{gronlund2014eyewitness} describes how by constructing ROC curves, researchers can trace out discriminability across levels of response bias for each lineup procedure. They illustrate the shortcomings of ratio-based measures and demonstrate why ROC analysis is required for evaluating the performance of a lineup procedure. \citet{luby2017lineup} goes a step further and examines the application of ROC methodology to lineup data. He shows that by using a log-linear analysis in conjunction with an ROC approach to eyewitness identification, it is possible not only to visualise the trade-off between true positives and false positives, but also to identify which variables are interacting with one another and explain the trade-off.
+
+\section{History}
+A final note on the history of ROC. The first use of ROC curves is traced back to World War II where in conjunction with signal detection theory, it was developed for the analysis of radar images. Radar operators had to decide whether a blip on the radar screen represented an enemy target, a friendly ship or just noise. ROC curves helped signal detection theory to measure the ability of radar receiver operators to make these important distinctions. Their ability to do so was called the Receiver Operating Characteristics. 
+
+Decades later in the 1970s, ROC analysis was introduced into the biomedical field via the radiological sciences. It has been used extensively to test the ability of an observer to discriminate between healthy and diseased subjects, using a given diagnostic test. As well as to compare the efficacy among the various tests available at that time. Since then, ROC analysis has been extended for use in (but not limited to) visualising and analysing the behaviour of a broad range of diagnostic systems across many fields of science. 
+

@@ -1,0 +1,68 @@
+    \chapter[Neural Networks]{Neural Networks}
+\label{ch:neural-networks}\index{Neural Networks}
+Neural Networks\index{Neural Network} (NNs) are the product of various academic facets, the most prominent one being neuroscience as the structure of a neural network mimics the computation done by the human brain, which makes use of neurons to perform complex calculations such as object recognition from visual input of the eyes. This process is very inefficient to be performed on a computer due to its computational difficulty, which is remedied by the neural network's parallel nature. Neural Network learns with a supervised approach, supplying the model with training datasets in order to adjust the synapses to match the output. The trained model can then be used on unseen data to produce predictions \citep{GURESEN2011426}.
+
+The way the brain trains its neurons is through experience and thus creating a learning process, and neural networks are designed to work the same way by creating synthetic nodes which will behave like organic neurons. Since this structure makes use of learnt experiences, the progress is stored in the form of weighted values at the synapse of each node \citep{Haykin:1994:NNC:541500}.
+
+\section{Types of Neural Networks}
+
+\subsection{Artificial Neural Network}\label{sec:Artificial Neural Network}
+An Artificial Neural Network\index{Artificial Neural Network} (ANN) (see Figure~\ref{fig:annfig}) can be defined as a collection of Machine Learning\index{Machine Learning} techniques that together are able to process complex inputs into meaningful spaces or classifications without any further input from the user (such as rules). The ANN is a network of layers, where every node is connected to each node of the previous and next layers. A common setup for an ANN will have an input layer, hidden layer and output layer. Neural Networks are capable of solving both regression (continuous label) and classification (discrete classes) problems, although the main purpose of using these models are for classification purposes, which is highly influenced by the number of nodes in the output layer \citep{Devulapalli2015}.
+
+With regards to hyperparameters, the neural network contains parameters that require many trial and error to discover their optimal value. One of which is the number of hidden layers and nodes, as a small value can result in underfitting and the model would not have enough complexity to learn the dataset, and a large number will result in overfitting, where the model would be able to learn the dataset by rote. The latter is a very common issue with neural networks and can be mitigated with dropout procedure. This method assigns a probability to each node during training in order to periodically deactivate it, thus eliminating the possibility of the next node to base its calculations on the deactivated node, thus eliminating overfitting \citep{Srivastava:2014:DSW:2627435.2670313}.
+
+Another hyperparameter is the learning rate, which is used as a scale to which the model updates its weights. The learning rate should not be very large, as this could overshoot the local minimum and never converge. The ideal way is to use a decaying learning rate in order to alleviate the problems of having a large learning rate as well as small, while still keeping their benefits \cite{jacobs1988increased}. One method to find out hyperparameters is to perform Bayesian Optimization, which builds a probability model on the dataset and selects the hyperparameters with the best score \cite{eggensperger2013towards}. 
+
+As the ANN is traversed, an activation function is fired at each step. Activation functions\index{Activation functions} form the output behaviour of each of the neurons, by applying a specific function to the input nodes and producing the desired output. The activation function may contain a numerical bias\index{bias}, which will transform its output upwards or downwards \citep{jain1996artificial}. Examples of activation functions are as follows:
+\begin{itemize}
+	
+	\item\textbf{Sigmoid function}:
+	\begin{marginfigure}%
+		\includegraphics[width=\linewidth]{neural_network/sigmoid}
+		\caption{The sigmoid function.}
+		\label{fig:sigfig}
+	\end{marginfigure} The Sigmoid function\index{sigmoid function} is an improvement over the step function as it smoothens out the steep change between the two states. This function maps the input to a value between 0 and 1, both ends being an asymptote\index{asymptote}. The Sigmoid function shown in Figure~\ref{fig:sigfig} is as follows \citep{Haykin:1994:NNC:541500}: $$f(x) = \frac{1}{1+e^{-x}}$$
+	
+	\item\textbf{Hyperbolic Tangent function}:
+	\begin{marginfigure}%
+		\includegraphics[width=\linewidth]{neural_network/Tanh}
+		\caption{The Tanh function.}
+		\label{fig:tanhfig}
+	\end{marginfigure}
+	The Hyperbolic Tangent function\index{Hyperbolic Tangent function}\index{Tanh} (Tanh) is very similar to the Sigmoid function, with a more stable gradient and an asymptotic range between -1 and 1, thus including negative values. The function shown in Figure~\ref{fig:tanhfig} is the following \citep{Abdelsalam:2017:AEH:3020078.3021768}: $$tanh(x) = \frac{2}{1+e^{-2x}}-1 $$
+	
+\end{itemize}
+The traversal goes from input nodes to the output nodes, and the output will be a mapped function of the input, firing activation functions\index{activation function} at each step. Before performing any predictions, the ANN needs to be trained with labelled data in order to adjust the synapses to their optimal values to form the mapping \citep{GURESEN2011426}. 
+
+The goal of the learning process is to minimize the output of a cost function\index{cost function}, taking into consideration the error value. Each time the input is fed forward through the network, the error of the predicted output is compared to the actual output and thus produce an error value. The cost function $C(n)$, in terms of error $e_k(n)$ is defined as $C(n) = \frac{1}{2}e^2_k(n)$.The error delta in terms of weight $w_{kj}$ is calculated with the following formula: $\Delta w_{kj}(n) = \alpha e_k(n)x_j(n)$ where $\alpha$ is the learning rate\index{learning rate}, $e_k(n)$ is the error and $x_j(n)$ is the input.  \citep{doi:10.1080/02626669809492102}. 
+
+Back-propagation\index{backpropagation} is the process where the biases are updated by distributing the error from the layer closest to the output inwards, applying the derivative of the activation function in the process. The synapses are updated by adding the calculated delta to the weight, formally, $w_{kj}(n+1) = w_{kj}(n) + \Delta w_{kj}(n)$ where $w_{kj}(n)$ is the previous weight and $\Delta w_{kj}(n)$ is the calculated weight difference \citep{Rosen:1994:THL:326619.326741}. Each layer will calculate the error based on the previous error calculations and this will cause a diminishing effect on the error value, leading towards the vanishing gradient problem. \citet{Hochreiter:1998:VGP:353515.355233} points out that this will cause the calculated error delta to be so small that the improvement will be nearly negligible, thus causing the model to be under-trained. One of the remedies to the above phenomenon is to implement Long short-term memory to the model. As the ANN performs epochs, the error of the synapses will converge towards the optimal value, which once reached, the model will be trained. Once the model is trained, one can perform predictions by passing an input through the network and observing the output \citep{Tasdemir:2008:PSR:1500879.1500925}.
+\begin{figure}
+	\begin{center}
+		
+	
+	\includegraphics[width=0.7\linewidth]{neural_network/ANN}
+	%  \checkparity This is an \pageparity\ page.%
+	\caption[ANN][6pt]{This diagram is a visual representation of an ANN.}
+	\label{fig:annfig}
+	%\zsavepos{pos:annfig}
+\end{center}
+\end{figure}
+
+\subsection{Convolutional Neural Network}\label{sec:Convolutional Neural Network}\index{Convolutional Neural Network}
+A Convolutional Neural Network (CNN)(see Figure~\ref{fig:cnnfig})\index{Convolutional Neural Network} is a variant of ANN and are commonly used for image processing and recognition. A CNN usually is a multi-layered network, where each layer will apply a specific function to an image \citep{NIPS2012_4824}. A CNN can use different kinds of layers, each with their own function and output, for example:
+\begin{itemize}
+	\item\textbf{Features\index{Feature}}: The images are reduced to similar patterns, where each pattern is a small subset of the image and is present in both images \citep{rohrer_2016}.
+	\item\textbf{Convolutions}: A filter is applied across every pixel to calculate the similarity between the filter (also referred to as a kernel) and the sample with a convolution function\index{Convolution}. This will output a value that represents the likeness of the feature to the image; the higher the number, the higher the similarity \citep{Alwani:2016:FCA:3195638.3195664}.
+	\item\textbf{Average/Max Pooling}: This process\index{Pooling} shrinks the images while still keeping its important features. A small window which is typically 2x2 iterates over pixels, stepping a specific number of pixels each time to possibly avoid overlapping calculations. The output of this filter is the maximum or average value inside the window \. Pooling greatly helps to reduce the computational overhead of processing a large number of pixels and thus converge in less time \citep{Fei:2018:RSP:3240876.3240919,Ciresan:2011:FHP:2283516.2283603}.
+	\item\textbf{Rectified Linear Units}: A Rectified Linear Unit\index{Rectified Linear Unit} (ReLU) is considered as an activation function, in that the output is filtered to contain only positive values. This function sets all negative values to 0 and ignores positive ones. This is used to prevent learned values from lingering close to 0 or becoming such a large negative number that it will inhibit the performance \citep{Han:2017:DCN:3055635.3056609}.
+	\item\textbf{Fully-Connected Layer}: A fully-connected layer\index{Fully-Connected Layer} (FC) treats the input as a singular list of nodes where each node is connected to all the previous nodes. Each node contains a weighted value which determines the contribution to a specific category when the node is fired. When the layer is activated, the nodes go through a voting process, where each node will vote to which category the input image falls under. The weights will determine which nodes will have more impact in the voting process, and the category with the bigger value of votes will classify the image \citep{Xie:2017:ESA:3160927.3122788}.
+	
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{neural_network/CNN}%
+		\caption{A diagram of a CNN with deep learning.}%
+		\label{fig:cnnfig}%
+	\end{figure}
+\end{itemize}
+
+A CNN can have multiple repetitions of a set of layers, which will form a deep learning\index{deep-learning} model with a multitude of layers that will eventually produce a final classification of the image. Training of a CNN occurs by feeding the network labelled data and adjusting the weights and features during a backpropagation\index{backpropagation} step, distributing the error and converging to a set error threshold, similar to how ANNs perform their training \citep{Iizuka:2016:LCJ:2897824.2925974}.
