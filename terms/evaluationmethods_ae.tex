@@ -26,7 +26,7 @@ on page~\pageref{ch:cross-validation}.
 
 \section{Performance Measures}
 \citet{Stapor17} notes that according to the \emph{no free lunch theorem}\index{no free lunch theorem}~\citep{Wolpert1996}, it is unreasonable to expect that one classifier is generally better than another since there will always be problems where one outperforms the other and vice versa.
-Evaluation is also highly task-specific and selecting an appropriate performance measure should be done with the end goal in mind~\citep{goodfellow2016deeplearning}, e.g.\ a wake-word detection component of a digital assistant might be penalised more for missing the trigger word (a minority class among continuous speech), but a pretrained image classifier later used to solely recognise cats can ignore smaller classes.
+Evaluation is also highly task-specific and selecting an appropriate performance measure should be done with the end goal in mind~\citep{goodfellow2016deeplearning}. For example, a wake-word detection component of a digital assistant might be penalised more for missing the trigger word (a minority class among continuous speech), but a pretrained image classifier later used to solely recognise cats can ignore other smaller classes and there is no need to specifically evaluate those.
 
 \subsection{Automatic Evaluation Metrics}
 For supervised classification, the simplest measure is \emph{accuracy}\index{confusion matrix!accuracy} which is the ratio of correctly predicted examples, and its reverse metric \emph{error rate}\index{evaluation methods!error rate}, i.e.\ the fraction of errors.
