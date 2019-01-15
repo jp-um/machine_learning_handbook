@@ -15,19 +15,24 @@ On the other hand, feature extraction techniques are applied to construct a feat
 
 The concept behind RFs involves the iterative construction of a number of binary \textit{decision trees}\index{dimensionality reduction!random forests!decision trees}, which have a low degree of correlation \citep{Genuer2010}. In each iteration, a random sample is extracted from the training sample on which the decision tree will be trained. During training, each split involves randomly selecting $k$ features from the original feature vector $P$, where $k < P$. Data is split using the best feature out of the selected $k$ features. Once the separate decision trees, also referred to as random forests, are constructed, each tree can be used to predict outcomes for new samples. In classification problems, these outcomes are then averaged to obtain the final prediction \citep{kuhn2013applied}. 
 
-\citet{Diaz-Uriarte2006} perform feature selection using a RF approach to select a smaller set of genes that can still provide effective predictions in classification or regression problems. In their strategy, variable importances are initially calculated within each iteration. The variables with the smallest importances are eliminated and a new forest is then constructed using the remaining high importance variables. Finally, the prediction error of each forest, also referred to as the out-of-bag (OOB) error rate, is calculated. The genes belonging to forests with the smallest error in prediction, are selected as the final variables \citep{Diaz-Uriarte2006}.
+\citet{Diaz-Uriarte2006} perform feature selection using a RF approach to select a smaller set of features that can still provide effective predictions in classification or regression problems. In their strategy, variable importances are initially calculated within each iteration. The variables with the smallest importances are eliminated and a new forest is then constructed using the remaining high importance variables. Finally, the prediction error of each forest, also referred to as the out-of-bag (OOB) error rate, is calculated. The features belonging to forests with the smallest error in prediction, are selected as the final variables \citep{Diaz-Uriarte2006}.
+
+\citet{Strobl2007} discuss that RFs are not ideal for feature selection when the features to be used for prediction constitute of a mixture of categorical and continuous values. Moreover, the variable importances measures are unreliable in cases when the number of categories for categorical predictors vary in the sample set.
+
+\section{Genetic Algorithms}\index{dimensionality reduction!genetic algorithms}
+
+Genetic algorithms (GA) are a commonly used technique in feature selection, which aims at minimizing the feature space by eliminating unimportant variables and keeping those which maximize accuracy in predictions. Introduced by \citet{Holland1962}, GA works using a procedure which mimics the theory of evolution, in which a population is manipulated to generate offsprings which form the new generation. 
+
+In GA's, a population is made up of a set of individuals (samples from a sample space), which are represented using binary strings, and referred to as \textit{chromosomes}\index{dimensionality reduction!genetic algorithms!chromosomes}. Each chromosome is composed of a set of features, which are called \textit{genes}\index{dimensionality reduction!genetic algorithms!genes} \citep{Siedlecki1989}. A \textit{fitness function}\index{dimensionality reduction!genetic algorithms!fitness function} is applied to each individual to determine the fittest individuals within the population. GA then applies selection to obtain the fittest individuals. Pairs of individuals, referred to as parents, are then constructed from the selected individuals, and crossover is performed. Crossover involves generating offsprings from the identified parents by exchanging information amongst the parent pairs. Mutation, which is applied to increase the diversity within the population, entails that one or more bits are randomly flipped to generate a different offspring. GA repeatedly perform this process, also referred to as a generation, until a stopping condition is met \citep{Chaikla}. 
+
+In feature selection, the individual considered as the fittest from the new population obtained is used to determine the features with the highest importance. Genes with value '1' in the obtained chromosome are considered as the features to be used for predictions \citep{sivanandam2007introduction}.
+
 
 \section{Principle Component Analysis}\index{dimensionality reduction!principle component analysis}
 
 \citet{jolliffe2002principal} introduces PCA as the technique which aims ''to reduce the dimensionality of a data set consisting of a large number of interrelated variables, while retaining as much as possible of the variation present in the data set.'' PCA aims to transform a set of correlated variables $P$ into a set of uncorrelated $k$ variables, where $k < P$ and the $k$ variables maintain the majority of the information in $P$. 
 
-Prior to applying PCA, the dataset is adjusted such that the means of the original variables are subtracted from the observations, to produce a dataset with mean zero \citep{jackson2005user}. PCA works by initially constructing the \textit{covariance matrix}\index{dimensionality reduction!principle component analysis!covariance matrix} of the data \citep{Guan2009}.
-
-\begin{equation}\label{covXY}
-	cov(x, y) = \frac{\sum^{n}_{i=1}(X_i - \hat{X})(Y_i - \hat{Y})}{n-1}
-	\end{equation}
-
-The covariance between two variables $x$ and $y$ may be computed by equation~\ref{covXY}, where $X_{i}$ is the $x$ variable for the $i^{th}$ sample, $Y_{i}$ is the $y$ variable for the $i^{th}$ sample, $\hat{X}$ and $\hat{Y}$ are the means of the $X$ and $Y$ variables respectively, and $n$ is the sample size. A high covariance value indicates that the variables are correlated, whereas a zero value indicates that no correlation exists between the variables. Moreover, the covariance between $x$ and $y$ is equal to the variance of $x$, when $x = y$. 
+Prior to applying PCA, the dataset is adjusted such that the means of the original variables are subtracted from the observations, to produce a dataset with mean zero \citep{jackson2005user}. PCA works by initially constructing the \textit{covariance matrix}\index{dimensionality reduction!principle component analysis!covariance matrix} of the data \citep{Guan2009}. A high covariance value indicates that the variables are correlated, whereas a zero value indicates that no correlation exists between the variables. Moreover, the covariance between $x$ and $y$ is equal to the variance of $x$, when $x = y$. 
 
 \begin{marginfigure}
 	\begin{equation*}
@@ -38,25 +43,29 @@ The covariance between two variables $x$ and $y$ may be computed by equation~\re
 \label{fig:covarianceMatrix}
 \end{marginfigure}
 
-The variance between features is indicated by the diagonal values of a covariance matrix (figure~\ref{fig:covarianceMatrix}), whilst the off-diagonal values refer to the covariance between the features. High values in the off-diagonal terms indicate that high redundancy exists, and thus the covariance matrix must be diagonalized to minimize the correlations between the features. 
+The variance between features is indicated by the diagonal values of a covariance matrix (Figure~\ref{fig:covarianceMatrix}), whilst the off-diagonal values refer to the covariance between the features. High values in the off-diagonal terms indicate that high redundancy exists, and thus the covariance matrix must be diagonalized to minimize the correlations between the features. 
 
-The resultant diagonalized covariance matrix is used to calculate the \textit{eigenvalues}\index{dimensionality reduction!principle component analysis!eigenvalues} and \textit{eigenvectors}\index{dimensionality reduction!principle component analysis!eigenvectors}. The eigenvectors refer to the direction in which the data varies, and these are ordered such that the ones with the highest eigenvalues are chosen as the principal components of the data. Eventually, the selected vectors are kept to form a \textit{feature vector}\index{dimensionality reduction!principle component analysis!feature vector}, which will be used to construct the new dataset with lower dimensionality, as in equation~\ref{newDataSet} 
+The resultant diagonalized covariance matrix is used to calculate the \textit{eigenvalues}\index{dimensionality reduction!principle component analysis!eigenvalues} and \textit{eigenvectors}\index{dimensionality reduction!principle component analysis!eigenvectors}. The eigenvectors refer to the direction in which the data varies, and these are ordered such that the ones with the highest eigenvalues are chosen as the principal components of the data. Eventually, the selected vectors are kept to form a \textit{feature vector}\index{dimensionality reduction!principle component analysis!feature vector}, which will be used to construct the new dataset with lower dimensionality, as in Equation~\ref{newDataSet} 
 
 
 \begin{equation}\label{newDataSet}
 	New Dataset = FeatureVector^T x AdjustedData^T 
 	\end{equation}
 
-This equation~\ref{newDataSet} multiplies the transpose of the feature vector by the transpose of the mean adjusted data, to obtain the original data with smaller dimensionality \citep{jackson2005user}.
+Equation~\ref{newDataSet} multiplies the transpose of the feature vector by the transpose of the mean adjusted data, to obtain the original data with smaller dimensionality \citep{jackson2005user}.
+
+\section{Multi-dimensional scaling}\index{dimensionality reduction!multi-dimensional scaling}
+
+Multi-dimensional scaling (MDS) is another dimensionality reduction technique which similar to PCA seeks to obtain a data set with lower dimensions. MDS aims at finding a configuration in which the distances between points on a dimensional space are as close as possible to the dissimilarities between the points. Different techniques of MDS exist which differ in the way that points are matched to dissimilarities. In \textit{Metric MDS}\index{dimensionality reduction!multi-dimensional scaling!metric MDS}, ''dissimilarities between objects will be in numerical and distance''. Classical scaling is one such technique which aims at finding a configuration in which the dissimilarities are equal to Euclidean distances. Another technique is least squares scaling in which the dissimilarities are transformed into distances using a function, and the configuration space is obtained by minimising this function. On the other hand, \textit{Non-Metric MDS}\index{dimensionality reduction!multi-dimensional scaling!non-metric MDS} seeks a transformation which preserves the rank order of the dissimilarities \citep{cox2000multidimensional}.
 
 \section{Linear Discriminant Analysis }\index{dimensionality reduction!linear discriminant analysis}
 
-LDA is a supervised dimensionality reduction technique which produces a lower dimensionality feature space in which a feature vector belonging to a class is distinguishable from that of the other classes \citep{Sharma2015}. Figure~\ref{fig:dimensionalityReduction} depicts the projection of a two-dimensional feature vector to a one-dimensional feature space. $C_1$, $C_2$ and $C_3$ denote the three different classes being used within the feature vectors. By projecting the feature vectors onto line \^{W}, which represents one dimension, it is noted that a strong relationship exists between the feature vectors of the three classes. LDA seeks an orientation which strongly separates the feature vectors of one class from those belonging to other classes. This orientation can be obtained by rotating \^{W}, resulting in projection $W$, where the feature vectors of the classes are highly separated. Algorithmically, Fisher's criterion is maximized to obtain the required one-dimensional feature vector $W$. 
+LDA is a supervised dimensionality reduction technique which produces a lower dimensionality feature space in which a feature vector belonging to a class is distinguishable from that of the other classes \citep{Sharma2015}. Figure~\ref{fig:dimensionalityReduction} depicts the projection of a two-dimensional feature vector to a one-dimensional feature space. $C_1$, $C_2$ and $C_3$ denote the three different classes being used within the feature vectors. By projecting the feature vectors onto line \^{W}, which represents one dimension, it is noted that a strong relationship exists between the feature vectors of the three classes. LDA seeks an orientation which strongly separates the feature vectors of one class from those belonging to other classes. This orientation can be obtained by rotating \^{W}, resulting in projection $W$, where the feature vectors of the classes are highly separated. Algorithmically, Fisher's criterion is maximized to obtain the required one-dimensional feature vector $W$.
 
 \begin{marginfigure}
 	\includegraphics{graphics/dimensionality_reduction/DimensionalityReductionLDA.png}
 	\caption{
-		Projection of a two-dimensional feature vector to a one-dimensional feature space. 
+		Projection of a two-dimensional feature vector to a one-dimensional feature space. Adapted from \citet{Sharma2015}.
 	}
 	\label{fig:dimensionalityReduction}
   \end{marginfigure}
@@ -68,30 +77,29 @@ Feature extraction using LDA \citep{Sharma2015,Huang2002} works by initially cal
 	S_B = \sum^{c}_{i=1}n_{i}(\mu_i - \mu)(\mu_i - \mu)^T
 	\end{equation}
 
-This is referred to as the \textit{between-class matrix}\index{dimensionality reduction!linear discriminant analysis!between-class matrix} and is represented by equation~\ref{betweenClassMatrix}, where $c$ is the number of classes, $n_i$ is the number of samples for the $i^{th}$ class, $\mu_i$ is the mean for the $i^{th}$ class and $\mu$ is the total mean of all samples.
+This is referred to as the \textit{between-class matrix}\index{dimensionality reduction!linear discriminant analysis!between-class matrix} and is represented by Equation~\ref{betweenClassMatrix}, where $c$ is the number of classes, $n_i$ is the number of samples for the $i^{th}$ class, $\mu_i$ is the mean for the $i^{th}$ class and $\mu$ is the total mean of all samples.
 
 \begin{equation}
 	\label{distanceBetweenMeanAndSampleMatrix}
 	S_W = \sum^{c}_{j=1}\sum^{n_j}_{i=1}(x_{ij} - \mu_j)(x_{ij} - \mu_j)^T
 	\end{equation}
 
-Following this, the \textit{within-class matrix}\index{dimensionality reduction!linear discriminant analysis!within-class matrix} is calculated using equation~\ref{distanceBetweenMeanAndSampleMatrix}, where $c$ is the number of classes, $n_j$ is the number of samples for the $j^{th}$ class, $x_{ij}$ is the $i^{th}$ sample in the $j^{th}$ class, and $\mu_j$ is the mean for the $j^{th}$ class. This matrix indicates the distance between the mean and sample values for each class.
+Following this, the \textit{within-class matrix}\index{dimensionality reduction!linear discriminant analysis!within-class matrix} is calculated using Equation~\ref{distanceBetweenMeanAndSampleMatrix}, where $c$ is the number of classes, $n_j$ is the number of samples for the $j^{th}$ class, $x_{ij}$ is the $i^{th}$ sample in the $j^{th}$ class, and $\mu_j$ is the mean for the $j^{th}$ class. This matrix indicates the distance between the mean and sample values for each class. Finally, a \textit{transformation matrix}\index{dimensionality reduction!linear discriminant analysis!transformation matrix} $W$ which maximizes the between-class variance and minimizes the within-class variance should be constructed.
 
-Finally, a \textit{transformation matrix}\index{dimensionality reduction!linear discriminant analysis!transformation matrix} $W$ which maximizes the between-class variance and minimizes the within-class variance should be constructed.
+\begin{marginfigure}
+	\begin{equation}
+		\label{FishersCriterion}
+		\arg\max_{w} \frac{W^T S_B W}{W^T S_W W}
+		\end{equation}
+	
+	\begin{equation}
+		\label{FishersCriterion2}
+		S_W W = \lambda S_B W
+		\end{equation}	
+\end{marginfigure}
 
-\begin{equation}
-	\label{FishersCriterion}
-	\arg\max_{w} \frac{W^T S_B W}{W^T S_W W}
-	\end{equation}
 
-\begin{equation}
-	\label{FishersCriterion2}
-	S_W W = \lambda S_B W
-	\end{equation}
-
-Fisher's criterion, shown in equation~\ref{FishersCriterion} is used to obtain the maximum ratio of the between-class matrix (denoted by $S_B$) and within class matrix (represented by $S_W$). 
-By transforming the latter into equation~\ref{FishersCriterion2}, where $\lambda$ denotes the eigenvalues, eigenvectors and the corresponding eigenvalues of $W$ may be calculated.
-
-A lower dimensional space is constructed by selecting the eigenvectors having the highest eigenvalues. 
+Fisher's criterion, shown in Equation~\ref{FishersCriterion} is used to obtain the maximum ratio of the between-class matrix (denoted by $S_B$) and within class matrix (represented by $S_W$). 
+By transforming the latter into Equation~\ref{FishersCriterion2}, where $\lambda$ denotes the eigenvalues, eigenvectors and the corresponding eigenvalues of $W$ may be calculated. A lower dimensional space is constructed by selecting the eigenvectors having the highest eigenvalues. 
 
 \index{dimensionality reduction|)}
