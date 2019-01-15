@@ -1,0 +1,131 @@
+\chapter{Evaluation Methods}
+\label{ch:evaluation-methods}
+\index{evaluation methods|(}
+
+Although modern machine learning is exceptionally diverse and multidisciplinary, what unifies the field is standard experimental evaluation methodologies that are adopted based on the task at hand~\citep{Kibler1988}.
+%
+Evaluation is involved both in model selection, i.e.\ during hyperparameter tuning, and in comparing multiple models against each other or a random baseline.
+Ideally, evaluation is aimed at interpreting a model's behaviour and analysing its errors~\citep{Doshi2017}.
+
+\citet{Japkowic2011} outline four essentials of evaluation methodology: a test set, performance measures, error estimation, and statistical significance tests.
+
+When evaluating machine learning models, it is common to rely on some annotated \emph{gold standard}\index{evaluation methods!gold standard} dataset that serves as a proxy of real-world phenomena~\citep{Manning2008}.
+%
+Examples of such datasets can be found in centralised collections such as the UCI Machine Learning repository~\citep{Dua2017} or online communities like Kaggle\footnote{\url{https://www.kaggle.com}}.
+However, one needs to be aware that a dataset
+may not represent the whole domain~\citep{Japkowic2011},
+might have been constructed using vague class definitions,
+or contains annotation artefacts~\citep{Hand2006}.
+
+While there is an assumption that training and testing sets come from the same distribution in order for a model to work as expected~\citep{Japkowic2011}, it is essential that the model is tested on previously unseen data.
+Otherwise, it yields overoptimistic results~\citep{Kibler1988}.
+%
+Error estimation techniques such as a held-out\index{cross-validation!holdout} set or cross-validation are detailed
+% \nameref{ch:cross-validation},
+on page~\pageref{ch:cross-validation}.
+
+\section{Performance Measures}
+\citet{Stapor17} notes that according to the \emph{no free lunch theorem}\index{no free lunch theorem}~\citep{Wolpert1996}, it is unreasonable to expect that one classifier is generally better than another since there will always be problems where one outperforms the other and vice versa.
+Evaluation is also highly task-specific and selecting an appropriate performance measure should be done with the end goal in mind~\citep{goodfellow2016deeplearning}, e.g.\ a wake-word detection component of a digital assistant might be penalised more for missing the trigger word (a minority class among continuous speech), but a pretrained image classifier later used to solely recognise cats can ignore smaller classes.
+
+\subsection{Automatic Evaluation Metrics}
+For supervised classification, the simplest measure is \emph{accuracy}\index{confusion matrix!accuracy} which is the ratio of correctly predicted examples, and its reverse metric \emph{error rate}\index{evaluation methods!error rate}, i.e.\ the fraction of errors.
+%
+More fine-grained classification metrics are described
+% in \nameref{ch:confusion-matrix},
+on page~\pageref{ch:confusion-matrix}.
+
+For machine-learned ranking algorithms
+% \index{machine-learned ranking}
+that infer an ordered list of multiple outputs, standard metrics can be reported \emph{at N}\index{evaluation methods!metrics at N}~\citep{Herlocker2004},
+e.g.\
+accuracy at 5 (Acc@5) illustrating a relaxed accuracy that looks for a match among the top five outputs for each example.
+
+For cluster analysis, despite it being unsupervised, typical evaluation metrics still require some labelled gold standard dataset.
+The simplest measure is \emph{purity}\index{evaluation methods!purity} that indicates the degree
+a model is able to cluster together instances of the same ground truth class (Equation~\ref{eq:purity}):
+\begin{equation}
+    \label{eq:purity}
+    p(\Omega, C) = \frac{1}{N} \sum_{k} \max_j \lvert \omega_k \cap c_j \rvert,
+\end{equation}
+where $\Omega=\{\omega_1,\ldots\omega_k\}$ is the set of predicted clusters, $C$ is the set of reference classes, $N$ is the size of the test set~\citep{Manning2008}.
+For other metrics used in clustering see, e.g.~\citet{Friedman2001}.
+
+For regression methods, a common metric to report is the
+\emph{root mean squared error} (RMSE)\index{evaluation methods!root mean squared error (RMSE)} that characterises the discrepancy between predicted and true values (Equation~\ref{eq:rmse}):
+\begin{equation}
+    \label{eq:rmse}
+    RMSE(f) = \sqrt{\frac{1}{N} \sum_i^N (f(x_i) - y_i)^2},
+\end{equation}
+where $f(x_i)$ is a prediction for input $x_i$, $y_i$ is the target value, and $N$ is the test set size.
+\citet{Harrell2015} overviews other regression metrics.
+
+\subsection{Manual Evaluation Metrics}
+It is not always possible to use the aforementioned automatic metrics to assess a machine learning model in a task-specific context, e.g.\ when there are no ground truth data available or there are yet no reliable metrics correlating with human judgement or other real-world phenomena.
+Therefore, \emph{manual}\index{evaluation methods!evaluation!manual} evaluation is sometimes required and is typically done either by experts or via crowdsourcing\index{evaluation methods!crowdsourcing} when raters are performing small paid evaluation tasks~\citep{Alonso2008} using specialised platforms such as Amazon Mechanical Turk\footnote{\url{https://www.mturk.com}}.
+For example, assessors can be provided with Likert scales\index{evaluation methods!Likert scale}~\citep{Likert1932} to rate various facets of a model's output, e.g.\ fluency of machine translation on a scale from 0 to 5;
+or they can be asked to rank outputs according to some aspect, allowing comparing multiple models.
+%
+There have been attempts to replicate such judgements automatically, e.g.\
+using \emph{adversarial} evaluation\index{evaluation methods!evaluation!adversarial}~\citep{martin2018speech} that
+% , in the spirit of the Turing test,
+involves training Generative Adversarial Networks\index{generative adversarial networks}~\citep{Goodfellow2014} to distinguish between human and machine-generated outputs.
+
+Another way to overcome the lack of metrics and data is to shift the task on which a model is evaluated, i.e.\ conduct \emph{extrinsic}\index{evaluation methods!evaluation!extrinsic} evaluation~\citep{Belz2008} that commonly involves assessment of a model's performance in a ``downstream'' application rather than the training task, as opposed to \emph{intrinsic}\index{evaluation methods!evaluation!intrinsic} evaluation.
+For instance, if the goal is to evaluate a feature reduction mechanism, one can measure its effect on the accuracy of sentiment classification~\citep{Schnabel2015}.
+%
+An example of manual extrinsic evaluation is A/B studies\index{evaluation methods!A/B testing}~\citep{Hofmann2016} aimed to measure a change in user experience before quantitatively and after deploying a new machine learning model.
+A/B testing consists of dividing users two groups A and B and comparing them against each other according to some metrics.
+%
+A/B tests can be employed to investigate the average time required for users to find the desired webpage depending on the search algorithm~\citep{Manning2008}
+% or how quickly users can book a flight using different conversational agents~\citep{Jurafsky2009};
+or the average time spent by users on the website after introducing a new recommendation system~\citep{Davidson2010}.
+
+\section{Statistical Significance Testing}\index{evaluation methods!statistical significance testing|(}
+
+Whenever a new algorithm is proposed, it needs to be compared against either a random baseline or previously published results for the task and dataset at hand.
+However, often improvement is rather incremental~\citep{Hand2006}, so it might not be evident if it is of any importance.
+To decide whether a change is significant, \emph{statistical significance tests} are encouraged, at least in case of scarce testing data~\citep{Drummond2010}.
+
+Details about general statistical tests can be found in~\citep{Urdan2011}, whereas~\citet{Japkowic2011} provide recommendations on the correct use of such tests for classifier comparison.
+In evaluating machine learning techniques, one needs to be cautious when using standard parametric\index{evaluation methods!statistical significance testing!parametric} tests such as the $t$-test~\citep{Urdan2011} because of the assumptions expected to be met, e.g.\ equal variance of obtained metrics~\citep{Japkowic2011}. In contrast, \emph{non-parametric}\index{evaluation methods!statistical significance testing!non-parametric} tests do not impose any restriction on the population distribution which makes them more applicable, although less powerful~\citep{Colquhoun1971}.
+%
+Below is an illustration of applying a non-parametric test.
+
+\subsection{An Illustration of Statistical Significance Testing}
+\begin{margintable}
+    \begin{tabular}{llrr}
+        \toprule
+        & & \multicolumn{2}{c}{\textbf{B}} \\
+        & & Correct & Incorrect \\ \midrule
+        \textbf{A} & Correct & $CC = 1200$ & $CI = 10$ \\
+        & Incorrect & $IC = 25$   & $II = 8$  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Contingency table breaking down predictions of two classifiers $A$ and $B$ into different cases based on comparison against the ground truth labels (correct or incorrect).}
+    \label{tab:eval-mcnemar-table}
+\end{margintable}
+
+Given two trained classifiers $A$ and $B$ and a set of ground truth labels of size $N$ against which the predictions can be compared, it is possible to construct a $2\times 2$ contingency table such as Table~\ref{tab:eval-mcnemar-table}.
+Assuming that accuracy is selected as a performance metric, it can be seen that $N = 1243$, the accuracy of model $A$ is $(CC + CI) / N = 1210 / 1243 = 0.973$, while for model $B$ it is $0.986$.
+Based on the accuracy alone, the improvement of classifier $B$ appears rather small, so one would want to report statistical significance.
+A \emph{null hypothesis}\index{evaluation methods!statistical significance testing} $H_0$ is formulated that there is no difference in accuracy between classifiers, whereas the alternative hypothesis $H_1$ states that these are significantly different.
+A \emph{significance level} $\alpha$ representing the probability of wrongly rejecting $H_0$ is specified, e.g.\ 0.05.
+Supposing that it has been found that assumptions for parametric tests do not hold, a non-parametric alternative is used, e.g.\ \emph{McNemar's test}\index{evaluation methods!statistical significance testing!McNemar's test}~\citep{Mcnemar1947} with the following statistic:
+\begin{equation}
+    \label{eq:mcnemar}
+    \chi^2_{MC} = \frac{(\lvert IC - CI  \rvert - 1)^2}{IC + CI},
+\end{equation}
+where $IC$ and $CI$ correspond to the cases described in Table~\ref{tab:eval-mcnemar-table}.
+%
+The $\chi^2_{MC}$ statistic from Equation~\ref{eq:mcnemar} is compared against the $\chi^2$ distribution table value (or a binomial distribution in case of $CI + IC < 20$).
+If $\chi^2_{MC}$ is greater than the table value, $H_0$ is rejected.
+
+For the example in Table~\ref{tab:eval-mcnemar-table}, $\chi^2_{MC}$ is 5.6, which is greater than the critical $\chi^2$ value for the selected $\alpha=0.05$ (3.841), therefore, it is said that the improvement in accuracy is significant.
+\index{evaluation methods!statistical significance testing|)}
+
+In conclusion, each component of a machine learning evaluation framework
+% , i.e.\ selecting a testing dataset and performance measures, conducting error estimation and statistical significance tests,
+requires careful consideration with respect to the end goal, however, rigorous evaluation can pave the way to interpretable and more reliable machine learning systems~\citep{Doshi2017}.
+
+\index{evaluation methods|)}
