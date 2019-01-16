@@ -14,19 +14,19 @@ When evaluating machine learning models, it is common to rely on some annotated 
 Examples of such datasets can be found in centralised collections such as the UCI Machine Learning repository~\citep{Dua2017} or online communities like Kaggle\footnote{\url{https://www.kaggle.com}}.
 However, one needs to be aware that a dataset
 may not represent the whole domain~\citep{Japkowic2011},
-might have been constructed using vague class definitions,
-or contains annotation artefacts~\citep{Hand2006}.
+contain annotation artefacts,
+or might have been constructed with vague class definitions~\citep{Hand2006}.
 
 While there is an assumption that training and testing sets come from the same distribution in order for a model to work as expected~\citep{Japkowic2011}, it is essential that the model is tested on previously unseen data.
 Otherwise, it yields overoptimistic results~\citep{Kibler1988}.
 %
-Error estimation techniques such as a held-out\index{cross-validation!holdout} set or cross-validation are detailed
+Error estimation techniques such as a held-out\index{cross-validation!holdout} set or cross-validation\index{cross-validation} are detailed
 % \nameref{ch:cross-validation},
 on page~\pageref{ch:cross-validation}, so the following is focussed on evaluation metrics and statistical tests.
 
 \section{Performance Measures}
 \citet{Stapor17} notes that according to the \emph{no free lunch theorem}\index{no free lunch theorem}~\citep{Wolpert1996}, it is unreasonable to expect that one classifier is generally better than another since there will always be problems where one outperforms the other and vice versa.
-Evaluation is also highly task-specific and selecting a performance measure should be done with the end goal in mind~\citep{goodfellow2016deeplearning}. For example, natural language generation models used in image captioning are penalised for ``hallucinating'' extra information, i.e.\ such models are considered worse, but this phenomenon can be encouraged when applied to poetry generation.
+Evaluation is also highly task-specific and selecting a performance measure should be done with the end goal in mind~\citep{goodfellow2016deeplearning}. For example, natural language generation models used in image captioning are penalised for ``hallucinating'' extra information, i.e.\ such models are considered worse, but this aspect can be encouraged when applied to poetry generation.
 
 \subsection{Automatic Evaluation Metrics}
 For supervised classification, the simplest measure is \emph{accuracy}\index{confusion matrix!accuracy} which is the ratio of correctly predicted examples, and its reverse metric \emph{error rate}\index{evaluation methods!error rate}, i.e.\ the fraction of errors.
@@ -79,7 +79,7 @@ A/B testing consists of dividing users into two groups A and B and comparing the
 %
 A/B tests can be employed to investigate the average time it takes users to find the desired webpage depending on the search algorithm~\citep{Manning2008}
 % or how quickly users can book a flight using different conversational agents~\citep{Jurafsky2009};
-or the change in time users spent on a website after introducing a new recommendation system~\citep{Davidson2010}.
+or the change in time users spend on a website after introducing a new recommendation system~\citep{Davidson2010}.
 
 \section{Statistical Significance Testing}\index{evaluation methods!statistical significance testing|(}
 
@@ -107,11 +107,11 @@ Below is an illustration of applying a non-parametric test.
 \end{margintable}
 
 Given two trained classifiers $A$ and $B$ and a set of ground truth labels of size $N$ against which predictions can be compared, it is possible to construct a $2\times 2$ contingency table such as Table~\ref{tab:eval-mcnemar-table}.
-Assuming that accuracy is selected as a performance metric, it can be seen that the accuracy of model $A$ is $(CC + CI) / N = 1210 / 1243 = 0.973$, while for model $B$ it is $0.986$.
+Assuming that accuracy is selected as a performance metric, it can be seen for model $A$ it is $(CC + CI) / N = 1210 / 1243 = 0.973$, while for model $B$ it is $0.986$.
 Based on the accuracy alone, the improvement of classifier $B$ appears rather small, so one would want to report statistical significance.
 A \emph{null hypothesis}\index{evaluation methods!statistical significance testing} $H_0$ is formulated that there is no difference in accuracy between classifiers, whereas the alternative hypothesis $H_1$ states that these are significantly different.
 A \emph{significance level} $\alpha$ representing the probability of wrongly rejecting $H_0$ is specified, e.g.\ 0.05.
-Supposing that it has been found that assumptions for parametric tests do not hold, a non-parametric alternative is used, e.g.\ \emph{McNemar's test}\index{evaluation methods!statistical significance testing!McNemar's test}~\citep{Mcnemar1947} with the following statistic:
+Supposing that it has been found that assumptions for parametric tests do not hold, a non-parametric alternative is used, e.g.~ \emph{McNemar's~test}\index{evaluation methods!statistical significance testing!McNemar's test}~\citep{Mcnemar1947} with the following statistic:
 \begin{equation}
     \label{eq:mcnemar}
     \chi^2_{MC} = \frac{(\lvert IC - CI  \rvert - 1)^2}{IC + CI},
