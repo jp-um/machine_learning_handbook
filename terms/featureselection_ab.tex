@@ -12,15 +12,6 @@
 
 \citet{guyon2003introduction} state that the objective of FS is three-fold: improving the prediction performance of the predictors, providing faster and more cost-effective predictors, and providing a better understanding of the underlying process that generated the data. Furthermore, the aim the FS is to select features that are \textit{independent} of each other but \textit{highly dependent} on the value to be predicted.
 
-% For example, considering feature $f_{1}$ as shown in Figure \ref{fig:feature_selection}a, it can be seen that $f_{1}$ is a relevant feature because it can distinguish between the classes. Feature $f_{2}$ (Figure \ref{fig:feature_selection}b) on the other hand is unable to distinguish between the two classes and is therefore irrelevant for the classification and hence discarded.  As seen in Figure \ref{fig:feature_selection}c, feature $f_{6}$ is also a relevant feature because it perfectly distinguishes between the two classes.  However, $f_{6}$ does not add any new information that $f_{1}$ has not already provided, so it is said to be a redundant feature. Feature $f_{4}$ (Figure \ref{fig:feature_selection}d) is partly able to distinguish between the two classes.  The overlapping instances are either caused by errors in the data (noise) or due to the nature of the attribute.  This type of feature is said to be noisy and is also discarded.
-
-% \begin{figure}
-%   \includegraphics{feature_selection/feature_selection.png}
-%   \caption{Example plots showing (a) a relevant feature, (b) an irrelevant feature, (c) a redundant feature and (d) a noisy feature. Reproduced from \citet{sammut2017encyclopedia}.}
-%   \label{fig:feature_selection}
-% \end{figure}
-
-
 FS keeps the original feature, that is, it maintains the physical meanings of the original feature without any transformation. Furthermore, \citet{masaeli2010transformation} found that this property has its significance in many practical applications such as finding relevant genes to a specific disease and building a sentiment lexicon for sentiment analysis.
 
 According to \citet{zhao2010advancing}, FS is an optimization problem that can be split into two perspective; (1) searching for the best subset of features, (2) principle model for selecting, adding removing or changing new features during the search using a certain evaluation measure. Mainly there are three models used for FS: filter, wrapper and embedded.
