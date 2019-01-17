@@ -2,9 +2,9 @@
 
 Many machine learning\index{Machine Learning} techniques employ probability theory to make the best decisions given some data. Probabilistic approaches are often also summarised under the term ``Bayesian approaches"\index{Bayesian Models!Bayesian approaches} \citep{Murphy2012}. The following chapter will provide an overview of the underlying theorem as well as the most popular classifier based on said theorem.
 
-\section{Bayes’ Theorem} \label{sec:bayes_theorem}
+\section{Bayes' Theorem} \label{sec:bayes_theorem}
 
-Bayes' Theorem\index{Bayesian Models!Bayes’ Theorem} describes how to calculate the so-called posterior probability of an event $A$ given our observed evidence $B$, that is $P(A|B)$. It is derived from the definition of conditional probabilities \eqref{eq:cond_prob}. The probability of an event $B$ to occur given that the event $A$ already has occurred is defined as the probability of the intersection of the two events $A$ and $B$ divided by the probability of the event $A$ \citep{Murphy2012}:
+Bayes' Theorem\index{Bayesian Models!Bayes' Theorem} describes how to calculate the so-called posterior probability of an event $A$ given our observed evidence $B$, that is $P(A|B)$. It is derived from the definition of conditional probabilities \eqref{eq:cond_prob}. The probability of an event $B$ to occur given that the event $A$ already has occurred is defined as the probability of the intersection of the two events $A$ and $B$ divided by the probability of the event $A$ \citep{Murphy2012}:
 
 \begin{gather}
     P(B|A) = \frac{P(A \cap B)}{P(A)} \label{eq:cond_prob}
@@ -17,7 +17,7 @@ The probability of the intersection of the two events $A$ and $B$ can be rewritt
 \begin{gather}
     P(B \cap A) = P(B) P(A|B) \label{eq:prob_intersect_b}
 \end{gather}
-Consequently, Bayes' Theorem\index{Bayesian Models!Bayes’ Theorem} can be derived as follows:
+Consequently, Bayes' Theorem can be derived as follows:
 
 
 \begin{align}
@@ -30,7 +30,7 @@ $P(A|B)$ is the aforementioned posterior probability, $P(B|A)$ the likelihood of
 
 \section{Na\"ive Bayes Classification Algorithm} \label{sec:NB_class}
 
-Intuitively, Bayes' Theorem\index{Bayesian Models!Bayes’ Theorem} can be used to calculate the probability of an hypothesis being true given some observed evidence \citep{Manning2009, martin2018speech, Rijsbergen1979} - it is a structured way of integrating all available information into an estimation of the truth of that hypothesis. However, it can also be used as a classification method \citep{Manning2009, martin2018speech, Murphy2012, Rijsbergen1979}: The instance to be classified (such as an email, a web page, or a newspaper article) is taken to be the ``observed evidence" for that instance to belong to a certain class. For example, the content of an email is taken to be the information available to classify that email as spam or ham. Bayes' Theorem\index{Bayesian Models!Bayes’ Theorem} is applied to the conditional probability $P(c|d)$ of a given document $d$ belonging to a certain class $c$, resulting in \eqref{eq:NB_class_der}. The denominator $P(d)$ can be dropped, since the prior probability of a document to occur is the same for all possible classes and does not have any effect on the final classification decision \citep{martin2018speech}. Ultimately, the result is \eqref{eq:NB_class}.
+Intuitively, Bayes' Theorem can be used to calculate the probability of an hypothesis being true given some observed evidence \citep{Manning2009, martin2018speech, Rijsbergen1979} - it is a structured way of integrating all available information into an estimation of the truth of that hypothesis. However, it can also be used as a classification method \citep{Manning2009, martin2018speech, Murphy2012, Rijsbergen1979}: The instance to be classified (such as an email, a web page, or a newspaper article) is taken to be the ``observed evidence" for that instance to belong to a certain class. For example, the content of an email is taken to be the information available to classify that email as spam or ham. Bayes' Theorem is applied to the conditional probability $P(c|d)$ of a given document $d$ belonging to a certain class $c$, resulting in \eqref{eq:NB_class_der}. The denominator $P(d)$ can be dropped, since the prior probability of a document to occur is the same for all possible classes and does not have any effect on the final classification decision \citep{martin2018speech}. Ultimately, the result is \eqref{eq:NB_class}.
 
 \begin{gather}
     P(c|d) = \frac{P(d|c)P(c)}{P(d)} \label{eq:NB_class_der}
