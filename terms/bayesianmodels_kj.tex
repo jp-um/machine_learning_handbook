@@ -1,0 +1,77 @@
+\chapter{Bayesian Models in Machine Learning}
+
+Many machine learning\index{Machine Learning} techniques employ probability theory to make the best decisions given some data. Probabilistic approaches are often also summarised under the term ``Bayesian approaches"\index{Bayesian Models!Bayesian approaches} \citep{Murphy2012}. The following chapter will provide an overview of the underlying theorem as well as the most popular classifier based on said theorem.
+
+\section{Bayes' Theorem} \label{sec:bayes_theorem}
+
+Bayes' Theorem\index{Bayesian Models!Bayes' Theorem} describes how to calculate the so-called posterior probability of an event $A$ given our observed evidence $B$, that is $P(A|B)$. It is derived from the definition of conditional probabilities \eqref{eq:cond_prob}. The probability of an event $B$ to occur given that the event $A$ already has occurred is defined as the probability of the intersection of the two events $A$ and $B$ divided by the probability of the event $A$ \citep{Murphy2012}:
+
+\begin{gather}
+    P(B|A) = \frac{P(A \cap B)}{P(A)} \label{eq:cond_prob}
+\end{gather}
+The probability of the intersection of the two events $A$ and $B$ can be rewritten as \eqref{eq:prob_intersect_a}. However, since $P(A \cap B)$ is equal to $P(B \cap A)$, it can be rewritten as \eqref{eq:prob_intersect_b}, as well \citep{Manning2009}. 
+
+\begin{gather}
+    P(A \cap B) = P(A) P(B|A) \label{eq:prob_intersect_a}
+\end{gather}
+\begin{gather}
+    P(B \cap A) = P(B) P(A|B) \label{eq:prob_intersect_b}
+\end{gather}
+Consequently, Bayes' Theorem can be derived as follows:
+
+
+\begin{align}
+    P(B|A)  &= \frac{P(A \cap B)}{P(A)}
+           = \frac{P(B \cap A)}{P(A)}
+            = \frac{P(B) P(A|B)}{P(A)} \notag\\
+    \Leftrightarrow P(A|B) &= \frac{P(B|A) P(A)}{P(B)} \label{eq:BT_derived}
+\end{align}
+$P(A|B)$ is the aforementioned posterior probability, $P(B|A)$ the likelihood of event $B$ given event $A$, $P(A)$ the prior probability of event $A$, and $P(B)$ the so-called marginal, that is the likelihood of an independent occurrence of event $B$ \citep{Manning2009, Rijsbergen1979}.
+
+\section{Na\"ive Bayes Classification Algorithm} \label{sec:NB_class}
+
+Intuitively, Bayes' Theorem can be used to calculate the probability of an hypothesis being true given some observed evidence \citep{Manning2009, martin2018speech, Rijsbergen1979} - it is a structured way of integrating all available information into an estimation of the truth of that hypothesis. However, it can also be used as a classification method \citep{Manning2009, martin2018speech, Murphy2012, Rijsbergen1979}: The instance to be classified (such as an email, a web page, or a newspaper article) is taken to be the ``observed evidence" for that instance to belong to a certain class. For example, the content of an email is taken to be the information available to classify that email as spam or ham. Bayes' Theorem is applied to the conditional probability $P(c|d)$ of a given document $d$ belonging to a certain class $c$, resulting in \eqref{eq:NB_class_der}. The denominator $P(d)$ can be dropped, since the prior probability of a document to occur is the same for all possible classes and does not have any effect on the final classification decision \citep{martin2018speech}. Ultimately, the result is \eqref{eq:NB_class}.
+
+\begin{gather}
+    P(c|d) = \frac{P(d|c)P(c)}{P(d)} \label{eq:NB_class_der}
+\end{gather}
+
+\begin{gather}
+    P(c|d) \propto P(c) \prod_{1 \leq k \leq n_{d}} P(t_{k}|c)\label{eq:NB_class}
+\end{gather}
+\eqref{eq:NB_class} can be read as the probability of a given document $d$ belonging to a certain class $c$ being proportional to the prior probability of a document occurring in class $c$ multiplied by the probability of that class $c$ having generated a document consisting of all the terms $t_{k}$ in $d$. Na\"ive Bayes classifiers\index{Bayesian Models!Na\"ive Bayes classifier} are also called generative classifiers \citep{Murphy2012}: Given a specific observation $d$, they return the class $c$ that is most likely to have generated said observation - also called the maximum a posteriori (MAP) class.
+
+The two parameters needed to calculate $P(c|d)$, $P(c)$ and $P(t_{k}|c)$, are obtained via approximations from the training set, based on maximum likelihood estimations (MLE)\index{Maximum likelihood estimation} \citep{Manning2009, martin2018speech}. For the prior probability $P(c)$, the estimate is as follows:
+\begin{gather}
+    \hat{P}(c) = \frac{N_{c}}{N}\label{eq:prior_est},
+\end{gather}
+which is the number of documents in the training set belonging to class $c$ divided by the total amount of documents in the training set \citep{Manning2009, martin2018speech}. Similarly, the probability of a term $t_{k}$ occurring in a document of class $c$ is obtained like this:
+\begin{gather}
+    \hat{P}(t_{k}|c) = \frac{T_{ct}}{\sum_{t' \in V} T_{ct'}}\label{eq:likelihood_est},
+\end{gather}
+which is the number of times a term $T$ appears in documents of class $c$ divided by the number of times that term appears in the vocabulary $V$, i.e. in all documents of the training set \citep{martin2018speech, Manning2009}.
+
+These approximations pose two problems. First of all, the multiplication of all the conditional probabilities $P(t_{k}|c)$ may result in a so-called floating-point underflow \citep{Manning2009}. In order to avoid this, Na\"ive Bayes classifiers\index{Bayesian Models!Na\"ive Bayes classifier} usually do not calculate the product over $P(t_{k}|c)$, but the sum over the log values of $P(t_{k}|c)$ (see \eqref{eq:log_NB_class}). Using the log values instead of the original ones does not interfere with the final classification decision in any way: The class with the highest log probability is still the one most likely to have generated the given document.
+
+\begin{gather}
+    P(c|d) \propto P(c) \prod_{1 \leq k \leq n_{d}} \log P(t_{k}|c)\label{eq:log_NB_class}
+\end{gather}
+
+The second problem encountered by the estimations above is data sparseness, resulting in terms not occurring in documents of particular classes in the training set. The preferred solution is to eliminate the resulting zeros by using add-one or Laplace-smoothing (see \eqref{eq:laplace}, with $B' = |V|$, the length of the vocabulary), assuming that each and every relevant term occurs at least once in a corpus \citep{Manning2009}. % Words that are unknown altogether (i.e. that do not appear in the training set at all) are typically removed from consideration \citep{}.
+
+\begin{gather}
+    \hat{P}(t_{k}|c)    = \frac{T_{ct} + 1}{\sum_{t' \in V} (T_{ct'} + 1)}
+                        = \frac{T_{ct} + 1}{(\sum_{t' \in V} T_{ct'}) + B'} \label{eq:laplace}
+\end{gather}
+
+\section{Na\"ive Assumptions} \label{sec:naive}
+
+While the calculations above appear to be straightforward, they pose a problem in terms of their feasibility, especially regarding big sets of data. Relating individual probabilities to all terms of a document – even to those occurring multiple times in different positions – increases the number of parameters dramatically and requires huge sets of training data, which are almost never available. Naïve Bayes\index{Bayesian Models!Na\"ive Bayes classifier} offers solutions to this problem via two rather na\"ive assumptions giving the classifier its name \citep{Manning2009, martin2018speech}. 
+
+Hence, Na\"ive Bayes classifiers\index{Bayesian Models!Na\"ive Bayes classifier} assume the bag of words model\index{Bag of words model} for all terms in a document, that is they assume the probability of a term to be the same, regardless of its position in the document. This is also called the positional independence assumption \citep{Manning2009, martin2018speech}.
+
+The second assumption is called the conditional independence assumption. It simplifies the calculation further by proposing that all terms in a document are independent of one another, i.e. the occurrence of a specific term does not make it any more likely for another, possibly related term to appear in the same document. Obviously, the exact opposite is true - in reality, the terms in a document are indeed dependent on one another. However, Na\"ive Bayes classifiers\index{Bayesian Models!Na\"ive Bayes classifier} still offer accurate classification decisions, regardless of the inaccuracies in their probability estimations \citep{Manning2009, martin2018speech}.  
+
+\section{Conclusion}
+
+The classification method\index{classification} described just now is just one of the versions of Bayesian classifiers\index{Bayesian Models!Na\"ive Bayes classifier}, called the multinomial Na\"ive Bayes classifier\index{Bayesian Models!Na\"ive Bayes classifier}. One alternative is the Bernoulli model \citep{Manning2009}. In order to arrive at a classification decision, the Bernoulli model uses only binary information regarding the occurrence ($1$) or absence ($0$) of a term in a document. This often leads to errors regarding the classification of long documents, since the actual number of occurrences of a term are not taken into account, which is why the multinomial model is preferred.
