@@ -34,7 +34,7 @@ Generative Adversarial Networks \index{Generative Adversarial Networks} (GAN) ar
 
 GAN is defined by the following objective function:
 \begin{equation}\label{minmax}
-min_{D}max_{G} V(D,G)= \mathbf{E}_{x \textasciitilde pdata(x)}[log D(x)] + \mathbf{E}_{z\textasciitilde pz(z)} + [log(1 - D(G(z)))]
+min_{D}max_{G} V(D,G)= \mathbf{E}_{x \sim\ pdata(x)}[log D(x)] + \mathbf{E}_{z\sim\ pz(z)} + [log(1 - D(G(z)))]
 \end{equation}
 
 Where \textit{D} is the discriminative model and it is represented by a multilayered perceptron with parameters \textit{D(x; $\theta$d)} including a single scalar output. D(\textit{x}) is the probability that \textit{x}  came from the data rather than the output of \textit{G}, it represents the generative model which is also represented by a multilayered perceptron contains parameters $\theta$\textit{g}. The generator's distribution \textit{pg} is learned by defining the input noise variables represented by \textit{pz(z)}. This is then represented by the data space as G(z;$\theta$g). The two models are trained simultaneously where \textit{D} is trained to maximize the probability of labelling the data \textit{x} as either if it came from the provided sample rather than from \textit{pg}, while \textit{G} is trained to minimize \textit{log(1-D(G(z)))}, therefore GANs follow a minmax game \citet{goodfellow:2014}.
