@@ -13,18 +13,19 @@ In a simple form matrix factorization classifies both items and users by vectors
   \includegraphics{graphics/user_matrix/usermatrix.JPG}
   \label{fig:usermatrix}
 \end{figure}
-The above image shows an illustration of a film recomendarion problem where there are multiple different items. these items being movies, director, actor and genre. these are also considered attributes of the film, through different methods such as a feedback system or through the user`s view history and search history. Which Film the user will be reccommended will depend greatly on the user-item rating matrix which is generally partly filles as it would be very time consuming for the user to submit feedback regareding each movie. Matrix Factorisation will attempt to reason out the ratings by transforming both users and items into the same favtor space.
-Matrix models generally map both items and users into a joint latent dimensionality space f , such that the interactions between user and item are modelled as inner products. Each Item I is associated with a vector  f and each user u is associated with another vector f for each item I ,One of the main challenges is to compute the mapping of each user and item to the factor vectors. Once the mapping has been completed, the estimation process will take to give a compatibility rating for each item and user by performing the following equation
+The above image shows an illustration of a film recomendation problem where there are multiple different items. these items being movies, director, actor and genre. these are also considered attributes of the film, through different methods such as a feedback system or through the user`s view history and search history. Which Film the user will be reccommended will depend greatly on the user-item rating matrix which is generally partly filles as it would be very time consuming for the user to submit feedback regareding each movie. Matrix Factorisation will attempt to reason out the ratings by transforming both users and items into the same favtor space.
+Matrix models generally map both items and users into a joint latent dimensionality space f , such that the interactions between user and item are modelled as inner products. Each Item I is associated with a vector qi, f and each user u is associated with another vector qi ? ? f for each item I ,One of the main challenges is to compute the mapping of each user and item to the factor vectors. Once the mapping has been completed, the estimation process will take to give a compatibility rating for each item and user by performing the following equation \citep{Avriel2003}
+
 \begin{figure}
   \includegraphics{graphics/user_matrix/usermatrix2.JPG}
   \label{fig:usermatrix2}
 \end{figure}
 
 \section{Learning Algorithms}
-\index{Matrix Factorisation!Additional Input Sources|(}
+\index{Matrix Factorisation!Algorithms|(}ma
 
-The general idea behind ensembles is to merge each learner's hypothesis into one with the intention of obtaining better predictions. There are various ensemble methods, some of which use a single base learner to produce homogeneous learners while others use individual learners to produce heterogeneous learners. Generally, ensemble methods are applied to supervised learning algorithms. The methods described below are the most common used ensemble techniques in machine learning.
+Machine learning algorithms that are used by recommender systems are generally split into two categories which are collaborative filtering and content based methods but modern solutions are also using a combination of these approaches. The most notable difference between these methods is that collaborative methods use user interactions to calculate similarities between content. While the content based method is generally based on the similarity of the item attributes. Collaborative methodsuse the interaction matrix which is also known as the rating matrix when users give direct feedback on content. 
 
 
 
-\index{Ensemble methods|)}
+\index{Matrix Factorisation|)}
