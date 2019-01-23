@@ -6,9 +6,9 @@
 
 \index{Semi-Supervised Learning|(}
 
-\newthought{Supervised learning} involves a labelled data\index{labelled data}set\index{labelled dataset\index{dataset}} on which a classifier\index{classifier} is trained. Once trained, it is then used to predict the labels of similar unlabelled data\index{unlabelled data}. Unsupervised Learning\index{Unsupervised Learning} deals with the identification of patterns in a given unlabelled data\index{unlabelled data}set\index{unlabelled dataset\index{dataset}}.
+\newthought{Supervised learning} involves a labelled data\index{labelled data}set\index{labelled dataset} on which a classifier\index{classifier} is trained. Once trained, it is then used to predict the labels of similar unlabelled data. Unsupervised Learning\index{Unsupervised Learning} deals with the identification of patterns in a given unlabelled dataset\index{unlabelled dataset}.
 
-Semi-supervised learning lies somewhere in between these two techniques, blending them together. It makes use of both labelled and unlabelled data\index{unlabelled data} and is often used in applications where labelled data\index{labelled data} is difficult to come by. The goal of the semi-supervised classification method is to train a classifier\index{classifier} on both labelled and unlabelled data\index{unlabelled data}, with the aim of getting a better result than that provided by a supervised classifier\index{classifier} \citep{zhu2009introduction}.\sidenote{It is also worth noting that semi-supervised methods do not exist only for classification, but also for regression\index{regression} problems.}
+Semi-supervised learning lies somewhere in between these two techniques, blending them together. It makes use of both labelled and unlabelled data and is often used in applications where labelled data is difficult to come by. The goal of the semi-supervised classification method is to train a classifier\index{classifier} on both labelled and unlabelled data, with the aim of getting a better result than that provided by a supervised classifier\index{classifier} \citep{zhu2009introduction}.\sidenote{It is also worth noting that semi-supervised methods do not exist only for classification, but also for regression\index{regression} problems.}
 
 \section{Semi-Supervised Classification and Clustering}\label{sec:class_clust}
 
@@ -16,39 +16,39 @@ Semi-supervised learning lies somewhere in between these two techniques, blendin
 
 \subsection{Semi-Supervised Classification}\label{sec:class}
 
-\newthought{Semi-Supervised Classification} is a classification\index{classification} problem which makes use of both labelled and unlabelled data\index{unlabelled data} in the same dataset\index{dataset}. As is typical of such a problem, we assume that the volume of unlabelled data\index{unlabelled data} in the dataset\index{dataset} is larger than that of labelled data\index{labelled data}.
+\newthought{Semi-Supervised Classification} is a classification\index{classification} problem which makes use of both labelled and unlabelled data in the same dataset. As is typical of such a problem, we assume that the volume of unlabelled data in the dataset is larger than that of labelled data.
 
 In semi-supervised learning, we make use of Pseudo-Labelling\index{Pseudo-Labelling} \citep{lee2013pseudo} to increase the amount of labelled data\index{labelled data} upon which the classifier\index{classifier} is being trained. The process is as follows:
 
 \begin{enumerate}
 \item We first use the smaller portion of labelled data\index{labelled data} to begin training our model.
-\item We then use this model to predict the labels for the unlabelled data\index{unlabelled data} in the dataset\index{dataset}.
+\item We then use this model to predict the labels for the unlabelled data in the dataset.
 \item The model is re-trained on all of the labelled data\index{labelled data}, including the original labelled entries as well as the new pseudo-labelled\index{pseudo-label} entries.
-\item Steps 2 and 3 are then repeated for any unlabelled data\index{unlabelled data} left (if any).
+\item Steps 2 and 3 are then repeated for any unlabelled data left (if any).
 \end{enumerate}
 
-Hence in this way, semi-supervised classification offers the same performance as a Supervised Classification\index{Supervised Classification}, with the added benefit that the unlabelled data\index{unlabelled data} is automatically labelled by the classifier\index{classifier} itself, reducing the effort needed for manual labelling in the dataset\index{dataset}. 
+Hence in this way, semi-supervised classification offers the same performance as a Supervised Classification\index{Supervised Classification}, with the added benefit that the unlabelled data is automatically labelled by the classifier\index{classifier} itself, reducing the effort needed for manual labelling in the dataset. 
 
 \subsection{Semi-Supervised Clustering}\label{sec:clust}
 
 \newthought{Semi-Supervised Clustering}, also known as Constrained Clustering\index{Constrained Clustering}, can be considered as a supervised extension added to Unsupervised Clustering\index{Unsupervised Clustering} \citep{zhu2009introduction, bradley2000constrained}. 
 
-In such a case, the dataset\index{dataset} in question consists of unlabelled data\index{unlabelled data}, the same as a typical Unsupervised Clustering\index{Unsupervised Clustering} problem. Distinctively however, in Constrained Clustering\index{Constrained Clustering} one also finds a degree of supervised information about the data clusters\index{clusters} inside of the dataset\index{dataset}. Such information may contain constraints such as \textit{must-link}\index{must-link} and \textit{cannot-link}\index{cannot-link}, where in the former, two data elements $x_i$ and $x_j$ must be in the same cluster, while in the latter they must not \citep{zhu2009introduction}. Using Constrained Clustering\index{Constrained Clustering} we aim at clustering\index{clustering} better than a typical unsupervised clustering technique.
+In such a case, the dataset in question consists of unlabelled data, the same as a typical Unsupervised Clustering\index{Unsupervised Clustering} problem. Distinctively however, in Constrained Clustering\index{Constrained Clustering} one also finds a degree of supervised information about the data clusters\index{clusters} inside of the dataset. Such information may contain constraints such as \textit{must-link}\index{must-link} and \textit{cannot-link}\index{cannot-link}, where in the former, two data elements $x_i$ and $x_j$ must be in the same cluster, while in the latter they must not \citep{zhu2009introduction}. Using Constrained Clustering\index{Constrained Clustering} we aim at clustering\index{clustering} better than a typical unsupervised clustering technique.
 
 \section{Method}\label{sec:method}
 
-\newthought{Initially, it may seem illogical} that a semi-supervised process making use of unabelled data can perform as good as or better than a supervised labelled solution. Unlabelled data is incapable of providing a relationship between an element $x$ and a label $y$, which is what a Supervised Model is trained upon. What gives Semi-Supervised Learning its strength is the assumptions made between the unlabelled data\index{unlabelled data} and the target labels\index{target label}.
+\newthought{Initially, it may seem illogical} that a semi-supervised process making use of unabelled data can perform as good as or better than a supervised labelled solution. Unlabelled data is incapable of providing a relationship between an element $x$ and a label $y$, which is what a Supervised Model is trained upon. What gives Semi-Supervised Learning its strength is the assumptions made between the unlabelled data and the target labels\index{target label}.
 
 To examine the discussed process, let us take an example proposed by \citet{zhu2009introduction}. First we represent each data instance\index{data instance} by a one-dimensional feature $ x \in\R$. $x$ can be in one of two classes; positive or negative.
 
 \begin{itemize}
 \item In a case of Supervised Learning\index{Supervised Learning}, we are given the labelled training instances $(x_1,y_1) = (-1, -)$ and $(x_2, y_2) = (1,+)$. In such a case the best Decision Boundary\index{Decision Boundary} would be $x = 0$, where all instances having $x < 0$ are classified as $y = -$, and those having $x \geq 0$ as $y=+$.
-\item Now let us consider also a large number of unlabelled instances\index{unlabelled instances} with unknown correct class labels\index{class label}. We observe however, that they form two groups. Taking the assumption that instances in each class form a coherent group\index{coherent group}, we know that instances tend to center around a central mean\index{central mean} in a Gaussian Distribution\index{Gaussian Distribution}. 
-\item Through this assumption, the unlabelled data\index{unlabelled data} is capable of providing us with more information. We now notice that the two labelled instances\index{labelled instance} detailed in the first point are not the best examples for each of the classes in our dataset\index{dataset}.
+\item Now let us consider also a large number of unlabelled instances with unknown correct class labels\index{class label}. We observe however, that they form two groups. Taking the assumption that instances in each class form a coherent group\index{coherent group}, we know that instances tend to center around a central mean\index{central mean} in a Gaussian Distribution\index{Gaussian Distribution}. 
+\item Through this assumption, the unlabelled data is capable of providing us with more information. We now notice that the two labelled instances\index{labelled instance} detailed in the first point are not the best examples for each of the classes in our dataset.
 \item Hence we take a semi-supervised estimate, which shows us that the Decision Boundary\index{Decision Boundary} should be between these two latter groups instead, at $x \approx 0.4$.
 \end{itemize}
 
-If the assumption holds, then using both the labelled and unlabelled data\index{unlabelled data} gives us a more reliable Decision Boundary\index{Decision Boundary} than the one initially proposed. As we can see from this example (displayed also in Figure~\ref{fig:super_vs_semi}), the distribution of the unlabelled data\index{unlabelled data} helps us in identifying the regions having the same label, with the smaller amount of labelled instances\index{labelled instance} providing us with the actual labels.
+If the assumption holds, then using both the labelled and unlabelled data gives us a more reliable Decision Boundary\index{Decision Boundary} than the one initially proposed. As we can see from this example (displayed also in Figure~\ref{fig:super_vs_semi}), the distribution of the unlabelled data helps us in identifying the regions having the same label, with the smaller amount of labelled instances\index{labelled instance} providing us with the actual labels.
 
 \begin{figure}
 \includegraphics[scale=1]{"graphics/semi-supervised learning/supervised_vs_semi"}
@@ -58,11 +58,11 @@ If the assumption holds, then using both the labelled and unlabelled data\index{
 
 \subsection{Inductive vs. Transductive Semi-Supervised Learning\index{Transductive Semi-Supervised Learning}}\label{sec:inductive_transductive}
 
-\newthought{In Semi-Supervised Learning}, on finds two modes. Since in our dataset\index{dataset} we have both labelled and unlabelled data\index{unlabelled data}, we have two goals to achieve, namely:
+\newthought{In Semi-Supervised Learning}, on finds two modes. Since in our dataset we have both labelled and unlabelled data, we have two goals to achieve, namely:
 
 \begin{enumerate}
 \item To predict the labels for the upcoming data instances\index{data instance} in the test set\index{test set}. This is known as \textbf{Inductive Semi-Supervised Learning}.
-\item To predict the labels of the unlabelled data\index{unlabelled data} instances inside of the training set\index{training set}. This is known as \textbf{Transductive Semi-Supervised Learning}.
+\item To predict the labels of the unlabelled data instances inside of the training set\index{training set}. This is known as \textbf{Transductive Semi-Supervised Learning}.
 \end{enumerate}
 
 Formally, in Inductive Semi-Supervised Learning\index{Inductive Semi-Supervised Learning} \citep{zhu2009introduction}, given a training sample; 
@@ -79,15 +79,15 @@ In Transductive Learning \citep{zhu2009introduction}, given a training sample;
 \{(\bm{x}_i,y_i)\}^l_{i=1},\{\bm{x}_j\}^{l+u}_{j=l+1}
 \end{equation}
 
-...our model learns a function $f: X^{l+u} \mapsto Y^{l+u}$, such that $f$ is expected to be a good predictor on the unlabelled data\index{unlabelled data} $\{\bm{x}_j\}^{l+u}_{j=l+1}$.
+...our model learns a function $f: X^{l+u} \mapsto Y^{l+u}$, such that $f$ is expected to be a good predictor on the unlabelled data $\{\bm{x}_j\}^{l+u}_{j=l+1}$.
 
 \subsection{Limitations of Semi-Supervised Learning}\label{sec:limitations}
 
-\newthought{Semi-Supervised Learning} may seem as a revolutionary step on Supervised Learning\index{Supervised Learning}; providing the same, if not better, performance, while using incomplete dataset\index{dataset}s with unlabelled data\index{unlabelled data}.
+\newthought{Semi-Supervised Learning} may seem as a revolutionary step on Supervised Learning\index{Supervised Learning}; providing the same, if not better, performance, while using incomplete datasets with unlabelled data.
 
 In reality however it is not that simple. Blindly opting for Semi-Supervised methods for any specific task can often lead to worse results than a Supervised solution \citep{zhu2009introduction}. 
 
-This is due to the assumption we make when handling the unlabelled data\index{unlabelled data} in our dataset\index{dataset}. Since our Semi-Supervised model relies heavily on this assumption, a wrong one can lead to a significant decrease in performance and accuracy. Careful evaluation of the data is a must before committing to which type of learning algorithms\index{algorithm} to use.
+This is due to the assumption we make when handling the unlabelled data in our dataset. Since our Semi-Supervised model relies heavily on this assumption, a wrong one can lead to a significant decrease in performance and accuracy. Careful evaluation of the data is a must before committing to which type of learning algorithms\index{algorithm} to use.
 
 \section{Semi-Supervised Learning in Algorithms \& Applications}\label{sec:applications}
 
@@ -95,6 +95,6 @@ This is due to the assumption we make when handling the unlabelled data\index{un
 
 A simple yet effective algorithm making use of Semi-Supervised Learning is known as the Self-Training Model \citep{mcclosky2006effective, zhu2009introduction}. It is a Wrapper Method\index{Wrapper Method}, capable of wrapping itself around other algorithms\index{algorithm} without altering their inner workings. It also comes with a crucial limitation; small errors occurring in the initial training iterations\index{training iteration} can get reinforced throughout the rest of the training.
 
-To combat this limitation, among other improvements, one also finds other, more complex algorithms\index{algorithm}. Transductive SVMs\index{Transductive SVM} \citep{bennett1999semi} are Support Vector Machines\index{Support Vector Machine} embedded with Semi-Supervised Learning.These methods however have difficulty scaling to large amounts of data. Graph-Based Methods\index{graph-based method} \citep{goldberg2006seeing, zhu2009introduction} are some of the most used techniques. Labelled information\index{labelled information} is spread through the graph from labelled\index{labelled node} to unlabelled nodes\index{unlabelled node}, connecting similar observations. One also finds Neural Network\index{Neural Network} solutions such as Generative Models\index{Generative Model} and Deep Generative Models\index{Deep Generative Model} \citep{zhu2009introduction, kingma2014semi}, which are capable of allowing a more robust set of features to be used than Linear Embedding\index{Linear Embedding} used by other solutions.
+To combat this limitation, among other improvements, one also finds other, more complex algorithms\index{algorithm}. Transductive SVMs\index{Transductive SVM} \citep{bennett1999semi} are Support Vector Machines\index{Support Vector Machine} embedded with Semi-Supervised Learning.These methods however have difficulty scaling to large amounts of data. Graph-Based Methods\index{graph-based method} \citep{goldberg2006seeing, zhu2009introduction} are some of the most used techniques. Labelled information\index{labelled information} is spread through the graph from labelled\index{labelled node} to unlabelled nodes, connecting similar observations. One also finds Neural Network\index{Neural Network} solutions such as Generative Models\index{Generative Model} and Deep Generative Models\index{Deep Generative Model} \citep{zhu2009introduction, kingma2014semi}, which are capable of allowing a more robust set of features to be used than Linear Embedding\index{Linear Embedding} used by other solutions.
 
 \index{Semi-Supervised Learning|)}

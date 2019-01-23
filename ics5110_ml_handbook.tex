@@ -15,6 +15,8 @@
 %%
 % Automated bibliography management
 \usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \setcitestyle{authoryear}
 
 %%
@@ -195,7 +197,17 @@
 
 \par Copyright \copyright\ \the\year\ \ics\ class of 2018/9, University of Malta.
 
-\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, Daniel Farrugia, Keith Mintoff, Franco Cassar Manghi, David Farrugia, Ivan Salomone, Andrew Cachia, Jake J.\ Dalli, Joseph Azzopardi, Natalia Mallia, Mark Muscat, Stefan Cassar, Patrick Bezzina, Dylan Vassallo, Brian Pace, George Eduardo Buckup Sulzbeck, Katrin Jansen, Aliia Erofeeva, Michael Filletti, Neil Farrugia, Claire Galea, Albert Bezzina \hl{ADD YOUR NAME TO THIS LIST}} %TODO
+
+
+
+
+
+
+
+
+
+\par\smallcaps{Jean-Paul Ebejer, Dylan Seychell, Lara Marie Demajo, Daniel Farrugia, Keith Mintoff, Franco Cassar Manghi, David Farrugia, Ivan Salomone, Andrew Cachia, Jake J.\ Dalli, Joseph Azzopardi, Natalia Mallia, Mark Muscat, Stefan Cassar, Patrick Bezzina, Dylan Vassallo, Brian Pace, George Eduardo Buckup Sulzbeck, Katrin Jansen, Aliia Erofeeva, Michael Filletti, Neil Farrugia, Claire Galea, Albert Bezzina,Philip Mifsud \hl{ADD YOUR NAME TO THIS LIST}} %TODO
+
 
 \par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
 use this file except in compliance with the License. You may obtain a copy
@@ -237,6 +249,7 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 \input{terms/dimensionalityreduction_sc.tex}
 \input{terms/empiricalriskminimisation_nf.tex}
 \input{terms/ensemblemethods_dv.tex}
+\input{terms/generativemodels_pm.tex}
 \input{terms/evaluationmethods_ae.tex}
 \input{terms/featureselection_ab.tex}
 \input{terms/lstm_nm.tex}
@@ -249,14 +262,18 @@ This book explains popular Machine Learning terms.  We focus to explain each ter
 \input{terms/structuralriskminimization_maf.tex}
 \input{terms/syntheticfeatures_fcm.tex}
 \input{terms/transferlearning_jjd.tex}
-\input{terms/roccurves_pb.tex} %TODO
+\input{terms/roccurves_pb.tex}
+ %TODO
 
 %%
 % The back matter contains appendices, bibliographies, indices, glossaries, etc.
 
 \backmatter
 
-\bibliography{terms/featureselection_ab,terms/classification_cg,terms/empiricalriskminimisation_nf,terms/structuralriskminimization_maf,terms/bayesianmodels_kj,terms/neuralnetwork_bp,terms/roccurves_pb,terms/dimensionalityreduction_sc,terms/semisupervised_mm,terms/lstm_nm,terms/regularisationofmodels_ja,terms/transferlearning_jjd,terms/sampleselectionbias_ac,terms/noiseindatasets_is,terms/onlinelearning_df,terms/crossvalidation_lmd,terms/confusionmatrix_df,terms/activationfunctions_km,terms/syntheticfeatures_fcm,terms/ensemblemethods_dv,terms/convolution_gebs,terms/evaluationmethods_ae} %TODO
+
+
+\bibliography{terms/featureselection_ab,terms/classification_cg,terms/empiricalriskminimisation_nf,terms/structuralriskminimization_maf,terms/bayesianmodels_kj,terms/neuralnetwork_bp,terms/roccurves_pb,terms/dimensionalityreduction_sc,terms/semisupervised_mm,terms/lstm_nm,terms/regularisationofmodels_ja,terms/transferlearning_jjd,terms/sampleselectionbias_ac,terms/noiseindatasets_is,terms/onlinelearning_df,terms/crossvalidation_lmd,terms/confusionmatrix_df,terms/activationfunctions_km,terms/syntheticfeatures_fcm,terms/ensemblemethods_dv,terms/convolution_gebs,terms/evaluationmethods_ae,terms/generativemodels_pm} %TODO
+
 \bibliographystyle{plainnat}
 
 \printindex
