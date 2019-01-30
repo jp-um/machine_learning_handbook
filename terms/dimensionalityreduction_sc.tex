@@ -28,11 +28,11 @@ In GA's, a population is made up of a set of individuals (samples from a sample 
 In feature selection, the individual considered as the fittest from the new population obtained is used to determine the features with the highest importance. Genes with value '1' in the obtained chromosome are considered as the features to be used for predictions \citep{sivanandam2007introduction}.
 
 
-\section{Principle Component Analysis}\index{dimensionality reduction!principle component analysis}
+\section{Principal Component Analysis}\index{dimensionality reduction!principal component analysis}
 
 \citet{jolliffe2002principal} introduces PCA as the technique which aims ''to reduce the dimensionality of a data set consisting of a large number of interrelated variables, while retaining as much as possible of the variation present in the data set.'' PCA aims to transform a set of correlated variables $P$ into a set of uncorrelated $k$ variables, where $k < P$ and the $k$ variables maintain the majority of the information in $P$. 
 
-Prior to applying PCA, the dataset is adjusted such that the means of the original variables are subtracted from the observations, to produce a dataset with mean zero \citep{jackson2005user}. PCA works by initially constructing the \textit{covariance matrix}\index{dimensionality reduction!principle component analysis!covariance matrix} of the data \citep{Guan2009}. A high covariance value indicates that the variables are correlated, whereas a zero value indicates that no correlation exists between the variables. Moreover, the covariance between $x$ and $y$ is equal to the variance of $x$, when $x = y$. 
+Prior to applying PCA, the dataset is adjusted such that the means of the original variables are subtracted from the observations, to produce a dataset with mean zero \citep{jackson2005user}. PCA works by initially constructing the \textit{covariance matrix}\index{dimensionality reduction!principal component analysis!covariance matrix} of the data \citep{Guan2009}. A high covariance value indicates that the variables are correlated, whereas a zero value indicates that no correlation exists between the variables. Moreover, the covariance between $x$ and $y$ is equal to the variance of $x$, when $x = y$. 
 
 \begin{marginfigure}
 	\begin{equation*}
@@ -45,7 +45,7 @@ Prior to applying PCA, the dataset is adjusted such that the means of the origin
 
 The variance between features is indicated by the diagonal values of a covariance matrix (Figure~\ref{fig:covarianceMatrix}), whilst the off-diagonal values refer to the covariance between the features. High values in the off-diagonal terms indicate that high redundancy exists, and thus the covariance matrix must be diagonalized to minimize the correlations between the features. 
 
-The resultant diagonalized covariance matrix is used to calculate the \textit{eigenvalues}\index{dimensionality reduction!principle component analysis!eigenvalues} and \textit{eigenvectors}\index{dimensionality reduction!principle component analysis!eigenvectors}. The eigenvectors refer to the direction in which the data varies, and these are ordered such that the ones with the highest eigenvalues are chosen as the principal components of the data. Eventually, the selected vectors are kept to form a \textit{feature vector}\index{dimensionality reduction!principle component analysis!feature vector}, which will be used to construct the new dataset with lower dimensionality, as in Equation~\ref{newDataSet} 
+The resultant diagonalized covariance matrix is used to calculate the \textit{eigenvalues}\index{dimensionality reduction!principal component analysis!eigenvalues} and \textit{eigenvectors}\index{dimensionality reduction!principal component analysis!eigenvectors}. The eigenvectors refer to the direction in which the data varies, and these are ordered such that the ones with the highest eigenvalues are chosen as the principal components of the data. Eventually, the selected vectors are kept to form a \textit{feature vector}\index{dimensionality reduction!principal component analysis!feature vector}, which will be used to construct the new dataset with lower dimensionality, as in Equation~\ref{newDataSet} 
 
 
 \begin{equation}\label{newDataSet}
